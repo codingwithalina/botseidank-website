@@ -6,9 +6,7 @@
 <title>Befund-Brief – Alina's AI Automation</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Persönliche Briefe mit einem echten Befund je Empfänger, gedruckt und versendet ohne Handarbeit.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/fonts.css">
 <style>
 /* Layout: zweispaltiger Hero mit Ablaufprotokoll als Signatur, danach ein ruhiger Lesefluss bis zum Eignungscheck. Gleiche dunkle Cyan-Welt wie aiwithalina.com. */
 :root{
@@ -337,7 +335,7 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
           <label class="fl" for="cf-mail">Geschäftliche E-Mail<input id="cf-mail" name="email" type="email" autocomplete="email" required><span class="err"></span></label>
           <label class="fl" for="cf-tel">Telefon (optional)<input id="cf-tel" name="telefon" type="tel" autocomplete="tel"></label>
         </div>
-        <label class="consent" for="cf-consent"><input type="checkbox" id="cf-consent" name="einwilligung" value="ja" required><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anfrage gespeichert werden. Details in der <a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</span></label>
+        <label class="consent" for="cf-consent"><input type="checkbox" id="cf-consent" name="einwilligung" value="ja" required><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anfrage gespeichert werden. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
         <span class="err" id="consentErr" aria-live="polite"></span>
         <button class="btn btn-primary" type="submit">Auf die Warteliste setzen <span class="arr">→</span></button>
         
@@ -366,7 +364,7 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
     <div class="big" aria-hidden="true">befreien.</div>
     <div class="row" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)">
       <span>© 2026 Alina's AIAutomation · Alle Preise netto</span>
-      <nav aria-label="Rechtliches"><button type="button" class="consent-link" data-consent-open>Cookie-Einstellungen</button><a href="https://aiwithalina.com/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutz</a><a href="https://aiwithalina.com/agb" target="_blank" rel="noopener">AGB</a></nav>
+      <nav aria-label="Rechtliches"><button type="button" class="consent-link" data-consent-open>Cookie-Einstellungen</button><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></nav>
     </div>
   </div>
 </footer>

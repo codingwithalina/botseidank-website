@@ -43,3 +43,6 @@
 
 @media (prefers-reduced-motion:reduce){.btn-primary::after{display:none}.cc{transition:none}}
 .cc[hidden]{display:none}
+.cal-loading{pointer-events:none;z-index:1}
+.cal-loading.fail{pointer-events:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--paper-2)}
+.cal-ready .cal-target{min-height:0}

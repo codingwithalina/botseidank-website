@@ -14,9 +14,15 @@ Statische Website, keine Build-Schritte.
 | `ALINA-NATH_Inspiration-Multipage_v3_2026-10-16.html` | Ursprüngliche Gestaltungsstudie |
 
 ## Einstellungen
-- `assets/site.js` oben: `GA_ID` (Google Analytics 4, Format `G-…`) und `CAL_LINK` (Cal.com, aktuell `alina-nath/discovery-call`).
+- `assets/site.js` ganz oben (`AWA_CONFIG`): `GA_ID` (GA4, Format `G-…`), `ADS_ID` und `ADS_CONVERSION` (Google Ads), `CONVERSION_ON` (`click` oder `booking`), `CAL_LINK`.
 - In jeder Landingpage oben im `<script>`: `WEBHOOK_URL` (n8n) für den Eignungscheck.
-- Google Analytics lädt erst nach Zustimmung im Cookie-Banner. Der Cal.com-Kalender ist direkt eingebettet. Beide gehören in die Datenschutzerklärung.
+- Rechtstexte: in `impressum.html`, `datenschutz.html`, `agb.html` den Bereich zwischen `eRecht24-START` und `eRecht24-ENDE` durch den HTML-Text aus eRecht24 ersetzen.
 
-## Gemessene Ereignisse (GA4)
-`page_view` (auch Unterseiten der Hauptseite), `cta_click`, `booking_link_click`, `generate_lead`, `join_waitlist`, `booking_complete`.
+## Datenschutz-Technik
+- Google Analytics und Google Ads laden erst nach Zustimmung im Cookie-Banner (Consent Mode v2).
+- Schriften, GSAP und Lenis liegen lokal in `assets/` – keine Verbindung zu Google Fonts oder CDNs.
+- Der Cal.com-Kalender ist direkt eingebettet und gehört in die Datenschutzerklärung.
+
+## Gemessene Ereignisse
+GA4: `page_view`, `cta_click`, `booking_click`, `generate_lead`, `join_waitlist`, `booking_complete`.
+Google Ads: `conversion` (AW-18114466869/1fF4CN_c7accELWo071D) beim Klick auf Termin-Buttons.
