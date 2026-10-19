@@ -13,5 +13,10 @@ Statische Website, keine Build-Schritte.
 | `befund-brief.html` | Landingpage Befund-Brief (Warteliste) |
 | `ALINA-NATH_Inspiration-Multipage_v3_2026-10-16.html` | Ursprüngliche Gestaltungsstudie |
 
-## Vor dem Livegang
-In jeder Landingpage oben im `<script>`: `WEBHOOK_URL` (n8n) und `BOOKING_URL` (Cal.com) eintragen.
+## Einstellungen
+- `assets/site.js` oben: `GA_ID` (Google Analytics 4, Format `G-…`) und `CAL_LINK` (Cal.com, aktuell `alina-nath/discovery-call`).
+- In jeder Landingpage oben im `<script>`: `WEBHOOK_URL` (n8n) für den Eignungscheck.
+- Google Analytics und der Cal.com-Kalender laden erst nach Zustimmung im Cookie-Banner. Beide gehören in die Datenschutzerklärung.
+
+## Gemessene Ereignisse (GA4)
+`page_view` (auch Unterseiten der Hauptseite), `cta_click`, `booking_link_click`, `generate_lead`, `join_waitlist`, `booking_complete`.

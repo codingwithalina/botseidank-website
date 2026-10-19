@@ -188,6 +188,18 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
 .ok dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;margin:0;font-size:15px}
 .ok dt{color:var(--ink-2)} .ok dd{margin:0}
 
+.direct{font-size:14px;color:var(--ink-2);text-align:center}
+.direct a{color:var(--berry);font-weight:600}
+.ok-cal{margin-top:6px;border-radius:12px;overflow:hidden;border:1px solid var(--line);min-height:420px;position:relative;background:var(--paper)}
+.ok-cal .cal-target{min-height:560px}
+.hero h1 .w > span{animation:wordUp 1s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0) * 55ms + 80ms)}
+@keyframes wordUp{from{transform:translateY(110%)}to{transform:none}}
+.log{transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.log.float{animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.srow{transition:background .3s}
+.srow:hover{background:color-mix(in srgb,var(--berry) 5%,transparent)}
+
 /* Footer */
 .ftr{background:var(--band);padding-block:56px 32px;border-top:1px solid var(--line)}
 .ftr .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-start}
@@ -205,6 +217,7 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <header class="hdr">
@@ -261,7 +274,7 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
     <h2 class="h2 rv" id="a-h" style="margin-top:16px;max-width:22ch">Alles, was Sie bekommen. Fertig gebaut, nicht nur beraten.</h2>
     <p class="lede rv" style="margin-top:18px">„Die Anfrage von Freitagabend hat Montag früh einen Termin im Kalender, ohne dass Sie am Wochenende ans Handy gehen.“</p>
     <div class="stack-wrap">
-      <div class="stack"><div class="srow"><div><strong>Antwortzeit-Audit vorab </strong><small>5 Testanfragen bei Ihnen, Protokoll der Antwortzeiten als Baseline</small></div><span class="v">490 €</span></div><div class="srow"><div><strong>KI-Caller mit Stimme auf Ihre Marke </strong><small>Name, Begrüßung, Tonalität Ihres Betriebs; Modus „Mensch zuerst“ plus KI-Fallback</small></div><span class="v">3.900 €</span></div><div class="srow"><div><strong>Auslöser für bis zu 3 Anfragequellen </strong><small>Formular, Google-Anzeige, verpasster Anruf</small></div><span class="v">900 €</span></div><div class="srow"><div><strong>Qualifizierung und Einwand-Bibliothek </strong><small>3 Fragen, 20 typische Einwände beantwortet</small></div><span class="v">790 €</span></div><div class="srow"><div><strong>Kalender- und CRM-Anbindung </strong><small>Live-Buchung, Vorgang mit Gesprächszusammenfassung</small></div><span class="v">900 €</span></div><div class="srow"><div><strong>Nachfass-Kadenz </strong><small>6 Versuche plus SMS oder E-Mail bei Nichterreichen</small></div><span class="v">690 €</span></div><div class="srow"><div><strong>DSGVO-Paket </strong><small>Opt-in-Text, AVV, Einwilligungsdoku, Rufnummernanzeige, KI-Hinweis</small></div><span class="v">990 €</span></div><div class="srow"><div><strong>Team-Einweisung und Übergabedoku </strong><small>60 Minuten, Rollen, Eskalation, Notfallkontakt</small></div><span class="v">500 €</span></div><div class="srow"><div><strong>Rückruf verpasster Anrufe <span class="tag">Bonus</span></strong><small>Jede verpasste Nummer wird ebenfalls zurückgerufen</small></div><span class="v">900 €</span></div><div class="srow"><div><strong>Wochenend-Test nach Livegang <span class="tag">Bonus</span></strong><small>5 Testanfragen am Samstag und Sonntag mit Protokoll</small></div><span class="v">290 €</span></div><div class="srow"><div><strong>Monatlicher Revenue-Report <span class="tag">Bonus</span></strong><small>Antwortzeiten, Termine, Show-Rate, nächster Hebel</small></div><span class="v">390 € / Monat</span></div><div class="srow total"><div><strong>Gesamtwert des Setups</strong></div><span class="v">10.350 €</span></div></div>
+      <div class="stack"><div class="srow rv"><div><strong>Antwortzeit-Audit vorab </strong><small>5 Testanfragen bei Ihnen, Protokoll der Antwortzeiten als Baseline</small></div><span class="v">490 €</span></div><div class="srow rv"><div><strong>KI-Caller mit Stimme auf Ihre Marke </strong><small>Name, Begrüßung, Tonalität Ihres Betriebs; Modus „Mensch zuerst“ plus KI-Fallback</small></div><span class="v">3.900 €</span></div><div class="srow rv"><div><strong>Auslöser für bis zu 3 Anfragequellen </strong><small>Formular, Google-Anzeige, verpasster Anruf</small></div><span class="v">900 €</span></div><div class="srow rv"><div><strong>Qualifizierung und Einwand-Bibliothek </strong><small>3 Fragen, 20 typische Einwände beantwortet</small></div><span class="v">790 €</span></div><div class="srow rv"><div><strong>Kalender- und CRM-Anbindung </strong><small>Live-Buchung, Vorgang mit Gesprächszusammenfassung</small></div><span class="v">900 €</span></div><div class="srow rv"><div><strong>Nachfass-Kadenz </strong><small>6 Versuche plus SMS oder E-Mail bei Nichterreichen</small></div><span class="v">690 €</span></div><div class="srow rv"><div><strong>DSGVO-Paket </strong><small>Opt-in-Text, AVV, Einwilligungsdoku, Rufnummernanzeige, KI-Hinweis</small></div><span class="v">990 €</span></div><div class="srow rv"><div><strong>Team-Einweisung und Übergabedoku </strong><small>60 Minuten, Rollen, Eskalation, Notfallkontakt</small></div><span class="v">500 €</span></div><div class="srow rv"><div><strong>Rückruf verpasster Anrufe <span class="tag">Bonus</span></strong><small>Jede verpasste Nummer wird ebenfalls zurückgerufen</small></div><span class="v">900 €</span></div><div class="srow rv"><div><strong>Wochenend-Test nach Livegang <span class="tag">Bonus</span></strong><small>5 Testanfragen am Samstag und Sonntag mit Protokoll</small></div><span class="v">290 €</span></div><div class="srow"><div><strong>Monatlicher Revenue-Report <span class="tag">Bonus</span></strong><small>Antwortzeiten, Termine, Show-Rate, nächster Hebel</small></div><span class="v">390 € / Monat</span></div><div class="srow total"><div><strong>Gesamtwert des Setups</strong></div><span class="v">10.350 €</span></div></div>
       <aside class="price" aria-label="Preis">
         <span class="mono" style="color:var(--ink-2)">Ihr Preis · Setup, netto</span>
         <span class="big">4.900 €</span>
@@ -327,14 +340,14 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
         <label class="consent" for="cf-consent"><input type="checkbox" id="cf-consent" name="einwilligung" value="ja" required><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anfrage gespeichert werden. Details in der <a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</span></label>
         <span class="err" id="consentErr" aria-live="polite"></span>
         <button class="btn btn-primary" type="submit">Eignung prüfen lassen <span class="arr">→</span></button>
+        <p class='direct'>Lieber ohne Fragen? <a href='https://cal.com/alina-nath/discovery-call' target='_blank' rel='noopener'>Direkt einen Termin wählen ↗</a></p>
       </form>
       <div class="f ok" id="checkOk" hidden style="border:1px solid var(--line);border-radius:18px;background:var(--paper-2);padding:clamp(22px,3vw,36px)" aria-live="polite">
         <span class="mono" style="color:var(--berry)">Angekommen</span>
         <h3>Danke, <span data-name></span>. Ihre Angaben liegen bei mir.</h3>
         <dl></dl>
-        <p style="color:var(--ink-2)"><b style="color:var(--ink)">Nächster Schritt:</b> Ich prüfe Ihre Angaben persönlich. Passt es, bekommen Sie einen Link für ein 25-Minuten-Gespräch.</p>
-        <p data-wait style="color:var(--ink-2)">Sie hören innerhalb eines Werktags von mir, per E-Mail an die angegebene Adresse.</p>
-        <a class="btn btn-primary" data-book hidden href="#" target="_blank" rel="noopener" style="align-self:flex-start">Direkt Termin wählen <span class="arr">→</span></a>
+        <p style="color:var(--ink-2)"><b style="color:var(--ink)">Nächster Schritt:</b> Ich prüfe Ihre Angaben persönlich. Vor dem Gespräch schaue ich mir Ihre Angaben persönlich an. Passt es nicht, sage ich es Ihnen ehrlich.</p>
+        <p style='color:var(--ink)'><b>Am schnellsten geht es so:</b> Wählen Sie direkt einen Termin. Ihre Angaben sind schon eingetragen.</p><div class='cal-embed ok-cal' data-cal-embed data-cal-manual></div>
       </div>
     </div>
   </div>
@@ -353,11 +366,12 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
     <div class="big" aria-hidden="true">befreien.</div>
     <div class="row" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)">
       <span>© 2026 Alina's AIAutomation · Alle Preise netto</span>
-      <nav aria-label="Rechtliches"><a href="https://aiwithalina.com/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutz</a><a href="https://aiwithalina.com/agb" target="_blank" rel="noopener">AGB</a></nav>
+      <nav aria-label="Rechtliches"><button type="button" class="consent-link" data-consent-open>Cookie-Einstellungen</button><a href="https://aiwithalina.com/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutz</a><a href="https://aiwithalina.com/agb" target="_blank" rel="noopener">AGB</a></nav>
     </div>
   </div>
 </footer>
 <div class="mobile-cta"><a class="btn btn-primary" href="#check">Eignungscheck starten <span class="arr">→</span></a></div>
+<script src="assets/site.js"></script>
 <script>
 (function(){
 "use strict";
@@ -365,11 +379,35 @@ legend{font-size:14px;font-weight:500;padding:0;margin-bottom:10px}
    WEBHOOK_URL: n8n-Webhook, der den Eignungscheck empfängt (POST, JSON). Leer = nur Bestätigung auf der Seite.
    BOOKING_URL: Cal.com-Link für den 25-Minuten-Termin. Leer = Hinweis „ich melde mich innerhalb eines Werktags“. */
 var WEBHOOK_URL = "";
-var BOOKING_URL = "";
+var BOOKING_URL = "https://cal.com/alina-nath/discovery-call";
 
 var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var root = document.documentElement;
 root.classList.add('js');
+
+/* Hero-Überschrift Wort für Wort */
+if(!RM && window.AWA){ AWA.splitWords(document.querySelector('.hero h1')); }
+
+/* Protokollkarte schwebt und neigt sich zur Maus */
+var logEl = document.querySelector('.log');
+if(logEl && !RM){
+  logEl.classList.add('float');
+  if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    logEl.addEventListener('pointermove', function(ev){ var r=logEl.getBoundingClientRect(); var x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5; logEl.style.transform='perspective(900px) rotateY('+(x*8).toFixed(2)+'deg) rotateX('+(-y*6).toFixed(2)+'deg)'; });
+    logEl.addEventListener('pointerleave', function(){ logEl.style.transform=''; });
+  }
+}
+
+/* Preis zählt hoch */
+var priceEl = document.querySelector('.price .big');
+if(priceEl && !RM && 'IntersectionObserver' in window){
+  var finalTxt = priceEl.textContent, target = parseInt(finalTxt.replace(/\D/g,''),10), nf = new Intl.NumberFormat('de-DE');
+  var po = new IntersectionObserver(function(en){ if(!en[0].isIntersecting) return; po.disconnect();
+    var t0 = performance.now(), dur = 1300;
+    (function step(t){ var k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3); priceEl.textContent = nf.format(Math.round(target*e))+' €'; if(k<1) requestAnimationFrame(step); else priceEl.textContent = finalTxt; })(t0);
+  },{threshold:.6});
+  po.observe(priceEl);
+}
 
 /* Reveal */
 var rv = [].slice.call(document.querySelectorAll('.rv'));
@@ -443,8 +481,12 @@ if(form){
     var rows = [['Betrieb', data.firma],['Anfragen pro Monat', data.anfragen],['Kanäle', data.kanaele || 'keine Angabe'],['Engpass', data.engpass],['Umsetzung', data.wann]];
     box.querySelector('dl').innerHTML = rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+String(r[1]||'').replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})+'</dd>' }).join('');
     box.querySelector('[data-name]').textContent = (data.name||'').split(' ')[0];
-    var b = box.querySelector('[data-book]');
-    if(BOOKING_URL){ b.href = BOOKING_URL; b.hidden = false; box.querySelector('[data-wait]').hidden = true }
+    if(window.AWA){
+      AWA.track(form.getAttribute('data-waitlist') ? 'join_waitlist' : 'generate_lead', {angebot: data.angebot, anfragen: data.anfragen, engpass: data.engpass});
+      var calEl = box.querySelector('[data-cal-embed]');
+      var notes = 'Angebot: '+data.angebot+' | Betrieb: '+(data.firma||'')+' | Leistungen: '+(data.leistung||'')+' | Anfragen/Monat: '+(data.anfragen||'')+' | Kanäle: '+(data.kanaele||'-')+' | Engpass: '+(data.engpass||'')+' | Umsetzung: '+(data.wann||'')+(data.telefon?' | Tel: '+data.telefon:'');
+      if(calEl) AWA.mountCal(calEl, {name: data.name, email: data.email, notes: notes});
+    }
     form.hidden = true; box.hidden = false; box.scrollIntoView({behavior:RM?'auto':'smooth', block:'center'});
   });
 }

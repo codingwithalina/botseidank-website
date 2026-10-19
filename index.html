@@ -478,6 +478,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
 .mt-s{margin-top:20px}.mt-m{margin-top:40px}.mt-l{margin-top:64px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
@@ -1259,13 +1260,9 @@ html.no-notes .notes-toggle i{background:var(--line)}
         </div>
       </div>
       <div class="book-slot">
-        <div class="slot" data-cal>
-          <div class="slot-top"><span data-cal-month>Termin wählen</span><span>30 Min.</span></div>
-          <div class="cal">
-            <div class="cal-grid" data-cal-grid></div>
-            <div class="times" data-cal-times><p style="font-size:14px;color:var(--ink-2)">Wähle zuerst einen Tag.</p></div>
-          </div>
-          <p class="slot-note">Nach der Terminwahl erhalten Sie sofort eine Bestätigung per E-Mail und einen Tag vorher eine Erinnerung.</p>
+        <div class="slot slot-cal">
+          <div class="slot-top"><span>Termin wählen</span><span>Cal.com</span></div>
+          <div class="cal-embed" data-cal-embed></div>
         </div>
       </div>
     </div>
@@ -1283,14 +1280,10 @@ html.no-notes .notes-toggle i{background:var(--line)}
       <div class="pills"><span class="pill">30 Minuten</span><span class="pill">100 % kostenlos</span></div>
     </div>
     <div class="book-slot">
-      <div class="slot" data-cal>
-        <div class="slot-top"><span data-cal-month>Termin wählen</span><span>30 Min.</span></div>
-        <div class="cal">
-          <div class="cal-grid" data-cal-grid></div>
-          <div class="times" data-cal-times><p style="font-size:14px;color:var(--ink-2)">Wähle zuerst einen Tag.</p></div>
+      <div class="slot slot-cal">
+          <div class="slot-top"><span>Termin wählen</span><span>Cal.com</span></div>
+          <div class="cal-embed" data-cal-embed></div>
         </div>
-        <p class="slot-note">Nach der Terminwahl erhalten Sie sofort eine Bestätigung per E-Mail und einen Tag vorher eine Erinnerung.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1320,12 +1313,13 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="big" aria-hidden="true">befreien.</div>
     <div class="bottom">
       <span>© 2026 Alina's AIAutomation. Alle Rechte vorbehalten.</span>
-      <nav aria-label="Rechtliches"><a href="https://aiwithalina.com/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutz</a><a href="https://aiwithalina.com/agb" target="_blank" rel="noopener">AGB</a></nav>
+      <nav aria-label="Rechtliches"><button type="button" class="consent-link" data-consent-open>Cookie-Einstellungen</button><a href="https://aiwithalina.com/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutz</a><a href="https://aiwithalina.com/agb" target="_blank" rel="noopener">AGB</a></nav>
     </div>
   </div>
 </footer>
 
 
+<script src="assets/site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
@@ -1492,28 +1486,6 @@ $('#checkForm').addEventListener('submit',function(e){e.preventDefault(); if(ste
 $('#pcBack').addEventListener('click',function(){if(step>1){step--;drawRail();}});
 drawRail();
 
-/* ── Kalender-Platzhalter ── */
-$$('[data-cal]').forEach(function(box){
-  var grid=box.querySelector('[data-cal-grid]'), times=box.querySelector('[data-cal-times]'), mon=box.querySelector('[data-cal-month]');
-  var d=new Date(); var y=d.getFullYear(), m=d.getMonth();
-  var names=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-  mon.textContent = names[m]+' '+y;
-  var first=(new Date(y,m,1).getDay()+6)%7, days=new Date(y,m+1,0).getDate();
-  var html=['Mo','Di','Mi','Do','Fr','Sa','So'].map(function(x){return '<span class="dh">'+x+'</span>'}).join('');
-  for(var i=0;i<first;i++) html+='<span></span>';
-  for(var dd=1;dd<=days;dd++){
-    var wd=(first+dd-1)%7, past=dd<d.getDate(), av=!past&&wd<5;
-    html+='<button type="button" '+(av?'class="av"':'disabled')+' aria-pressed="false" data-day="'+dd+'" aria-label="'+dd+'. '+names[m]+'">'+dd+'</button>';
-  }
-  grid.innerHTML=html;
-  grid.addEventListener('click',function(e){
-    var b=e.target.closest('button.av'); if(!b) return;
-    $$('button',grid).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
-    var slots=['09:00','10:30','13:00','15:30','17:00'];
-    times.innerHTML = '<p style="font-size:14px;color:var(--ink-2)">'+b.getAttribute('data-day')+'. '+names[m]+'</p>'+slots.map(function(t){return '<button type="button">'+t+'</button>'}).join('');
-  });
-});
-
 var root=document.documentElement;
 
 /* ── Bild-Fallback ── */
@@ -1581,11 +1553,19 @@ function pageMotion(page){
   if(!hasG || RM) return;
   killTriggers();
   var vh=window.innerHeight;
-  $$('[data-reveal], .sec h2, .sec .lede, .step, .uc, .rcard, .prob, .cyc, .incl > div, .plr article, .model, .way', page).forEach(function(el){
+  $$('[data-reveal], .sec .lede, .step, .uc, .rcard, .prob, .cyc, .incl > div, .plr article, .model, .way', page).forEach(function(el){
     if(el.getBoundingClientRect().top < vh*0.92) return;
     var tw=gsap.from(el,{y:28,opacity:0,duration:.9,ease:EASE,scrollTrigger:{trigger:el,start:'top 92%',once:true}});
     triggers.push(tw.scrollTrigger);
   });
+  if(window.AWA){
+    $$('.sec h2, .phero h1', page).forEach(function(h){
+      var words=AWA.splitWords(h); if(!words.length) return;
+      var below=h.getBoundingClientRect().top > vh*0.92;
+      var tw=gsap.fromTo(words,{yPercent:110},{yPercent:0,duration:1,ease:EASE,stagger:.045,paused:below,clearProps:'transform'});
+      if(below) triggers.push(ScrollTrigger.create({trigger:h,start:'top 90%',once:true,onEnter:function(){tw.play()}}));
+    });
+  }
   $$('.stat strong, .fact strong, .feature .f-r strong', page).forEach(function(el){
     var txt=el.getAttribute('data-final')||el.textContent; el.setAttribute('data-final',txt); el.textContent=txt;
     var m=txt.match(/^(\D*?)(\d{1,3}(?:\.\d{3})+|\d+)(\D*)$/); if(!m) return;
@@ -1600,6 +1580,16 @@ function pageMotion(page){
     triggers.push(tw.scrollTrigger);
   });
   if(page.getAttribute('data-page')==='start'){
+    var pt=page.querySelector('.hero .portrait');
+    if(pt){
+      triggers.push(gsap.to(pt,{yPercent:-7,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}}).scrollTrigger);
+      if(window.matchMedia('(hover: hover) and (pointer: fine)').matches && !pt.dataset.tilt){
+        pt.dataset.tilt='1'; gsap.set(pt,{transformPerspective:900});
+        var rx=gsap.quickTo(pt,'rotationX',{duration:.6,ease:'power3'}), ry=gsap.quickTo(pt,'rotationY',{duration:.6,ease:'power3'});
+        pt.addEventListener('pointermove',function(ev){ var r=pt.getBoundingClientRect(); ry(((ev.clientX-r.left)/r.width-.5)*10); rx(-((ev.clientY-r.top)/r.height-.5)*8); });
+        pt.addEventListener('pointerleave',function(){ rx(0); ry(0); });
+      }
+    }
     var st=ScrollTrigger.create({trigger:'#knot',start:'top 85%',end:'bottom 25%',scrub:true,onUpdate:function(s){knot.p=s.progress; drawKnot();}});
     triggers.push(st);
   }
@@ -1609,7 +1599,7 @@ function intro(page){
   gsap.fromTo(page,{opacity:.001},{opacity:1,duration:.5,ease:'power1.out',clearProps:'opacity'});
   var h=page.querySelectorAll('.hero h1 .l>span');
   if(h.length) gsap.fromTo(h,{yPercent:105},{yPercent:0,duration:1.1,ease:EASE,stagger:.08,clearProps:'transform'});
-  var ph=page.querySelector('.phero h1'); if(ph) gsap.fromTo(ph,{y:36,opacity:.001},{y:0,opacity:1,duration:1,ease:EASE,clearProps:'all'});
+  
   gsap.fromTo(page.querySelectorAll('.hero .tail, .hero .lede, .hero .btn-row, .phero .lede, .phero .btn-row, .phero .pills, .portrait'),{y:18,opacity:.001},{y:0,opacity:1,duration:.9,ease:EASE,stagger:.06,delay:.25,clearProps:'all'});
 }
 
