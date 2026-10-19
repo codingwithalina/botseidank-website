@@ -16,7 +16,7 @@ Statische Website, keine Build-Schritte.
 ## Einstellungen
 - `assets/site.js` oben: `GA_ID` (Google Analytics 4, Format `G-…`) und `CAL_LINK` (Cal.com, aktuell `alina-nath/discovery-call`).
 - In jeder Landingpage oben im `<script>`: `WEBHOOK_URL` (n8n) für den Eignungscheck.
-- Google Analytics und der Cal.com-Kalender laden erst nach Zustimmung im Cookie-Banner. Beide gehören in die Datenschutzerklärung.
+- Google Analytics lädt erst nach Zustimmung im Cookie-Banner. Der Cal.com-Kalender ist direkt eingebettet. Beide gehören in die Datenschutzerklärung.
 
 ## Gemessene Ereignisse (GA4)
 `page_view` (auch Unterseiten der Hauptseite), `cta_click`, `booking_link_click`, `generate_lead`, `join_waitlist`, `booking_complete`.

@@ -25,7 +25,7 @@ function saveConsent(c){
 }
 function apply(){
   if (consent && consent.stats) loadGA();
-  if (consent && consent.external) mountWaiting();
+
 }
 
 /* ── Google Analytics 4 (lädt erst nach Zustimmung) ── */
@@ -76,12 +76,11 @@ function buildBanner(){
   banner.className = "cc"; banner.setAttribute("role", "dialog"); banner.setAttribute("aria-label", "Cookie-Einstellungen");
   banner.innerHTML =
     '<div class="cc-in">' +
-      '<p class="cc-t">Darf ich Statistik und den Terminkalender laden?</p>' +
-      '<p class="cc-d">Mit Ihrer Zustimmung nutze ich Google Analytics, um zu sehen, welche Seiten hilfreich sind, und lade den Buchungskalender von Cal.com. Beides können Sie jederzeit im Footer unter „Cookie-Einstellungen“ ändern. Mehr in der <a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>' +
+      '<p class="cc-t">Darf ich anonyme Statistik nutzen?</p>' +
+      '<p class="cc-d">Mit Ihrer Zustimmung nutze ich Google Analytics, um zu sehen, welche Seiten hilfreich sind. Sie können das jederzeit im Footer unter „Cookie-Einstellungen“ ändern. Mehr in der <a href="https://aiwithalina.com/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>' +
       '<div class="cc-opts" hidden>' +
         '<label class="cc-o"><input type="checkbox" checked disabled><span><b>Notwendig</b>Speichert nur Ihre Auswahl.</span></label>' +
         '<label class="cc-o" for="cc-stats"><input type="checkbox" id="cc-stats"><span><b>Statistik</b>Google Analytics 4, anonyme Nutzungsauswertung.</span></label>' +
-        '<label class="cc-o" for="cc-ext"><input type="checkbox" id="cc-ext"><span><b>Terminkalender</b>Cal.com, lädt den Buchungskalender direkt auf der Seite.</span></label>' +
       '</div>' +
       '<div class="cc-b">' +
         '<button type="button" class="cc-btn cc-ghost" data-cc="min">Nur notwendige</button>' +
@@ -98,7 +97,7 @@ function buildBanner(){
     else if (k === "more") {
       var o = banner.querySelector(".cc-opts");
       if (o.hidden) { o.hidden = false; b.textContent = "Auswahl speichern"; }
-      else { saveConsent({ stats: banner.querySelector("#cc-stats").checked, external: banner.querySelector("#cc-ext").checked }); closeBanner(); }
+      else { saveConsent({ stats: banner.querySelector("#cc-stats").checked, external: true }); closeBanner(); }
     }
   });
   return banner;
@@ -106,7 +105,6 @@ function buildBanner(){
 function openBanner(){
   var b = buildBanner();
   b.querySelector("#cc-stats").checked = !!(consent && consent.stats);
-  b.querySelector("#cc-ext").checked = !!(consent && consent.external);
   b.hidden = false;
   requestAnimationFrame(function(){ b.classList.add("show"); });
 }
@@ -154,14 +152,26 @@ function inline(el, prefill){
   var ns = "awa" + (++nsCount);
   el.innerHTML = '<div class="cal-loading">Kalender wird geladen …</div>';
   var target = document.createElement("div"); target.className = "cal-target"; el.appendChild(target);
-  var cfg = { layout: "month_view", theme: "dark" };
+  var cfg = { layout: "month_view", theme: "dark", useSlotsViewOnSmallScreen: "true" };
   prefill = prefill || {};
   if (prefill.name) cfg.name = prefill.name;
   if (prefill.email) cfg.email = prefill.email;
   if (prefill.notes) cfg.notes = prefill.notes;
-  window.Cal("init", ns, { origin: "https://cal.com" });
+  window.Cal("init", ns, { origin: "https://app.cal.com" });
+  window.Cal.config = window.Cal.config || {};
+  window.Cal.config.forwardQueryParams = true;
   window.Cal.ns[ns]("inline", { elementOrSelector: target, calLink: CAL_LINK, config: cfg });
-  window.Cal.ns[ns]("ui", { theme: "dark", cssVarsPerTheme: { dark: { "cal-brand": "#22D3EE" } }, hideEventTypeDetails: false, layout: "month_view" });
+  window.Cal.ns[ns]("ui", {
+    theme: "dark",
+    hideEventTypeDetails: true,
+    layout: "month_view",
+    cssVarsPerTheme: { dark: {
+      "cal-brand": "#22D3EE", "cal-brand-emphasis": "#67E8F9", "cal-brand-text": "#04101C",
+      "cal-bg": "#0C1626", "cal-bg-muted": "#0A1424", "cal-bg-subtle": "#101D31", "cal-bg-emphasis": "#16263D",
+      "cal-border": "#1E2C40", "cal-border-subtle": "#18253A", "cal-border-booker": "#0C1626",
+      "cal-text": "#E8EEF6", "cal-text-emphasis": "#FFFFFF", "cal-text-subtle": "#8D9AAD", "cal-text-muted": "#8D9AAD"
+    } }
+  });
   window.Cal.ns[ns]("on", { action: "linkReady", callback: function(){ var l = el.querySelector(".cal-loading"); if (l) l.remove(); } });
   window.Cal.ns[ns]("on", { action: "bookingSuccessful", callback: onBooked });
   window.Cal.ns[ns]("on", { action: "bookingSuccessfulV2", callback: onBooked });
@@ -169,8 +179,7 @@ function inline(el, prefill){
 }
 function mountCal(el, prefill){
   if (!el) return;
-  if (consent && consent.external) inline(el, prefill);
-  else { renderGate(el, prefill); waiting.push([el, prefill]); }
+  inline(el, prefill);
 }
 function mountWaiting(){
   var w = waiting; waiting = [];
