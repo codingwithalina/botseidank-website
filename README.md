@@ -5,6 +5,9 @@ Statische Website, keine Build-Schritte.
 | Datei | Inhalt |
 |---|---|
 | `index.html` | Hauptseite (Start, KI-Automatisierung, Repertoire, Angebote, Potenzial-Check, Erstgespräch) |
+| `ablauf-sprint.html` | Hauptangebot für Agenturen (8 Wochen, 6.000 €) |
+| `ablauf-check.html` | Einstieg (10 Werktage, 1.490 €, anrechenbar) |
+| `ablauf-partner.html` | Premium (6 Monate, 2.490 €/Monat) |
 | `lead-revenue-system.html` | Landingpage Hauptangebot |
 | `leadblitz-60.html` | Landingpage KI-Rückruf in 60 Sekunden |
 | `anrufwaechter.html` | Landingpage KI-Telefonassistent |

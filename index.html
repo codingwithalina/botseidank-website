@@ -473,6 +473,29 @@ html.no-notes .notes-toggle i{background:var(--line)}
 .scarce-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--berry);margin-right:10px;animation:pulse 2.4s infinite;vertical-align:middle}
 .offer .ticks{margin-block:6px 8px}
 
+.tcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+.tcard{position:relative;display:flex;flex-direction:column;gap:10px;padding:clamp(24px,2.6vw,34px);border-radius:var(--r);background:var(--paper-2);border:1px solid var(--line);min-width:0;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s}
+.tcard:hover{transform:translateY(-4px)}
+.tcard.rec{border-color:var(--berry);box-shadow:0 30px 80px -40px rgba(34,211,238,.5)}
+.t-badge{position:absolute;top:-12px;right:20px;font:600 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:6px;background:var(--berry);color:var(--on-berry)}
+.t-tier{font:500 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.tcard h3{font-size:var(--s-3)}
+.t-for{font-size:14px;color:var(--ink-2)}
+.t-val{margin-top:10px;font:500 13px var(--f-mono);color:var(--ink-2);text-decoration:line-through;text-decoration-color:#EC4899}
+.t-price{font:800 clamp(36px,3.6vw,48px)/1 var(--f-display);letter-spacing:-.03em;color:var(--berry);font-variant-numeric:tabular-nums}
+.t-price small{font:600 18px var(--f-body);letter-spacing:0;color:var(--ink-2)}
+.t-line{font-size:14px;color:var(--ink-2);padding-bottom:16px;border-bottom:1px solid var(--line)}
+.t-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:10px}
+.t-list li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.t-list svg{flex:none;color:var(--berry);margin-top:4px}
+.t-g{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);padding:12px 14px;border-radius:10px;background:var(--note-bg);margin-top:auto}
+.t-g svg{flex:none;color:var(--berry);margin-top:2px}
+.t-btn{margin-top:8px;width:100%}
+.t-foot{margin-top:20px;font-size:14px;color:var(--ink-2)}
+.steps-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:1000px){.tcards{grid-template-columns:1fr}.steps-5{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.steps-5{grid-template-columns:1fr}}
+
 .mt-s{margin-top:20px}.mt-m{margin-top:40px}.mt-l{margin-top:64px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -1025,16 +1048,86 @@ html.no-notes .notes-toggle i{background:var(--line)}
   <section class="phero">
     <div class="wrap">
       <p class="crumb"><a href="#start">Start</a><span>/</span><span>Angebote</span></p>
-      <h1>Fünf Module. <em class="grad">Ein System.</em></h1>
-      <p class="lede">Zwischen Anfrage und Auftrag geht an fünf Stellen Umsatz verloren. Jedes Modul schließt eine davon: zum Festpreis, live in 21 Tagen, mit Garantie. Zusammen ergeben sie das Lead Revenue System.</p>
-      <div class="pills"><span class="pill">Festpreis</span><span class="pill">Live in 21 Tagen</span><span class="pill">3 Garantien</span><span class="pill">Max. 2 Starts pro Monat</span></div>
+      <h1>Weniger manuelle <em class="grad">Koordination.</em></h1>
+      <p class="lede">Für Agenturen, in denen Projektleitung zu viel Zeit mit Abstimmung verbringt. Wir messen einen zeitaufwendigen Ablauf, setzen die passende Verbesserung gemeinsam um und übergeben sie an dein Team. Drei Wege, je nachdem, wie groß du starten willst.</p>
+      <div class="pills"><span class="pill">Festpreis</span><span class="pill">Gemessen statt geschätzt</span><span class="pill">Tests mit echten Fällen</span><span class="pill">Max. 2 Agenturen gleichzeitig</span></div>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="ang-lrs">
+  <section class="sec" aria-labelledby="ang-tiers">
     <div class="wrap">
-      <p class="eyebrow">Hauptangebot</p>
-      <h2 class="h2 mt-s" id="ang-lrs" style="margin-bottom:40px">Die ganze Strecke, gebaut und betrieben</h2>
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Drei Wege</p>
+          <h2 class="h2" id="ang-tiers">Klein anfangen oder gleich groß</h2>
+        </div>
+        <p>Der Ablauf-Sprint ist das Hauptangebot. Der Ablauf-Check zeigt vorab, wie groß der Hebel ist, und wird voll angerechnet. Der Ablauf-Partner geht drei Abläufe an und betreut sie laufend.</p>
+      </div>
+      <div class="tcards"><article class="tcard">
+          
+          <span class="t-tier">Einstieg</span>
+          <h3>Ablauf-Check</h3>
+          <p class="t-for">Für Agenturen, die erst sehen wollen, wie groß der Hebel ist.</p>
+          <p class="t-val">Gesamtwert 3.140 €</p>
+          <p class="t-price">1.490 €</p>
+          <p class="t-line">einmalig · 10 Werktage · online</p>
+          <ul class="t-list"><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ein Ablauf aufgenommen und an 5 echten Fällen gemessen</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ablaufkarte mit Zeitaufwand je Schritt</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bauplan mit Aufwand, Preis und erwarteter Zeitersparnis</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drei Sofortmaßnahmen für dein Team</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bonus: ein fertiger KI-Assistent</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Wird voll auf den Ablauf-Sprint angerechnet</span></li></ul>
+          <p class="t-g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.8"/></svg><span>Weniger als 5 Std. pro Woche Potenzial? Geld zurück.</span></p>
+          <a class="btn btn-ghost t-btn" href="ablauf-check.html">Ablauf-Check ansehen <span class="arr">→</span></a>
+        </article><article class="tcard rec">
+          <span class="t-badge">Empfohlen</span>
+          <span class="t-tier">Hauptangebot</span>
+          <h3>Ablauf-Sprint</h3>
+          <p class="t-for">Für Agenturen mit 5–40 Leuten, in denen Projektleitung zu viel Zeit mit Abstimmung verbringt.</p>
+          <p class="t-val">Gesamtwert 11.830 €</p>
+          <p class="t-price">6.000 €</p>
+          <p class="t-line">zwei Raten à 3.000 € · 8 Wochen</p>
+          <ul class="t-list"><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aufnahme des bestehenden Ablaufs und seines Zeitaufwands</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Vereinfachung und Automatisierung eines vereinbarten Kernprozesses</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tests mit echten Fällen</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Einarbeitung deines Teams und Dokumentation</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Abschließende Auswertung und Übergabe</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bonus: 30 Tage Begleitung nach der Übergabe</span></li></ul>
+          <p class="t-g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.8"/></svg><span>Zweite Rate erst nach bestandenem Test mit echten Fällen.</span></p>
+          <a class="btn btn-primary t-btn" href="ablauf-sprint.html">Ablauf-Sprint ansehen <span class="arr">→</span></a>
+        </article><article class="tcard">
+          
+          <span class="t-tier">Premium</span>
+          <h3>Ablauf-Partner</h3>
+          <p class="t-for">Für Agenturen ab etwa 15 Leuten, die mehr als einen Engpass haben.</p>
+          <p class="t-val">Gesamtwert 26.360 €</p>
+          <p class="t-price">2.490 € <small>/ Monat</small></p>
+          <p class="t-line">6 Monate Mindestlaufzeit · laufend betreut</p>
+          <ul class="t-list"><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drei Abläufe nacheinander umgebaut</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ablauf-Landkarte der ganzen Agentur</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Betrieb und Monitoring aller Automatisierungen</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Monatliches Review mit Zeitbilanz</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Direkter Draht in Slack oder Teams</span></li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Workflows und Dokumentation gehören dir</span></li></ul>
+          <p class="t-g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.8"/></svg><span>Ziel nach 3 Monaten verfehlt? Die Monatsgebühr pausiert.</span></p>
+          <a class="btn btn-ghost t-btn" href="ablauf-partner.html">Ablauf-Partner ansehen <span class="arr">→</span></a>
+        </article></div>
+      <p class="t-foot">Alle Preise gemäß § 19 UStG ohne Umsatzsteuer. Der konkrete Umfang wird nach dem Erstgespräch vereinbart.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="ang-ablauf">
+    <div class="wrap">
+      <p class="eyebrow">Ablauf-Sprint</p>
+      <h2 class="h2 mt-s" id="ang-ablauf" style="margin-bottom:24px">Acht Wochen vom Ist-Ablauf zur Übergabe</h2>
+      <p class="lede" style="margin-bottom:56px">Zum Beispiel: vom gewonnenen Auftrag bis zum vollständigen Briefing und einem startklaren Projektteam.</p>
+      <div class="steps steps-5"><div class="step"><span class="n">Woche 1–2</span><h3>Aufnehmen und messen</h3><p>Wir nehmen den bestehenden Ablauf mit deinem Team auf und messen seinen Zeitaufwand an echten Fällen.</p></div><div class="step"><span class="n">Woche 3</span><h3>Vereinfachen</h3><p>Unnötige Schritte fallen weg, Zuständigkeiten werden klar. Wir vereinbaren das Ziel und die Kennzahl.</p></div><div class="step"><span class="n">Woche 4–6</span><h3>Umsetzen</h3><p>Automatisierung des vereinbarten Kernprozesses in euren Tools, mit KI dort, wo sie Arbeit abnimmt.</p></div><div class="step"><span class="n">Woche 7</span><h3>Testen</h3><p>Tests mit echten Fällen, nicht mit Beispielen. Was hakt, wird nachgeschärft.</p></div><div class="step"><span class="n">Woche 8</span><h3>Übergeben</h3><p>Einarbeitung deines Teams, Dokumentation, abschließende Auswertung mit Zeitaufwand vorher und nachher.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="ang-gar">
+    <div class="wrap">
+      <p class="eyebrow">Risikoumkehr</p>
+      <h2 class="h2 mt-s" id="ang-gar" style="max-width:18ch">Drei Garantien auf das, was ich kontrollieren kann</h2>
+      <div class="gcards mt-m"><div class="gcard"><span class="mono">01 · Garantie</span><h3>Zeitgarantie</h3><p>Wir vereinbaren vorab, wie viel Zeit der Ablauf danach weniger kosten soll (Richtwert: mindestens 30 %). Wird das nicht erreicht, arbeite ich ohne Mehrkosten nach, bis es klappt.</p></div><div class="gcard"><span class="mono">02 · Garantie</span><h3>Zahlung nach Test</h3><p>Die zweite Rate wird erst fällig, wenn der Ablauf den Test mit echten Fällen bestanden hat.</p></div><div class="gcard"><span class="mono">03 · Garantie</span><h3>Termingarantie</h3><p>Übergabe nach acht Wochen. Für jede volle Woche Verzug, die ich zu verantworten habe, erhältst du 250 € Gutschrift.</p></div></div>
+      <div class="anchor"><div><strong>20.000 €+</strong><span>acht Wochen Prozessberatung zu typischen Tagessätzen, meist ohne Umsetzung</span></div><div><strong>4.500–5.500 € / Monat</strong><span>Arbeitgeberkosten für eine zusätzliche Projektleitung</span></div><div><strong>6.000 € einmalig</strong><span>Ablauf-Sprint: gemessen, umgesetzt, getestet, übergeben</span></div></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="ang-bsp">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Beispiele</p>
+          <h2 class="h2" id="ang-bsp">Fertige Systeme aus meinem Repertoire</h2>
+        </div>
+        <p>So sehen umgesetzte Abläufe aus, wenn der Engpass im Vertrieb liegt: Anfragen beantworten, nachfassen, alte Kontakte zurückholen. Jedes System ist auch einzeln buchbar.</p>
+      </div>
       <a class="feature" href="lead-revenue-system.html">
         <div class="f-l">
           <span class="pill">Lead Revenue System</span>
@@ -1049,18 +1142,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
           <div><strong>21</strong><span>Tage bis live</span></div>
         </div>
       </a>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="ang-mod">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="eyebrow">Die Module</p>
-          <h2 class="h2" id="ang-mod">Ein Leck, ein Modul</h2>
-        </div>
-        <p>Sie haben nur an einer Stelle ein Problem? Dann bekommen Sie genau das passende Modul. Jedes lässt sich später zum System ausbauen.</p>
-      </div>
+      <div style="height:16px"></div>
       <div class="ocards"><a class="ocard" href="leadblitz-60.html">
           <span class="o-top"><span class="pill">Kernprodukt</span><span class="mono">Reaktionsleck</span></span>
           <span class="o-main">
@@ -1135,60 +1217,16 @@ html.no-notes .notes-toggle i{background:var(--line)}
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="ang-leck">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="eyebrow">Die Methode</p>
-          <h2 class="h2" id="ang-leck">Die 5 Umsatzlecks zwischen Anfrage und Auftrag</h2>
-        </div>
-        <p>Jedes Gespräch beginnt mit dem Umsatzleck-Check. Er zeigt, welches Leck bei Ihnen am meisten kostet. Das schließen wir zuerst.</p>
-      </div>
-      <div class="rows"><a class="row" href="leadblitz-60.html" data-reveal><span class="k">Leck 01 · Reaktionsleck</span><h3>LeadBlitz 60 · Anrufwächter 24/7</h3><p>Anfragen werden zu spät beantwortet</p><span class="o" aria-hidden="true">→</span></a><a class="row" href="leadblitz-60.html" data-reveal><span class="k">Leck 02 · Qualifizierungsleck</span><h3>Drei Fragen in LeadBlitz 60</h3><p>Gute und schlechte Anfragen werden gleich behandelt</p><span class="o" aria-hidden="true">→</span></a><a class="row" href="followup.html" data-reveal><span class="k">Leck 03 · Follow-up-Leck</span><h3>FollowUpHero</h3><p>Angebote und Termine werden nicht nachgefasst</p><span class="o" aria-hidden="true">→</span></a><a class="row" href="reaktivierung.html" data-reveal><span class="k">Leck 04 · Bestandskundenleck</span><h3>ReaktivierungsBlitz</h3><p>Alte Kontakte werden nicht reaktiviert</p><span class="o" aria-hidden="true">→</span></a><a class="row" href="lead-revenue-system.html" data-reveal><span class="k">Leck 05 · Transparenzleck</span><h3>Baseline und Monatsreport im Betrieb</h3><p>Niemand weiß, wo Chancen verloren gehen</p><span class="o" aria-hidden="true">→</span></a></div>
-    </div>
-  </section>
-
-  <section class="sec band" aria-labelledby="ang-gar">
-    <div class="wrap">
-      <p class="eyebrow">Risikoumkehr</p>
-      <h2 class="h2 mt-s" id="ang-gar" style="max-width:18ch">Drei Garantien auf das, was ich kontrollieren kann</h2>
-      <div class="gcards mt-m">
-        <div class="gcard"><span class="mono">01 · Technisch</span><h3>Live im Zeitplan</h3><p>Das System geht im vereinbarten Umfang live. Bei Verzug, den ich zu verantworten habe, gibt es 250 € Gutschrift je voller Woche.</p></div>
-        <div class="gcard"><span class="mono">02 · Leistung</span><h3>Gemessen, nicht versprochen</h3><p>Eine Kennzahl, die das System selbst protokolliert: Rückruf in 60 Sekunden, Vorgang in 2 Minuten, Nachfassen in 3 Werktagen. Jeder Verstoß wird gutgeschrieben.</p></div>
-        <div class="gcard"><span class="mono">03 · Optimierung</span><h3>60 Tage ohne Betriebsgebühr</h3><p>Verbessert sich die vereinbarte Kennzahl nach 60 Tagen nicht gegenüber der Baseline, arbeite ich 60 Tage ohne Betriebsgebühr weiter.</p></div>
-      </div>
-      <p class="mt-m" style="color:var(--band-2);max-width:64ch">Umsatz garantiere ich nicht, denn er hängt auch von Angebot, Preis, Saison und Ihrem Team ab. Bei der Reaktivierung gibt es zusätzlich eine Ergebnisgarantie: 10 qualifizierte Gespräche in 60 Tagen, sonst Setup zurück.</p>
-      <div class="anchor">
-        <div><strong>20.000–80.000 €</strong><span>Projekt bei einer KI-Agentur, 4–10 Wochen bis live</span></div>
-        <div><strong>3.000–3.500 € / Monat</strong><span>zusätzliche Bürokraft, abends und am Wochenende nicht da</span></div>
-        <div><strong>ab 2.900 € Setup</strong><span>Festpreis, live in 21 Tagen, läuft rund um die Uhr</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="ang-ablauf">
-    <div class="wrap">
-      <p class="eyebrow">Ablauf</p>
-      <h2 class="h2 mt-s" id="ang-ablauf" style="margin-bottom:56px">In 21 Tagen live</h2>
-      <div class="steps">
-        <div class="step"><span class="n">Tag 1–3</span><h3>Zuhören</h3><p>Prozessaufnahme, Anfragequellen, Baseline Ihrer Kennzahlen, Freigaberegeln.</p></div>
-        <div class="step"><span class="n">Tag 4–14</span><h3>Bauen und testen</h3><p>Abläufe, Anbindung an CRM, Kalender und Telefon, Testanfragen, Abnahme der Texte.</p></div>
-        <div class="step"><span class="n">Tag 15–21</span><h3>Livegang</h3><p>Produktiver Start mit Monitoring und festem Notfallkontakt.</p></div>
-        <div class="step"><span class="n">Ab Tag 22</span><h3>Nachschärfen</h3><p>Anpassung anhand echter Gespräche, danach monatlicher Betrieb mit Report.</p></div>
-      </div>
-    </div>
-  </section>
-
   <section class="sec band" aria-labelledby="ang-cta">
     <div class="wrap offer">
       <div>
-        <p class="eyebrow">Pilotphase</p>
-        <h2 class="h2" id="ang-cta">Drei Betriebe für die erste Pilotphase</h2>
-        <p class="lede">Die ersten drei Betriebe bekommen den Pilotpreis, rund 30 % unter dem regulären Setup, gegen eine Fallstudie mit echten Zahlen. Danach steigen die Setup-Preise, der Betrieb bleibt gleich.</p>
+        <p class="eyebrow">Erstgespräch</p>
+        <h2 class="h2" id="ang-cta">Welcher Ablauf kostet deine Agentur am meisten Zeit?</h2>
+        <p class="lede">In 30 Minuten schauen wir gemeinsam drauf. Danach weißt du, welcher der drei Wege passt, oder ob sich der Aufwand für dich nicht lohnt.</p>
       </div>
       <div>
-        <p style="font-weight:600"><span class="scarce-dot"></span>Maximal 2 Projektstarts pro Monat</p>
-        <ul class="ticks"><li>Kostenloses 25-Minuten-Gespräch mit Ihren Zahlen</li><li>Ehrliche Absage, wenn der Hebel zu klein ist</li><li>Sie sprechen direkt mit mir, nicht mit einem Vertriebsteam</li></ul>
+        <p style="font-weight:600"><span class="scarce-dot"></span>Maximal 2 Agenturen gleichzeitig</p>
+        <ul class="ticks"><li>Kostenlos und unverbindlich</li><li>Du sprichst direkt mit mir</li><li>Ehrliche Absage, wenn der Hebel zu klein ist</li></ul>
         <a class="btn btn-primary" href="#erstgespraech" style="align-self:flex-start">Kostenloses Erstgespräch buchen <span class="arr">→</span></a>
       </div>
     </div>
@@ -1603,7 +1641,7 @@ function intro(page){
 
 /* ── Router (eine Datei, mehrere Seiten) ── */
 var currentPage='start';
-var TITLES={start:"Alina's AI Automation – KI-Automatisierungen für mehr Umsatz, Zeit und Klarheit","ki-automatisierung":"KI-Automatisierung für Geschäftsprozesse – Alina's AI Automation","lead-reaktivierung":"Lead-Reaktivierung mit KI – Alina's AI Automation",repertoire:"Repertoire – Alle Automatisierungen im Überblick | Alina's AI Automation","speed-to-lead":"Speed to Lead – Sekunden statt Stunden | Alina's AI Automation","potenzial-check":"Potenzial-Check – Alina's AI Automation",angebote:"Angebote – Lead Revenue System und Module | Alina's AI Automation",erstgespraech:"Kostenloses Erstgespräch buchen | Alina's AI Automation"};
+var TITLES={start:"Alina's AI Automation – KI-Automatisierungen für mehr Umsatz, Zeit und Klarheit","ki-automatisierung":"KI-Automatisierung für Geschäftsprozesse – Alina's AI Automation","lead-reaktivierung":"Lead-Reaktivierung mit KI – Alina's AI Automation",repertoire:"Repertoire – Alle Automatisierungen im Überblick | Alina's AI Automation","speed-to-lead":"Speed to Lead – Sekunden statt Stunden | Alina's AI Automation","potenzial-check":"Potenzial-Check – Alina's AI Automation",angebote:"Angebote für Agenturen – Ablauf-Sprint | Alina's AI Automation",erstgespraech:"Kostenloses Erstgespräch buchen | Alina's AI Automation"};
 function route(){
   var h=(location.hash||'#start').slice(1)||'start';
   var jump=null;
