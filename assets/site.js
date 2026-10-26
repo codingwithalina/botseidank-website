@@ -1,5 +1,6 @@
 /* botseidank.com – gemeinsames Skript für alle Seiten
-   Cookie-Einwilligung, Google Analytics 4, Google-Ads-Conversion, Cal.com-Buchung, kleine Interaktionen.
+   Google Analytics 4, Google-Ads-Conversion (beides erst nach Einwilligung über das CCM19-Cookie-Banner), Cal.com-Buchung, kleine Interaktionen.
+   Das CCM19-Skript steht im <head> jeder Seite; hier wird nur ausgewertet, welche Einbindungen der Besucher erlaubt hat.
 
    ── HIER ANPASSEN ── */
 var AWA_CONFIG = {
@@ -13,19 +14,34 @@ var AWA_CONFIG = {
 "use strict";
 var C = AWA_CONFIG;
 var CAL_URL = "https://cal.com/" + C.CAL_LINK;
-var KEY = "awa-consent-v2";
 var RM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var FINE = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 var IS_SPA = !!document.querySelector("[data-page]");
 
-/* ── Einwilligung ── */
+/* ── Einwilligung: kommt aus CCM19 ──
+   CCM19 meldet erlaubte Einbindungen über window.CCM.acceptedEmbeddings und das Ereignis ccm19EmbeddingAccepted.
+   Zuordnung über den Namen der Einbindung im CCM19-Backend: „…Analytics…“ = Statistik, „…Google Ads…“ = Werbemessung. */
 var consent = null;
-try { consent = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e) {}
-function saveConsent(c){
-  consent = { stats: !!c.stats, ads: !!c.ads, ts: new Date().toISOString() };
-  try { localStorage.setItem(KEY, JSON.stringify(consent)); } catch(e) {}
-  applyConsent();
+function ccmState(){
+  var ccm = window.CCM;
+  if (!ccm || !ccm.consent) return null;                     // noch keine Entscheidung getroffen
+  var list = Array.isArray(ccm.acceptedEmbeddings) ? ccm.acceptedEmbeddings : [];
+  var names = list.map(function(e){ return String((e && (e._name || e.name)) || ""); });
+  return {
+    stats: names.some(function(n){ return /analytics/i.test(n); }),
+    ads: names.some(function(n){ return /google ads|adwords|conversion/i.test(n); })
+  };
 }
+var lastSig = "";
+function syncConsent(){
+  var s = ccmState(); if (!s) return;
+  var sig = (s.stats ? "1" : "0") + (s.ads ? "1" : "0");
+  if (sig === lastSig) return;
+  lastSig = sig; consent = s; applyConsent();
+}
+["ccm19WidgetLoaded", "ccm19EmbeddingAccepted", "ccm19WidgetClosed"].forEach(function(ev){
+  window.addEventListener(ev, function(){ setTimeout(syncConsent, 0); });
+});
 
 /* ── Google-Tag (GA4 + Ads), lädt erst nach Zustimmung ── */
 var tagLoaded = false;
@@ -88,50 +104,10 @@ document.addEventListener("click", function(ev){
   if (booking && C.CONVERSION_ON === "click") conversion();
 }, true);
 
-/* ── Banner ── */
-var banner;
-function buildBanner(){
-  if (banner) return banner;
-  banner = document.createElement("div");
-  banner.className = "cc"; banner.hidden = true;
-  banner.setAttribute("role", "dialog"); banner.setAttribute("aria-label", "Cookie-Einstellungen");
-  banner.innerHTML =
-    '<div class="cc-in">' +
-      '<p class="cc-t">Darf ich Statistik und Werbemessung nutzen?</p>' +
-      '<p class="cc-d">Mit deiner Zustimmung nutze ich Google Analytics, um zu sehen, welche Seiten hilfreich sind, und Google Ads, um zu messen, ob meine Anzeigen zu Terminen führen. Du kannst das jederzeit im Footer unter „Cookie-Einstellungen“ ändern. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>' +
-      '<div class="cc-opts" hidden>' +
-        '<label class="cc-o"><input type="checkbox" checked disabled><span><b>Notwendig</b>Speichert nur deine Auswahl.</span></label>' +
-        '<label class="cc-o" for="cc-stats"><input type="checkbox" id="cc-stats"><span><b>Statistik</b>Google Analytics 4, Auswertung der Seitennutzung.</span></label>' +
-        '<label class="cc-o" for="cc-ads"><input type="checkbox" id="cc-ads"><span><b>Marketing</b>Google Ads Conversion-Tracking, misst Terminbuchungen aus Anzeigen.</span></label>' +
-      '</div>' +
-      '<div class="cc-b">' +
-        '<button type="button" class="cc-btn cc-ghost" data-cc="min">Nur notwendige</button>' +
-        '<button type="button" class="cc-btn cc-ghost" data-cc="more">Auswählen</button>' +
-        '<button type="button" class="cc-btn cc-pri" data-cc="all">Alle akzeptieren</button>' +
-      '</div>' +
-    '</div>';
-  document.body.appendChild(banner);
-  banner.addEventListener("click", function(ev){
-    var b = ev.target.closest("[data-cc]"); if (!b) return;
-    var k = b.getAttribute("data-cc");
-    if (k === "all") { saveConsent({ stats: true, ads: true }); closeBanner(); }
-    else if (k === "min") { saveConsent({ stats: false, ads: false }); closeBanner(); }
-    else if (k === "more") {
-      var o = banner.querySelector(".cc-opts");
-      if (o.hidden) { o.hidden = false; b.textContent = "Auswahl speichern"; }
-      else { saveConsent({ stats: banner.querySelector("#cc-stats").checked, ads: banner.querySelector("#cc-ads").checked }); closeBanner(); }
-    }
-  });
-  return banner;
-}
+/* „Cookie-Einstellungen“ im Footer und in der Datenschutzerklärung öffnen das CCM19-Banner erneut */
 function openBanner(){
-  var b = buildBanner();
-  b.querySelector("#cc-stats").checked = !!(consent && consent.stats);
-  b.querySelector("#cc-ads").checked = !!(consent && consent.ads);
-  b.hidden = false;
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ b.classList.add("show"); }); });
+  if (window.CCM && typeof window.CCM.openWidget === "function") window.CCM.openWidget();
 }
-function closeBanner(){ if (banner){ banner.classList.remove("show"); setTimeout(function(){ banner.hidden = true; }, 350); } }
 document.addEventListener("click", function(ev){
   var t = ev.target.closest && ev.target.closest("[data-consent-open]");
   if (t) { ev.preventDefault(); openBanner(); }
@@ -244,7 +220,7 @@ function splitWords(el){
 }
 
 function start(){
-  if (consent) applyConsent(); else setTimeout(openBanner, 900);
+  syncConsent();                                             // falls CCM19 schon fertig war, bevor dieses Skript lief
   scanCal();
   magnetic();
 }
