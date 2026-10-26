@@ -1,4 +1,4 @@
-/* aiwithalina – gemeinsame Styles: Cookie-Banner, Kalender, Button-Glanz, Wort-Animation */
+/* botseidank.com – gemeinsame Styles: Cookie-Banner, Kalender, Button-Glanz, Wort-Animation */
 .btn-primary{position:relative;overflow:hidden;isolation:isolate;transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .3s,background-color .25s}
 .btn-primary::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .9s cubic-bezier(.22,1,.36,1);pointer-events:none}
 .btn-primary:hover::after{transform:translateX(120%)}

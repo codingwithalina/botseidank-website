@@ -1,9 +1,9 @@
-/* aiwithalina – gemeinsames Skript für alle Seiten
+/* botseidank.com – gemeinsames Skript für alle Seiten
    Cookie-Einwilligung, Google Analytics 4, Google-Ads-Conversion, Cal.com-Buchung, kleine Interaktionen.
 
    ── HIER ANPASSEN ── */
 var AWA_CONFIG = {
-  GA_ID: "G-XXXXXXXXXX",                                   // GA4-Mess-ID; Platzhalter = GA4 wird nicht geladen
+  GA_ID: "G-2EH60LY91J",                                   // GA4-Mess-ID (Property „botseidank.com“); Platzhalter G-XXXXXXXXXX = GA4 wird nicht geladen
   ADS_ID: "AW-18114466869",                                // Google-Ads-Konto
   ADS_CONVERSION: "AW-18114466869/1fF4CN_c7accELWo071D",   // Conversion-Aktion „Termin“
   CONVERSION_ON: "click",                                  // "click" = Klick auf Termin-Buttons (wie bisher), "booking" = erst bei abgeschlossener Buchung
@@ -98,9 +98,9 @@ function buildBanner(){
   banner.innerHTML =
     '<div class="cc-in">' +
       '<p class="cc-t">Darf ich Statistik und Werbemessung nutzen?</p>' +
-      '<p class="cc-d">Mit Ihrer Zustimmung nutze ich Google Analytics, um zu sehen, welche Seiten hilfreich sind, und Google Ads, um zu messen, ob meine Anzeigen zu Terminen führen. Sie können das jederzeit im Footer unter „Cookie-Einstellungen“ ändern. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>' +
+      '<p class="cc-d">Mit deiner Zustimmung nutze ich Google Analytics, um zu sehen, welche Seiten hilfreich sind, und Google Ads, um zu messen, ob meine Anzeigen zu Terminen führen. Du kannst das jederzeit im Footer unter „Cookie-Einstellungen“ ändern. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>' +
       '<div class="cc-opts" hidden>' +
-        '<label class="cc-o"><input type="checkbox" checked disabled><span><b>Notwendig</b>Speichert nur Ihre Auswahl.</span></label>' +
+        '<label class="cc-o"><input type="checkbox" checked disabled><span><b>Notwendig</b>Speichert nur deine Auswahl.</span></label>' +
         '<label class="cc-o" for="cc-stats"><input type="checkbox" id="cc-stats"><span><b>Statistik</b>Google Analytics 4, Auswertung der Seitennutzung.</span></label>' +
         '<label class="cc-o" for="cc-ads"><input type="checkbox" id="cc-ads"><span><b>Marketing</b>Google Ads Conversion-Tracking, misst Terminbuchungen aus Anzeigen.</span></label>' +
       '</div>' +
