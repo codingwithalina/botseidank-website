@@ -6,14 +6,12 @@ Statische Website, keine Build-Schritte.
 |---|---|
 | `index.html` | Hauptseite mit mehreren Unterseiten in einer Datei: `#start`, `#angebot`, `#use-cases` (mit `#r-<slug>`-Detailseiten und `#speed-to-lead`), `#erstgespraech`. Alte Adressen (`#angebote`, `#repertoire`, `#ki-automatisierung`, `#potenzial-check`) leiten weiter. |
 | `ablauf-sprint.html` | 8-Wochen-Programm „Zeitfresser finden und abschaffen“ (6.000 €, zwei Raten nach Ergebnis) |
-| `ablauf-check.html`, `ablauf-partner.html` | Frühere Agentur-Angebote, nicht mehr verlinkt |
 | `lead-revenue-system.html` | Paket aus drei Systemen (9.900 € + 1.790 €/Monat) |
 | `leadblitz-60.html` | System: KI-Rückruf in 60 Sekunden (4.900 € + 790 €/Monat) |
 | `anrufwaechter.html` | System: KI-Telefonassistent (3.900 € + 590 €/Monat) |
 | `reaktivierung.html` | System: ReaktivierungsBlitz (2.900 € + optional 490 €/Monat) |
 | `followup.html` | System: FollowUpHero (3.900 € + 690 €/Monat) |
 | `befund-brief.html` | System: Befund-Brief, Warteliste (4.900 € + 990 €/Monat) |
-| `ALINA-NATH_Inspiration-Multipage_v3_2026-10-16.html` | Ursprüngliche Gestaltungsstudie |
 
 ## Angebotslogik
 - **Schon eine Idee?** Umsetzung: Festpreis 2.900–4.900 € je nach Umfang, 7–14 Tage bis live. Alle Ideen und fertigen Systeme unter `#use-cases`.
