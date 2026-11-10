@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot sei Dank · Konzept Tageslicht</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --paper:#F3EFE6;--paper-2:#E9E3D6;--ink:#14213A;--ink-2:#5B6474;--line:rgba(20,33,58,.2);--red:#D5401C;--teal:#0B6E7C;
+  --f-s:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --gut:clamp(20px,4.4vw,72px);
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--paper)}
+body{font:400 clamp(16px,1.15vw,19px)/1.55 var(--f-t);color:var(--ink);overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-s);font-weight:400;letter-spacing:-.022em;line-height:1.02;text-wrap:balance}
+h1 em,h2 em{color:var(--red)}
+.m{font-family:var(--f-m);font-size:clamp(10.5px,.8vw,12.5px);letter-spacing:.05em}
+
+.nav{position:fixed;z-index:30;top:0;left:0;right:0;padding:16px var(--gut);display:flex;justify-content:space-between;align-items:center;background:var(--paper)}
+.logo{display:block;width:clamp(116px,9.5vw,146px);aspect-ratio:526/81.5;background:var(--ink);-webkit-mask:url(assets/logo.svg) left center/contain no-repeat;mask:url(assets/logo.svg) left center/contain no-repeat}
+.nav nav{display:flex;gap:clamp(14px,2.2vw,34px);align-items:center;font-size:.93em}
+.nav nav a{text-decoration:none}
+.nav nav a:not(.cta):hover{text-decoration:underline;text-underline-offset:4px}
+.cta{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:.72em 1.1em;font-weight:600;font-size:.94em;transition:background-color .25s,transform .25s cubic-bezier(.2,.8,.2,1)}
+.cta:hover{background:var(--red);transform:translateY(-2px)}
+
+.week{height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,72px);padding:clamp(76px,11vh,104px) var(--gut) clamp(20px,4vh,44px);position:relative}
+.copy{position:relative;align-self:center;min-height:62vh}
+.copy>div{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
+.copy h1,.copy h2{font-size:clamp(46px,6.1vw,106px)}
+.copy p{margin-top:1em;max-width:30em}
+.copy .cta{margin-top:1.5em}
+#after{opacity:0;visibility:hidden}
+.planner{display:flex;flex-direction:column;min-height:0}
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:2.6em repeat(5,1fr);grid-template-rows:auto repeat(9,1fr);border-top:1.5px solid var(--ink);position:relative}
+.d{grid-row:1;font:500 clamp(10.5px,.8vw,12.5px)/1 var(--f-m);padding:9px 6px;border-left:1px solid var(--line)}
+.h{grid-column:1;font:400 clamp(9.5px,.72vw,11.5px)/1 var(--f-m);color:var(--ink-2);padding-top:3px;border-top:1px solid var(--line)}
+.cell{border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.bk{margin:2px;padding:5px 7px;font:500 clamp(10px,.82vw,13.5px)/1.15 var(--f-t);overflow:hidden;will-change:transform,opacity;z-index:2}
+.bk.f{background:#F1C9B9;color:#6E1E08;border-left:3px solid var(--red)}
+.bk.k{background:var(--ink);color:var(--paper)}
+.tally{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;border-top:1.5px solid var(--ink)}
+.tally b{font:400 clamp(30px,3.6vw,62px)/1 var(--f-s);font-variant-numeric:tabular-nums}
+.tally span{max-width:24em;text-align:right;color:var(--ink-2)}
+
+.sec{padding:clamp(70px,13vh,160px) var(--gut)}
+.lead{font:400 clamp(38px,5.4vw,96px)/1.03 var(--f-s);letter-spacing:-.024em;max-width:15em;text-wrap:balance}
+
+.bp{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,110px);margin-top:clamp(20px,5vh,60px)}
+.step{min-height:74vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line);padding:30px 0}
+.step .m{color:var(--teal)}
+.step h3{font-size:clamp(32px,3.4vw,58px);margin:.3em 0 .45em}
+.step p{max-width:30em;color:#39435A}
+.draw-w{position:sticky;top:12vh;height:76vh}
+#plan{width:100%;height:100%;display:block;background:#F8F5EE;border:1.5px solid var(--ink)}
+.dr{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-dasharray:1;stroke-dashoffset:1}
+.dr.t{stroke:var(--teal)}
+.lb{font:400 12.5px var(--f-m);fill:var(--ink);opacity:0}
+
+.tasks{margin-top:clamp(30px,6vh,70px);border-bottom:1px solid var(--line)}
+.task{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,5fr) minmax(0,3fr);gap:20px;align-items:baseline;padding:clamp(14px,2.2vh,24px) 0;border-top:1px solid var(--line);transition:padding-left .35s cubic-bezier(.2,.8,.2,1),color .2s}
+.task:hover{padding-left:18px;color:var(--red)}
+.task h3{font-size:clamp(26px,3vw,52px)}
+.task p{color:var(--ink-2)}
+.task span{text-align:right;font:500 clamp(12.5px,1vw,16px)/1.2 var(--f-m)}
+.note{color:var(--ink-2);margin-top:16px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:clamp(30px,6vh,70px);border-top:1.5px solid var(--ink)}
+.two a{display:flex;flex-direction:column;text-decoration:none;padding:26px clamp(18px,3vw,50px) 30px 0;min-height:clamp(320px,50vh,480px);transition:background-color .25s,color .25s}
+.two a+a{border-left:1px solid var(--line);padding-left:clamp(18px,3vw,50px);padding-right:0}
+.two h3{font-size:clamp(42px,5.4vw,96px);margin:.25em 0 .4em}
+.two p{max-width:29em;color:#39435A}
+.two b{margin-top:auto;font-weight:600;padding-top:26px}
+.two a:hover h3{color:var(--red)}
+
+.deal{overflow:hidden;background:var(--paper-2);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,110px);align-items:center}
+.rcpt{background:#fff;padding:clamp(22px,3vw,44px);font:400 clamp(13.5px,1.05vw,16.5px)/1.4 var(--f-m);position:relative;transform:rotate(-1.2deg);box-shadow:0 26px 50px -30px rgba(20,33,58,.55)}
+.rcpt h3{font:500 1em/1.4 var(--f-m);letter-spacing:.04em;padding-bottom:12px;border-bottom:1px dashed var(--ink);margin-bottom:6px}
+.rcpt dl{display:grid;grid-template-columns:1fr auto;gap:0}
+.rcpt dt,.rcpt dd{padding:12px 0;border-bottom:1px dashed var(--line)}
+.rcpt dd{text-align:right;margin-left:16px;white-space:nowrap}
+.rcpt small{display:block;margin-top:14px;color:var(--ink-2);font-size:.86em}
+#stamp{position:absolute;right:6%;bottom:-6%;border:3px solid var(--red);color:var(--red);padding:.55em .8em;font:500 clamp(13px,1.2vw,18px)/1.15 var(--f-m);text-align:center;transform:rotate(-9deg);background:rgba(255,255,255,.7)}
+
+.me{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,6vw,110px);align-items:center}
+.me img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.me blockquote{font:italic 400 clamp(38px,5vw,88px)/1.04 var(--f-s);letter-spacing:-.022em;text-wrap:balance}
+.me p{margin-top:1.3em;max-width:36em;color:#39435A}
+
+.close{background:var(--ink);color:var(--paper);padding:clamp(90px,18vh,200px) var(--gut) clamp(40px,8vh,80px)}
+.close h2{font-size:clamp(50px,9vw,172px);line-height:.96}
+.close h2 em{color:#F2A488}
+.close p{margin:1.2em 0 1.7em;max-width:30em;color:#BFC8D6}
+.close .cta{background:var(--paper);color:var(--ink);font-size:1.08em;padding:.95em 1.35em}
+.close .cta:hover{background:#F2A488}
+.foot{display:flex;gap:1.5em;margin-top:clamp(60px,13vh,130px);color:#BFC8D6;font-size:.88em}
+
+@media (max-width:860px){
+  .nav nav a:not(.cta){display:none}
+  .week{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:12px;padding-top:66px}
+  .copy{min-height:34vh;align-self:start}
+  .copy h1,.copy h2{font-size:clamp(38px,10.4vw,50px)}
+  .copy p{font-size:15px;margin-top:.6em}.copy .cta{margin-top:.7em}
+  .grid{grid-template-columns:2.2em repeat(3,1fr)}
+  .d3,.d4{display:none}
+  .tally span{font-size:10px}
+  .bp,.two,.deal,.me{grid-template-columns:1fr}
+  .draw-w{position:sticky;top:60px;height:38vh;order:-1;z-index:3;background:var(--paper)}
+  .step{min-height:56vh}
+  .two a,.two a+a{padding:22px 0;border-left:0;min-height:0;border-bottom:1px solid var(--line)}
+  .task{grid-template-columns:1fr auto}
+  .task p{grid-row:2;grid-column:1/-1}
+  .me img{max-width:62%}
+}
+.rm .week{height:auto;min-height:100svh}.rm .copy{min-height:0}.rm .copy>div{position:static;transform:none}.rm #after{opacity:1;visibility:visible;margin-top:2em}
+.rm .bk.f{opacity:.45;text-decoration:line-through}.rm .dr{stroke-dashoffset:0}.rm .lb{opacity:1}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="index.html" aria-label="Bot sei Dank, zur Startseite"></a>
+  <nav><a href="index.html#angebot">Angebot</a><a href="index.html#use-cases">Use Cases</a><a class="cta" href="index.html#erstgespraech">Gespräch buchen</a></nav>
+</header>
+
+<main>
+<section class="week" id="week">
+  <div class="copy">
+    <div id="before">
+      <h1>Deine Zeitfresser, <em>automatisiert.</em></h1>
+      <p>Ich baue KI-Automatisierungen in deine bestehenden Tools. Festpreis, bezahlt erst, wenn es läuft.</p>
+      <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+    </div>
+    <div id="after">
+      <h2>Das ist deine Woche.</h2>
+      <p>Mit Raum für die Arbeit, die wirklich zählt.</p>
+    </div>
+  </div>
+  <div class="planner">
+    <div class="grid" id="grid" aria-label="Beispielwoche mit Aufgaben, die nach und nach automatisiert werden"></div>
+    <div class="tally"><b id="free">0 h</b><span class="m">frei geworden in dieser Beispielwoche. Deine echte Woche messen wir gemeinsam.</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <p class="lead">Ich baue Abläufe wie Anlagen: erst messen, dann umbauen, dann mit echten Fällen testen.</p>
+  <div class="bp">
+    <div id="steps">
+      <article class="step"><span class="m">Schritt eins</span><h3>Erstgespräch</h3><p>30 Minuten, kostenlos. Wir klären, ob du mit einer Idee startest oder mit dem Programm, und ob sich der Aufwand für dich lohnt. Wenn nicht, sage ich es dir.</p></article>
+      <article class="step"><span class="m">Schritt zwei</span><h3>Messen und Ziel</h3><p>Wir nehmen den Ausgangswert an echten Fällen auf und vereinbaren die Kennzahl, an der sich das Ergebnis messen lässt.</p></article>
+      <article class="step"><span class="m">Schritt drei</span><h3>Bauen in deinen Tools</h3><p>Ich setze die Automatisierung in dem um, was du schon nutzt. Kein Systemwechsel, keine Schulung für dein Team.</p></article>
+      <article class="step"><span class="m">Schritt vier</span><h3>Testen, übergeben, dann zahlen</h3><p>Test mit echten Fällen, Einweisung, Dokumentation. Die Rechnung kommt erst, wenn es läuft.</p></article>
+    </div>
+    <div class="draw-w">
+      <svg id="plan" viewBox="0 0 640 640" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Technische Zeichnung eines Ablaufs, die sich Schritt für Schritt aufbaut">
+        <defs><pattern id="gr" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#14213A" stroke-opacity=".09"/></pattern></defs>
+        <rect width="640" height="640" fill="url(#gr)"/>
+        <g data-g="0"><path class="dr" pathLength="1" d="M40 130H190"/><circle class="dr" pathLength="1" cx="230" cy="130" r="40"/><path class="dr" pathLength="1" d="M212 112L248 148M248 112L212 148"/><text class="lb" x="40" y="116">EINGANG</text><text class="lb" x="192" y="196">GESPRÄCH</text></g>
+        <g data-g="1"><path class="dr" pathLength="1" d="M270 130H400"/><circle class="dr" pathLength="1" cx="440" cy="130" r="40"/><path class="dr t" pathLength="1" d="M440 130L466 104"/><path class="dr" pathLength="1" d="M412 130H420M460 130H468M440 102V110"/><text class="lb" x="412" y="196">KENNZAHL</text></g>
+        <g data-g="2"><path class="dr" pathLength="1" d="M440 170V252"/><rect class="dr" pathLength="1" x="240" y="252" width="340" height="140"/><path class="dr t" pathLength="1" d="M270 322H330L352 296L382 348L412 296L434 322H550"/><text class="lb" x="252" y="276">AUTOMATISIERUNG IN DEINEN TOOLS</text></g>
+        <g data-g="3"><path class="dr" pathLength="1" d="M410 392V470"/><path class="dr" pathLength="1" d="M372 452L448 508V452L372 508Z"/><path class="dr t" pathLength="1" d="M372 480H110M126 466L110 480L126 494"/><circle class="dr t" pathLength="1" cx="74" cy="480" r="30"/><text class="lb" x="458" y="486">ECHTE FÄLLE</text><text class="lb" x="46" y="534">GO-LIVE</text></g>
+        <g><path d="M370 572H640M370 572V640M500 572V640" fill="none" stroke="#14213A" stroke-width="1.5"/><text x="382" y="602" font-family="IBM Plex Mono" font-size="11.5" fill="#14213A">GEZEICHNET</text><text x="382" y="622" font-family="IBM Plex Mono" font-size="11.5" fill="#14213A">A. NATH</text><text x="512" y="602" font-family="IBM Plex Mono" font-size="11.5" fill="#14213A">MASSSTAB</text><text x="512" y="622" font-family="IBM Plex Mono" font-size="11.5" fill="#14213A">1:1, LIVE</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <h2 class="lead">Was sie bei dir übernehmen kann.</h2>
+  <div class="tasks">
+    <div class="task"><h3>Anfragen beantworten</h3><p>In Minuten statt Tagen, mit Terminvorschlag.</p><span>rund um die Uhr</span></div>
+    <div class="task"><h3>Angebote schreiben</h3><p>Aus Notizen, Mails oder CRM-Daten, in deinem Layout.</p><span>Minuten statt Stunden</span></div>
+    <div class="task"><h3>Anrufe annehmen</h3><p>Klärt das Anliegen, bucht oder leitet weiter.</p><span>24/7 erreichbar</span></div>
+    <div class="task"><h3>Termine koordinieren</h3><p>Vorschläge, Buchung, Erinnerung, Verschiebung.</p><span>−40 % No-Shows</span></div>
+    <div class="task"><h3>Nachfassen</h3><p>Offene Angebote, geplatzte Termine, alte Kontakte.</p><span>0 vergessene Angebote</span></div>
+    <div class="task"><h3>Daten übertragen</h3><p>CRM, Excel und Buchhaltung bleiben synchron.</p><span>0 × doppelt eintippen</span></div>
+    <div class="task"><h3>Dokumente auslesen</h3><p>Rechnungen, Verträge, Formulare.</p><span>−95 % Handarbeit</span></div>
+    <div class="task"><h3>Berichte erstellen</h3><p>Zahlen aus allen Quellen, fertig im Postfach.</p><span>Montag 7:00 fertig</span></div>
+  </div>
+  <p class="note m">Typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher.</p>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <h2 class="lead">Zwei Wege. Ein Versprechen.</h2>
+  <div class="two">
+    <a href="ablauf-sprint.html"><span class="m">8-Wochen-Programm</span><h3>Noch keine Idee?</h3><p>Gemeinsam messen wir deine Abläufe an echten Fällen, finden den größten Zeitfresser und automatisieren ihn, bis dein Team ihn selbst nutzt.</p><b>6.000 € Festpreis, zwei Raten</b></a>
+    <a href="index.html#use-cases"><span class="m">Umsetzung</span><h3>Schon eine Idee?</h3><p>Du weißt, was automatisch laufen soll. Ich setze es in deinen Tools um, live in 7–14 Tagen.</p><b>ab 2.900 € Festpreis</b></a>
+  </div>
+</section>
+
+<section class="sec deal">
+  <h2 class="lead">Du zahlst erst, <em>wenn es läuft.</em></h2>
+  <div class="rcpt" id="rcpt">
+    <h3>DEINE RECHNUNG, SCHRITT FÜR SCHRITT</h3>
+    <dl>
+      <dt>Vorkasse</dt><dd>0,00 €</dd>
+      <dt>Bei Go-Live</dt><dd>erste Hälfte</dd>
+      <dt>Nach bestandenem Test</dt><dd>zweite Hälfte</dd>
+      <dt>Nacharbeit bei verfehltem Ziel</dt><dd>0,00 €</dd>
+    </dl>
+    <small>Festpreis, vorab vereinbart. Ohne Kleingedrucktes.</small>
+    <div id="stamp">BEZAHLT ERST,<br>WENN ES LÄUFT</div>
+  </div>
+</section>
+
+<section class="sec me">
+  <img src="assets/alina.webp" alt="Porträt von Alina Nath" loading="lazy">
+  <div>
+    <blockquote>Technologie soll befreien, nicht auslaugen.</blockquote>
+    <p>Ich bin Alina und komme aus der Industrieautomation. Keine Agentur, kein Team aus wechselnden Freelancern. Du arbeitest direkt mit mir, von der ersten Analyse bis zum fertigen System.</p>
+  </div>
+</section>
+
+<section class="close">
+  <h2>Wo verlierst du gerade <em>Zeit, Geld und Nerven?</em></h2>
+  <p>30 Minuten, kostenlos. Danach weißt du, ob sich eine Automatisierung für dich lohnt.</p>
+  <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+  <footer class="foot"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></footer>
+</section>
+</main>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(function(){
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.documentElement.classList.add(rm?'rm':'motion');
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* Beispielwoche: [Tag, Start, Dauer, Text, Art] */
+const B=[
+[0,9,2,'Kundentermin','k'],[1,10,2,'Beratung vor Ort','k'],[2,14,2,'Projekt','k'],[3,9,2,'Kundentermin','k'],[4,10,2,'Team','k'],
+[0,8,1,'Mails sortieren','f'],[0,11,2,'Angebot tippen','f'],[0,14,2,'Excel pflegen','f'],[0,16,1,'Nachfassen','f'],
+[1,8,2,'Mails beantworten','f'],[1,13,1,'Termine abstimmen','f'],[1,14,2,'Daten übertragen','f'],[1,16,1,'Rückrufe','f'],
+[2,8,1,'Mails sortieren','f'],[2,9,2,'Angebote schreiben','f'],[2,11,2,'Abstimmung','f'],[2,16,1,'Bericht','f'],
+[3,8,1,'Mails sortieren','f'],[3,11,2,'Rechnungen abtippen','f'],[3,14,2,'Excel pflegen','f'],[3,16,1,'Nachfassen','f'],
+[4,8,2,'Mails beantworten','f'],[4,12,2,'Wochenbericht','f'],[4,14,2,'Daten übertragen','f']];
+const g=$('#grid');let html='<div></div>';
+['Mo','Di','Mi','Do','Fr'].forEach((d,i)=>html+=`<div class="d d${i}" style="grid-column:${i+2}">${d}</div>`);
+for(let h=8;h<17;h++){html+=`<div class="h" style="grid-row:${h-6}">${h}</div>`;for(let d=0;d<5;d++)html+=`<div class="cell d${d}" style="grid-column:${d+2};grid-row:${h-6}"></div>`}
+B.forEach(([d,s,l,t,k])=>html+=`<div class="bk ${k} d${d}" data-h="${l}" style="grid-column:${d+2};grid-row:${s-6}/span ${l}">${t}</div>`);
+g.innerHTML=html;
+const out=$('#free');
+if(rm||!window.gsap){out.textContent=$$('.bk.f').filter(e=>e.offsetParent).reduce((a,e)=>a+ +e.dataset.h,0)+' h';return}
+
+gsap.registerPlugin(ScrollTrigger);
+if(matchMedia('(pointer:fine)').matches&&window.Lenis){const l=new Lenis({lerp:.11});l.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>l.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+
+/* Signatur: die Woche leert sich */
+let seed=11;const r=()=>(seed=seed*16807%2147483647)/2147483647;
+const notes=$$('.bk.f').filter(e=>e.offsetParent).map(e=>({e,o:r()})).sort((a,b)=>a.o-b.o).map(x=>x.e);
+const tl=gsap.timeline({scrollTrigger:{trigger:'#week',pin:true,start:'top top',end:'+=340%',scrub:.5}});
+tl.to({}, {duration:.5});
+notes.forEach((n,i)=>{
+  const rot=(r()-.5)*44,dx=(r()-.5)*110;
+  tl.to(n,{y:innerHeight*.72,x:dx,rotation:rot,ease:'power2.in',duration:.8},.5+i*.33);
+  tl.to(n,{opacity:0,duration:.34,ease:'none'},.5+i*.33+.22);
+});
+const spots=notes.map((n,i)=>({h:+n.dataset.h,t:.5+i*.33+.45}));
+gsap.ticker.add(()=>{const T=tl.time();let h=0;spots.forEach(s=>{if(T>=s.t)h+=s.h});const v=h+' h';if(out.textContent!==v)out.textContent=v});
+const end=.5+notes.length*.33+.5;
+tl.to('#before',{opacity:0,y:-24,duration:.5},end-1).set('#before',{visibility:'hidden'},end-.5)
+  .set('#after',{visibility:'visible'},end-.5).fromTo('#after',{opacity:0,y:24},{opacity:1,y:'-50%',duration:.6},end-.5).to({}, {duration:1.2});
+gsap.set('#after',{yPercent:0,y:'-50%',top:'50%'});
+
+/* Bauplan zeichnet sich */
+$$('.step').forEach((s,i)=>{
+  const gr=document.querySelector(`[data-g="${i}"]`);
+  gsap.timeline({scrollTrigger:{trigger:s,start:'top 78%',end:'top 34%',scrub:.5}})
+   .to(gr.querySelectorAll('.dr'),{strokeDashoffset:0,stagger:.2,duration:1,ease:'none'})
+   .to(gr.querySelectorAll('.lb'),{opacity:1,duration:.3},'-=.3');
+});
+gsap.from('.task',{opacity:0,y:20,stagger:.05,duration:.5,scrollTrigger:{trigger:'.tasks',start:'top 76%'}});
+gsap.from('#rcpt',{y:90,rotation:3,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#rcpt',start:'top 82%'}});
+gsap.fromTo('#stamp',{scale:2.4,opacity:0},{scale:1,opacity:1,ease:'power4.in',duration:.32,delay:.75,scrollTrigger:{trigger:'#rcpt',start:'top 62%'}});
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
