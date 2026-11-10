@@ -138,6 +138,23 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .cmp .cta{margin-top:1.2em}
 .fine{display:block;color:var(--ink-2);font-size:.82em;margin-top:.9em}
 
+/* 5b Was alles geht, für wen */
+.rail{overflow:hidden;padding:96px 0 clamp(30px,6vh,70px)}
+.rail>.big,.rail>.lead{margin-inline:var(--gut)}
+.rail>.big{max-width:16em}
+.track{display:flex;gap:clamp(12px,1.4vw,22px);padding:clamp(24px,4.4vh,50px) var(--gut) 20px;width:max-content;will-change:transform}
+.rc{width:clamp(300px,34vw,520px);min-height:clamp(250px,40vh,420px);border-radius:30px;padding:clamp(22px,2.6vw,40px);display:flex;flex-direction:column}
+.rc h3{font-size:clamp(27px,2.9vw,48px);margin-top:auto;line-height:1.02}
+.rc p{margin-top:.8em;color:var(--ink-3)}
+.rc:nth-child(3n+1){background:var(--ink);color:#fff;border-color:var(--ink)}
+.rc:nth-child(3n+1) .m{color:var(--mint)}
+.rc:nth-child(3n+1) p{color:color-mix(in srgb,#fff 82%,var(--ink))}
+.signs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.2vw,20px);margin-top:clamp(30px,6vh,60px)}
+.sign{border-radius:24px;padding:clamp(18px,1.8vw,28px);min-height:clamp(210px,30vh,280px);display:flex;flex-direction:column}
+.sign h3{font-size:clamp(21px,1.8vw,29px);line-height:1.08;letter-spacing:-.025em}
+.sign p{margin-top:auto;padding-top:1em;color:var(--ink-2);font-size:.95em}
+.fair{margin-top:1.4em;max-width:44em;color:var(--ink-3)}
+
 /* 6 Was ich mache */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(30px,6vh,60px)}
 .tab{appearance:none;cursor:pointer;border-radius:999px;padding:.7em 1.15em;font-weight:600;font-size:.97em;white-space:nowrap;transition:background-color .25s,color .25s}
@@ -255,6 +272,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   .tally>span{font-size:10.5px}
   .calc,.safe,.care,.me,.faqw,.incl,.incl ul,.book,.ftr{grid-template-columns:1fr}
   .book{border-radius:26px}.slot{border-radius:18px}
+  .rail{padding-top:60px}
+  .track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .rc{flex:0 0 80vw;scroll-snap-align:center;min-height:300px;border-radius:24px}
+  .signs{grid-template-columns:1fr}.sign{min-height:0}
   .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut)}
   .pan{grid-template-columns:1fr}.arr{justify-self:center;transform:rotate(90deg)}
   .ba{min-height:0;border-radius:22px}.ba p{margin-top:1em}
@@ -264,6 +285,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .rm .say{min-height:0}.rm .say>div{position:static;height:auto;padding:90px 0}.rm .say p span{opacity:1}
 .rm .week{height:auto}.rm .copy{min-height:0}.rm .ph{position:static;transform:none;opacity:1!important;visibility:visible!important;margin-bottom:2em}
 .rm .bk.f{opacity:.5;text-decoration:line-through}.rm .sc{position:static}
+.rm .track{width:auto;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -348,11 +370,40 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <div class="out" id="out" aria-live="polite">312</div>
     <p class="out-l">Stunden im Jahr nur fürs Lesen, Eintippen und Antworten. Das sind <strong id="wk">7,8 Arbeitswochen</strong> und rund <strong id="cost">18.720 €</strong>, jedes Jahr.</p>
     <div class="cmp">
-      <p>Zum Vergleich: Diesen Ablauf zu automatisieren kostet einmalig 2.900 bis 4.900 € Festpreis. Und du zahlst erst, wenn er läuft.</p>
+      <p>Zum Vergleich: Diesen Ablauf zu automatisieren kostet einmalig 2.900 bis 3.900 € Festpreis. Und du zahlst erst, wenn er läuft.</p>
       <a class="cta l" href="#erstgespraech">Kostenloses Erstgespräch buchen</a>
       <small class="fine">Gerechnet nur mit deinen Eingaben, auf 52 Wochen und 40 Stunden je Arbeitswoche. Keine Prognose.</small>
     </div>
   </div>
+</section>
+
+<!-- 5b · Was alles von allein laufen kann -->
+<section class="rail" id="moeglich">
+  <h2 class="big">Fast alles, was sich wiederholt, kann von allein laufen.</h2>
+  <p class="lead">Viele denken bei Automatisierung an Kleinigkeiten. Dabei lassen sich ganze Aufgabenbereiche abgeben. Ein paar Beispiele:</p>
+  <div class="track" id="track">
+    <article class="rc glass"><span class="m">Buchhaltung</span><h3>Die Buchhaltung, von der Rechnung bis zum Steuerberater</h3><p>Rechnungen werden geschrieben, verschickt und nachgehalten. Belege werden gelesen und zugeordnet. Du gibst nur noch frei.</p></article>
+    <article class="rc glass"><span class="m">Telefon</span><h3>Ein Telefon, das nie besetzt ist</h3><p>Jeder Anruf wird angenommen, das Anliegen geklärt, der Termin gebucht. Auch um 22 Uhr und am Sonntag.</p></article>
+    <article class="rc glass"><span class="m">Angebote</span><h3>Angebote, die sich selbst schreiben</h3><p>Aus deinem Kundengespräch entsteht das fertige Angebot samt Projektplan. Du liest nur noch drüber.</p></article>
+    <article class="rc glass"><span class="m">Postfach</span><h3>Ein Postfach, das sich selbst aufräumt</h3><p>Mails werden sortiert, Standardfragen beantwortet, Wichtiges liegt oben.</p></article>
+    <article class="rc glass"><span class="m">Bestandskunden</span><h3>Kunden, die von allein zurückkommen</h3><p>Alte Anfragen und stille Kunden werden Schritt für Schritt wieder angesprochen. Du sprichst nur mit denen, die wollen.</p></article>
+    <article class="rc glass"><span class="m">Zahlen</span><h3>Zahlen, die dich warnen, bevor es eng wird</h3><p>Deine Liquidität wird vorausberechnet, alle Kennzahlen laufen an einer Stelle zusammen. Montags liegt der Bericht im Postfach.</p></article>
+    <article class="rc glass"><span class="m">Bewertungen</span><h3>Bewertungen, die sich selbst einsammeln</h3><p>Nach jedem Auftrag wird nachgefragt, jede Bewertung bekommt eine passende Antwort.</p></article>
+    <article class="rc glass"><span class="m">Wissen</span><h3>Wissen, das nicht mehr in einem Kopf steckt</h3><p>Abläufe werden dokumentiert, während sie laufen. Fällt jemand aus, geht es trotzdem weiter.</p></article>
+  </div>
+</section>
+
+<!-- 5c · Wer das braucht und warum -->
+<section class="sec" id="fuer-wen" style="padding-top:clamp(40px,7vh,90px)">
+  <h2 class="big">Für jeden Betrieb, in dem sich Arbeit wiederholt.</h2>
+  <p class="lead">Wiederkehrende Handarbeit ist die teuerste Arbeit im Betrieb. Sie kostet jeden Tag Zeit, bringt keinen neuen Kunden und macht niemandem Freude. Ob Handwerksbetrieb, Praxis, Kanzlei, Agentur oder Händler: Automatisieren lohnt sich für dich, wenn …</p>
+  <div class="signs">
+    <div class="sign glass"><h3>… bei euch jeden Tag dasselbe reinkommt.</h3><p>Anfragen, Rechnungen, Termine, Bestellungen: dieselben Schritte, immer wieder.</p></div>
+    <div class="sign glass"><h3>… gute Leute ihre Zeit mit Abtippen verbringen.</h3><p>Wer Kunden beraten könnte, pflegt stattdessen Tabellen.</p></div>
+    <div class="sign glass"><h3>… du wachsen willst, ohne für jede Aufgabe jemanden einzustellen.</h3><p>Mehr Aufträge sollen nicht automatisch mehr Verwaltung bedeuten.</p></div>
+    <div class="sign glass"><h3>… Dinge liegen bleiben, sobald jemand krank ist.</h3><p>Dann hängt der Ablauf an einer Person statt am Betrieb.</p></div>
+  </div>
+  <p class="fair">Und es lohnt sich nicht für jeden. Wenn der Hebel bei dir zu klein ist, sage ich dir das im Erstgespräch.</p>
 </section>
 
 <!-- 6 · Was ich mache -->
@@ -390,10 +441,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <span class="badge m" style="color:#fff">Schnellster Einstieg</span>
       <span class="m">Du weißt, was nervt</span>
       <h3>Ein Zeitfresser weniger</h3>
-      <p>Du sagst mir, welche Aufgabe von allein laufen soll. In 7 bis 14 Tagen läuft sie.</p>
-      <div class="price">2.900 bis 4.900 €<small>Festpreis, einmalig. Dein Preis steht nach dem Erstgespräch fest, bevor irgendetwas startet.</small></div>
+      <p>Du sagst mir, welche Aufgabe von allein laufen soll. In 4 Wochen läuft sie.</p>
+      <div class="price">2.900 bis 3.900 €<small>Festpreis, einmalig. Dein Preis steht nach dem Erstgespräch fest, bevor irgendetwas startet.</small></div>
       <ul><li>Deine Idee oder ein fertiges System</li><li>Aufgebaut in deinen Programmen</li><li>Testlauf mit echten Vorgängen</li><li>Einweisung und Übergabe-Doku</li></ul>
-      <p class="ex">Zum Beispiel: Alte Kontakte zurückholen <b>2.900 €</b>, Anrufe annehmen, wenn niemand kann <b>3.900 €</b>, jede Anfrage in 60 Sekunden zurückrufen <b>4.900 €</b>.</p>
+      <p class="ex">Zum Beispiel: Alte Kontakte zurückholen <b>2.900 €</b>, Anrufe annehmen, wenn niemand kann <b>3.900 €</b>.</p>
       <div class="gar"><b>Leistungsgarantie</b>Wir vereinbaren vorab eine Kennzahl. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach.</div>
       <a class="cta" href="#erstgespraech">Idee besprechen</a>
     </article>
@@ -409,7 +460,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <article class="of glass">
       <span class="m">Du willst einen ganzen Bereich abgeben</span>
       <h3>Dein Vertrieb läuft von allein</h3>
-      <p>Drei Systeme als eine Strecke, von der ersten Anfrage bis zum Auftrag. In 21 Tagen live.</p>
+      <p>Drei Systeme als eine Strecke, von der ersten Anfrage bis zum Auftrag. In 12 Wochen steht alles.</p>
       <div class="price">9.900 €<small>Einrichtung einmalig, danach 1.790 € im Monat für den laufenden Betrieb.</small></div>
       <ul><li>Jede neue Anfrage wird in 60 Sekunden zurückgerufen</li><li>Offene Angebote werden nachgefasst</li><li>Alte Kontakte werden zurückgeholt</li><li>Ich betreibe es jeden Monat weiter</li></ul>
       <div class="gar"><b>Garantie je System</b>Jedes der drei Systeme hat eine eigene, messbare Garantie. Bezahlt erst, wenn es läuft.</div>
@@ -462,10 +513,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <h2 class="big">Kurz beantwortet.</h2>
   <div class="faq">
     <details class="glass" open><summary>Was genau machst du?</summary><p>Ich schaue mir an, welche Aufgaben in deinem Betrieb immer wieder gleich ablaufen, zum Beispiel Anfragen beantworten, Angebote schreiben, Rechnungen verschicken oder Daten übertragen. Diese Aufgaben baue ich so um, dass sie von allein laufen, in den Programmen, die ihr schon nutzt.</p></details>
-    <details class="glass"><summary>Was kostet das?</summary><p>Die Umsetzung einer Idee kostet einen Festpreis zwischen 2.900 und 4.900 €, je nach Umfang. Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</p></details>
+    <details class="glass"><summary>Was kostet das?</summary><p>Die Umsetzung einer Idee kostet einen Festpreis zwischen 2.900 und 3.900 €, je nach Umfang, und läuft nach 4 Wochen. Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Das Vertriebspaket kostet 9.900 € einmalig plus 1.790 € im Monat und steht nach 12 Wochen. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</p></details>
     <details class="glass"><summary>Wann zahle ich?</summary><p>Nichts vorab. Die erste Hälfte wird fällig, wenn das System bei dir live läuft und du erste Ergebnisse siehst. Die zweite Hälfte erst, wenn der Ablauf den Test mit echten Fällen bestanden hat.</p></details>
     <details class="glass"><summary>Was passiert, wenn das Ziel nicht erreicht wird?</summary><p>Wir vereinbaren vor dem Start eine Kennzahl, zum Beispiel wie viel Zeit der Ablauf danach weniger kosten soll. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach, bis sie erreicht ist. Die zweite Rate wird erst danach fällig.</p></details>
-    <details class="glass"><summary>Welche Stufe passt zu mir?</summary><p>Wenn du schon weißt, welche Aufgabe von allein laufen soll, ist die Umsetzung der schnellere Weg: 7 bis 14 Tage bis live. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten.</p></details>
+    <details class="glass"><summary>Welche Stufe passt zu mir?</summary><p>Wenn du schon weißt, welche Aufgabe von allein laufen soll, ist die Umsetzung der schnellere Weg: nach 4 Wochen läuft sie. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten.</p></details>
     <details class="glass"><summary>Funktioniert das mit unseren bestehenden Programmen?</summary><p>Meist ja. Ich binde an, was du schon nutzt: Kundenverwaltung, E-Mail, Kalender, Telefon und Tabellen. Einen Systemwechsel brauchst du nicht.</p></details>
     <details class="glass"><summary>Ist das DSGVO-konform?</summary><p>Ja. Ich arbeite mit Auftragsverarbeitungsverträgen, prüfe jeden eingesetzten Dienst und betreibe die Automatisierung auf Wunsch auf einem Server in Deutschland. Welche Daten wohin fließen, ist dokumentiert.</p></details>
     <details class="glass"><summary>Muss mein Team geschult werden?</summary><p>Nein. Das System läuft im Hintergrund. Dein Team bekommt eine kurze Einweisung, wer wann eingreift, und eine Übersicht der Rollen.</p></details>
@@ -517,7 +568,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v=20261110"></script>
 <script>
 (function(){
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.documentElement;
@@ -637,6 +688,10 @@ gsap.ticker.add(()=>{const T=tl.time();let h=0;spots.forEach(s=>{if(T>=s.t)h+=s.
 
 /* 5 bis 10 */
 gsap.from('.res',{opacity:0,y:60,scale:.95,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.calc',start:'top 72%'}});
+/* 5b · Beispiele fahren seitlich durch */
+ScrollTrigger.matchMedia({'(min-width:861px)':()=>{const t=$('#track'),d=()=>t.scrollWidth-innerWidth;
+  gsap.to(t,{x:()=>-d(),ease:'none',scrollTrigger:{trigger:'#moeglich',pin:true,start:'top top',end:()=>'+='+d(),scrub:.6,invalidateOnRefresh:true}})}});
+gsap.from('.sign',{opacity:0,y:40,stagger:.09,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.signs',start:'top 82%'}});
 gsap.from('.ba',{opacity:0,y:50,stagger:.18,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'#pan',start:'top 82%'}});
 const cards=$$('.sc');cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.9,opacity:.55,ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top 82%',end:'top 16%',scrub:true}})});
 gsap.from('.of',{opacity:0,y:60,stagger:.14,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.offer',start:'top 80%'}});

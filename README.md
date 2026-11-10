@@ -21,7 +21,7 @@ Statische Website, keine Build-Schritte.
 - **Versprechen (überall gleich):** 0 € vorab, erste Hälfte bei Go-Live, zweite Hälfte nach bestandenem Test mit echten Fällen, bei verfehlter Kennzahl Nacharbeit ohne Mehrkosten.
 
 ## Startseite
-- Angebotsleiter: „Ein Zeitfresser weniger“ (Umsetzung), „Der größte Zeitfresser, gefunden und abgeschafft“ (8-Wochen-Programm), „Dein Vertrieb läuft von allein“ (Lead Revenue System).
+- Angebotsleiter auf der Startseite: „Ein Zeitfresser weniger“ (2.900–3.900 €, 4 Wochen), „Der größte Zeitfresser, gefunden und abgeschafft“ (6.000 €, 8 Wochen), „Dein Vertrieb läuft von allein“ (9.900 € + 1.790 €/Monat, 12 Wochen). Achtung: Use Cases und Landingpages nennen noch die früheren Werte (ab 2.900 € bis 4.900 €, 7–14 Tage, 21 Tage).
 - Porträt: `assets/alina-frei.webp` (freigestellt) und `assets/alina-kontur.webp` (Maske für die Kontur, Farbe kommt aus dem CSS). `assets/alina.webp` ist das Original für das kleine Bild bei der Terminbuchung.
 - Die Beispielwoche ist ausgedacht und als Beispiel gekennzeichnet. Der Rechner rechnet nur mit den Eingaben des Besuchers.
 - Kalender-Look: Die Startseite setzt `window.AWA_CAL_UI` (helles Design), `assets/site.js` liest das. Ohne diese Angabe bleibt der Kalender dunkel wie auf den übrigen Seiten.
