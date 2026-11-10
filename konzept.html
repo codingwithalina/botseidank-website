@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot sei Dank · Konzept Tunnel</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--bg:#08080D;--ink:#F4F4F8;--ink-2:#9C9CAD;--line:rgba(244,244,248,.14);--acc:#A394FF;
+  --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --gut:clamp(20px,5vw,88px)}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg)}
+body{font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t);color:var(--ink);overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-d);font-weight:600;letter-spacing:-.035em;line-height:1;text-wrap:balance}
+.m{font:500 clamp(11px,.8vw,12.5px)/1 var(--f-m);letter-spacing:.06em;text-transform:uppercase}
+.nav{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:clamp(14px,1.5vw,20px) var(--gut)}
+.logo{display:block;width:clamp(116px,9.5vw,146px);aspect-ratio:526/81.5;background:var(--ink);-webkit-mask:url(assets/logo.svg) left center/contain no-repeat;mask:url(assets/logo.svg) left center/contain no-repeat}
+.cta{display:inline-flex;font-weight:600;text-decoration:none;padding:.75em 1.2em;border-radius:999px;background:var(--ink);color:var(--bg);font-size:.93em;white-space:nowrap;transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .25s}
+.cta:hover{transform:translateY(-2px);background:var(--acc)}
+
+.scene{height:820vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:900px;background:radial-gradient(circle at 50% 50%,#1D1A40 0,#0D0C1C 38%,var(--bg) 70%)}
+.tilt,.world{position:absolute;inset:0;transform-style:preserve-3d}
+.tilt{transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg))}
+.world{transform:translateZ(var(--z,0px));will-change:transform}
+.ring{position:absolute;left:50%;top:50%;width:min(1180px,94vw);height:min(660px,78vh);border:1px solid rgba(244,244,248,.5);border-radius:30px;opacity:0;pointer-events:none}
+.ring.a{border-color:var(--acc)}
+.chip{position:absolute;left:50%;top:50%;padding:.5em 1em;border:1px solid rgba(244,244,248,.4);border-radius:999px;white-space:nowrap;font-size:clamp(14px,1.3vw,20px);color:#D8D8E4;pointer-events:none;opacity:0}
+.st{position:absolute;inset:0;display:grid;place-items:center;text-align:center;opacity:0;visibility:hidden;pointer-events:none;padding:0 var(--gut)}
+.st>div{width:min(820px,100%)}
+.st h1{font-size:clamp(46px,7vw,120px)}
+.st h2{font-size:clamp(40px,6vw,104px)}
+.st p{margin:1.1em auto 0;max-width:31em;color:#CFCFDC;font-size:1.08em}
+.st .cta{margin-top:1.6em;font-size:1.05em}
+.depth{position:absolute;left:var(--gut);right:var(--gut);bottom:clamp(24px,4vh,40px);height:1px;background:var(--line)}
+.depth i{position:absolute;inset:0;background:var(--acc);transform-origin:left;transform:scaleX(0)}
+
+.sec{padding:clamp(80px,14vh,170px) var(--gut)}
+.big{font-size:clamp(38px,5.4vw,94px);max-width:13em}
+.list{margin-top:clamp(36px,7vh,80px);display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(30px,6vw,110px)}
+.it{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;padding:22px 0;border-top:1px solid var(--line)}
+.it h3{font-size:clamp(22px,2vw,32px);letter-spacing:-.02em}
+.it span{font:500 clamp(11.5px,.85vw,13.5px)/1 var(--f-m);color:var(--acc)}
+.it p{grid-column:1/-1;color:var(--ink-2);font-size:.95em}
+.note{margin-top:20px;color:var(--ink-2);font-size:.86em}
+.me{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,6vw,110px);align-items:end}
+.me img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;display:block}
+.me p{margin-top:1.2em;max-width:34em;color:#CFCFDC}
+.close{text-align:center;display:flex;flex-direction:column;align-items:center;padding-block:clamp(100px,20vh,220px)}
+.close h2{font-size:clamp(46px,8vw,150px);max-width:9em}
+.close p{margin:1.2em 0 1.8em;color:var(--ink-2)}
+.close .cta{font-size:1.08em;padding:.95em 1.5em}
+footer{padding:0 var(--gut) 40px;display:flex;gap:1.5em;color:var(--ink-2);font-size:.86em}
+@media (max-width:860px){
+  .ring{width:88vw;height:62vh;border-radius:22px}
+  .st p{font-size:15.5px}
+  .list,.me{grid-template-columns:1fr}
+  .me img{max-width:62%}
+}
+.rm .scene{height:auto}.rm .stage{position:relative;height:auto;perspective:none;overflow:visible;padding:120px 0 40px}
+.rm .tilt,.rm .world{position:static;transform:none}.rm .ring,.rm .chip,.rm .depth{display:none}
+.rm .st{position:static;opacity:1;visibility:visible;pointer-events:auto;transform:none!important;padding-block:60px}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="index.html" aria-label="Bot sei Dank, zur Startseite"></a>
+  <a class="cta" href="index.html#erstgespraech">Erstgespräch buchen</a>
+</header>
+<main>
+<section class="scene" aria-label="Flug durch den Ablauf">
+  <div class="stage" id="stage">
+    <div class="tilt" id="tilt"><div class="world" id="world">
+      <div class="st"><div>
+        <h1>Deine Zeitfresser, automatisiert.</h1>
+        <p>Ich baue KI-Automatisierungen in deine bestehenden Tools. Festpreis, bezahlt erst, wenn es läuft.</p>
+        <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+      </div></div>
+      <div class="st"><div><h2>Das waren deine Zeitfresser.</h2><p>Arbeit, die kein Mensch machen müsste. Genau die schaffen wir ab.</p></div></div>
+      <div class="st"><div><h2>Die KI liest, versteht und handelt.</h2><p>In den Programmen, die du schon nutzt. Kein Systemwechsel, keine Schulung für dein Team.</p></div></div>
+      <div class="st"><div><h2>Live in 7–14 Tagen.</h2><p>Du hast schon eine Idee? Ich setze sie zum Festpreis ab 2.900 € um. Noch keine? Dann finden wir in 8 Wochen deinen größten Zeitfresser.</p></div></div>
+      <div class="st"><div><h2>0 € Vorkasse.</h2><p>Du zahlst erst, wenn es läuft. Die erste Hälfte bei Go-Live, die zweite nach dem Test mit echten Fällen.</p></div></div>
+      <div class="st"><div><h2>Wo verlierst du gerade Zeit?</h2><p>30 Minuten, kostenlos. Wenn es sich nicht lohnt, sage ich es dir.</p><a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a></div></div>
+    </div></div>
+    <div class="depth" aria-hidden="true"><i id="dp"></i></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="big">Acht Aufgaben, die heute schon automatisch laufen.</h2>
+  <div class="list">
+    <div class="it"><h3>Anfragen beantworten</h3><span>rund um die Uhr</span><p>In Minuten statt Tagen, mit Terminvorschlag.</p></div>
+    <div class="it"><h3>Angebote schreiben</h3><span>Minuten statt Stunden</span><p>Aus Notizen, Mails oder CRM-Daten, in deinem Layout.</p></div>
+    <div class="it"><h3>Anrufe annehmen</h3><span>24/7 erreichbar</span><p>Klärt das Anliegen, bucht oder leitet weiter.</p></div>
+    <div class="it"><h3>Termine koordinieren</h3><span>−40 % No-Shows</span><p>Vorschläge, Buchung, Erinnerung, Verschiebung.</p></div>
+    <div class="it"><h3>Nachfassen</h3><span>0 vergessene Angebote</span><p>Offene Angebote, geplatzte Termine, alte Kontakte.</p></div>
+    <div class="it"><h3>Daten übertragen</h3><span>0 × doppelt eintippen</span><p>CRM, Excel und Buchhaltung bleiben synchron.</p></div>
+    <div class="it"><h3>Dokumente auslesen</h3><span>−95 % Handarbeit</span><p>Rechnungen, Verträge, Formulare.</p></div>
+    <div class="it"><h3>Berichte erstellen</h3><span>Montag 7:00 fertig</span><p>Zahlen aus allen Quellen, fertig im Postfach.</p></div>
+  </div>
+  <p class="note">Typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher.</p>
+</section>
+
+<section class="sec me" style="padding-top:0">
+  <img src="assets/alina.webp" alt="Porträt von Alina Nath" loading="lazy">
+  <div>
+    <h2 class="big">Technologie soll befreien, nicht auslaugen.</h2>
+    <p>Ich bin Alina und komme aus der Industrieautomation. Ich baue Abläufe wie Anlagen: erst messen, dann umbauen, dann mit echten Fällen testen. Keine Agentur. Du arbeitest direkt mit mir.</p>
+  </div>
+</section>
+
+<section class="sec close" style="padding-top:0">
+  <h2>Bereit für den ersten Schritt?</h2>
+  <p>Im Erstgespräch klären wir, ob sich eine Automatisierung für dich lohnt.</p>
+  <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+</section>
+</main>
+<footer><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(function(){
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(rm||!window.gsap){document.documentElement.classList.add('rm');return}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ss=(a,b,v)=>{const t=cl((v-a)/(b-a));return t*t*(3-2*t)};
+const D=1500,st=$$('.st'),world=$('#world'),tilt=$('#tilt'),END=D*(st.length-1);
+st.forEach((s,i)=>{s._z=-i*D;s.style.transform=`translateZ(${s._z}px)`});
+
+/* Tunnelrahmen und vorbeifliegende Zeitfresser */
+let seed=9;const r=()=>(seed=seed*16807%2147483647)/2147483647;
+const rings=[];for(let z=-250,i=0;z>-END-900;z-=300,i++){const e=document.createElement('div');e.className='ring'+(i%4==2?' a':'');e._z=z;e.style.transform=`translate(-50%,-50%) translateZ(${z}px) rotateZ(${i*5}deg)`;world.appendChild(e);rings.push(e)}
+const words=['Mails sortieren','Excel pflegen','Angebot tippen','Rückrufe','Termine abstimmen','Nachfassen','Daten übertragen','Rechnungen abtippen','Wochenbericht','Abstimmung','Doppelt eintippen','Erinnerungen','Dokumente suchen','Status nachfragen'];
+const chips=words.map((w,i)=>{const e=document.createElement('span');e.className='chip';e.textContent=w;
+  const a=i/words.length*6.283+r()*.4,rad=.3+r()*.16,x=Math.cos(a)*rad*Math.max(innerWidth,640)*.9,y=Math.sin(a)*rad*innerHeight*.9;
+  e._z=-260-i*82;e.style.transform=`translate(-50%,-50%) translate3d(${x}px,${y}px,${e._z}px)`;world.appendChild(e);return e});
+
+gsap.registerPlugin(ScrollTrigger);
+const fine=matchMedia('(pointer:fine)').matches;
+if(fine&&window.Lenis){const l=new Lenis({lerp:.1});l.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>l.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+
+/* Signatur: Scrollen ist Flug in die Tiefe */
+function render(p){
+  const Z=cl(p/.94)*END;world.style.setProperty('--z',Z+'px');$('#dp').style.transform=`scaleX(${p})`;
+  st.forEach((s,i)=>{const zr=s._z+Z,o=(i?ss(-1300,-700,zr):1)*(i==st.length-1?1:1-ss(150,600,zr));
+    s.style.opacity=o;s.style.visibility=o<.01?'hidden':'visible';s.style.pointerEvents=o>.6?'auto':'none'});
+  rings.forEach(e=>{const zr=e._z+Z;e.style.opacity=zr>880?0:cl((zr+3400)/2400)*.5});
+  const show=ss(80,460,Z);chips.forEach(e=>{const zr=e._z+Z;e.style.opacity=zr>860?0:cl((zr+1100)/700)*show});
+}
+ScrollTrigger.create({trigger:'.scene',start:'top top',end:'bottom bottom',scrub:.4,onUpdate:s=>render(s.progress)});
+render(0);
+let tx=0,ty=0,px=0,py=0;
+if(fine){addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true});
+  gsap.ticker.add(()=>{px+=(tx-px)*.06;py+=(ty-py)*.06;tilt.style.setProperty('--ty',px*7+'deg');tilt.style.setProperty('--tx',-py*6+'deg')})}
+
+gsap.from('.it',{opacity:0,y:24,stagger:.06,duration:.6,scrollTrigger:{trigger:'.list',start:'top 78%'}});
+gsap.from('.me>*',{opacity:0,y:40,stagger:.14,duration:.8,scrollTrigger:{trigger:'.me',start:'top 76%'}});
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
