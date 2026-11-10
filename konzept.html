@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot sei Dank · Konzept Aurora</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--ink:#11142B;--ink-2:#565A75;--line:rgba(17,20,43,.14);--acc:#3B45E0;--glass:rgba(255,255,255,.52);
+  --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --gut:clamp(20px,5vw,88px)}
+*{box-sizing:border-box;margin:0}
+html{background:linear-gradient(135deg,#E9EEFF,#FFE6DC 60%,#DDF5EE)}
+body{font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t);color:var(--ink);overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-d);font-weight:600;letter-spacing:-.04em;line-height:.98;text-wrap:balance}
+.m{font:500 clamp(11px,.8vw,12.5px)/1 var(--f-m);letter-spacing:.06em;text-transform:uppercase}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(26px) saturate(1.35);backdrop-filter:blur(26px) saturate(1.35);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 60px -40px rgba(17,20,43,.45)}
+.nav{position:fixed;z-index:30;top:12px;left:var(--gut);right:var(--gut);display:flex;justify-content:space-between;align-items:center;padding:9px 9px 9px 20px;border-radius:999px}
+.logo{display:block;width:clamp(110px,9vw,138px);aspect-ratio:526/81.5;background:var(--ink);-webkit-mask:url(assets/logo.svg) left center/contain no-repeat;mask:url(assets/logo.svg) left center/contain no-repeat}
+.nav nav{display:flex;gap:clamp(14px,2.2vw,34px);align-items:center;font-size:.93em}
+.nav nav a{text-decoration:none}
+.cta{display:inline-flex;font-weight:600;text-decoration:none;padding:.75em 1.2em;border-radius:999px;background:var(--ink);color:#fff;font-size:.93em;white-space:nowrap;transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .25s}
+.cta:hover{transform:translateY(-2px);background:var(--acc)}
+
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--gut) clamp(40px,8vh,90px)}
+.hero h1{font-size:clamp(50px,10.4vw,196px);letter-spacing:-.055em;line-height:.9}
+.ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.ln>span{display:block;will-change:transform}
+.hero-b{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-top:clamp(22px,4vh,44px)}
+.hero-b p{max-width:30em;font-size:1.1em;color:#262A48}
+
+.say{min-height:170vh;padding:0 var(--gut)}
+.say>div{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
+.say p{font:600 clamp(34px,5.4vw,92px)/1.04 var(--f-d);letter-spacing:-.035em;max-width:14em}
+.say p span{opacity:.14}
+
+.sec{padding:clamp(70px,12vh,150px) var(--gut)}
+.big{font-size:clamp(38px,5.4vw,94px);max-width:13em}
+.deck{margin-top:clamp(30px,6vh,64px);padding-bottom:6vh}
+.sc{position:sticky;top:calc(13vh + var(--n) * 20px);min-height:min(60vh,520px);border-radius:30px;padding:clamp(22px,3.4vw,54px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:4vw;align-items:end;margin-bottom:7vh;transform-origin:50% 0;will-change:transform}
+.sc .m{color:var(--acc);align-self:start;grid-column:1/-1}
+.sc h3{font-size:clamp(36px,4.6vw,80px)}
+.sc p{font-size:1.1em;color:#262A48;max-width:28em}
+.mq{overflow:hidden;padding:clamp(30px,6vh,70px) 0}
+.mq div{white-space:nowrap;font:600 clamp(50px,9vw,160px)/1.05 var(--f-d);letter-spacing:-.045em;will-change:transform}
+.mq div+div{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.tiles{margin-top:clamp(30px,6vh,64px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.2vw,20px)}
+.tile{border-radius:24px;padding:20px;min-height:clamp(210px,30vh,280px);display:flex;flex-direction:column;transition:transform .4s cubic-bezier(.2,.8,.2,1),background-color .3s}
+.tile:hover{transform:translateY(-8px);background:rgba(255,255,255,.85)}
+.tile .m{color:var(--acc)}
+.tile h3{margin-top:auto;font-size:clamp(21px,1.8vw,29px);letter-spacing:-.025em}
+.tile p{margin-top:.45em;color:var(--ink-2);font-size:.93em}
+.note{margin-top:18px;color:var(--ink-2);font-size:.86em}
+.me{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,6vw,110px);align-items:end}
+.me img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:30px;display:block}
+.me p{margin-top:1.2em;max-width:34em;color:#262A48}
+.close{margin:0 var(--gut) clamp(30px,5vh,60px);border-radius:36px;text-align:center;display:flex;flex-direction:column;align-items:center;padding:clamp(80px,16vh,180px) var(--gut)}
+.close h2{font-size:clamp(44px,7.4vw,138px);max-width:9em}
+.close p{margin:1.2em 0 1.8em;color:#262A48}
+.close .cta{font-size:1.08em;padding:.95em 1.5em}
+footer{padding:0 var(--gut) 40px;display:flex;gap:1.5em;color:var(--ink-2);font-size:.86em}
+@media (max-width:860px){
+  .nav nav a:not(.cta){display:none}
+  .hero h1{font-size:clamp(46px,13.2vw,70px)}
+  .sc{grid-template-columns:1fr;align-content:end;gap:14px;min-height:54vh;border-radius:24px}
+  .tiles{grid-template-columns:1fr 1fr}.tile{padding:14px;min-height:190px;border-radius:18px}
+  .me{grid-template-columns:1fr}.me img{max-width:62%}
+}
+.rm .say{min-height:0}.rm .say>div{position:static;height:auto;padding:90px 0}.rm .say p span{opacity:1}.rm .sc{position:static}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<header class="nav glass">
+  <a class="logo" href="index.html" aria-label="Bot sei Dank, zur Startseite"></a>
+  <nav><a href="index.html#angebot">Angebot</a><a href="index.html#use-cases">Use Cases</a><a class="cta" href="index.html#erstgespraech">Gespräch buchen</a></nav>
+</header>
+<main>
+<section class="hero">
+  <h1><span class="ln"><span>Deine</span></span><span class="ln"><span>Zeitfresser,</span></span><span class="ln"><span>automatisiert.</span></span></h1>
+  <div class="hero-b">
+    <p>Ich baue KI-Automatisierungen in deine bestehenden Tools. Festpreis, bezahlt erst, wenn es läuft.</p>
+    <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+  </div>
+</section>
+
+<section class="say"><div><p id="say">Wie ein Mitarbeiter, der nie schläft und nichts vergisst. Eine Mail kommt an, ein Anruf, ein Formular. Die KI liest es, versteht, worum es geht, und erledigt die nächsten Schritte. Sofort.</p></div></section>
+
+<section class="sec" style="padding-top:0">
+  <h2 class="big">Vier Schritte, ein Ablauf.</h2>
+  <div class="deck">
+    <article class="sc glass" style="--n:0"><span class="m">Schritt eins</span><div><h3>Erstgespräch</h3></div><p>30 Minuten, kostenlos. Wir klären, ob du mit einer Idee startest oder mit dem Programm, und ob sich der Aufwand für dich lohnt. Wenn nicht, sage ich es dir.</p></article>
+    <article class="sc glass" style="--n:1"><span class="m">Schritt zwei</span><div><h3>Messen und Ziel</h3></div><p>Wir nehmen den Ausgangswert an echten Fällen auf und vereinbaren die Kennzahl, an der sich das Ergebnis messen lässt.</p></article>
+    <article class="sc glass" style="--n:2"><span class="m">Schritt drei</span><div><h3>Bauen in deinen Tools</h3></div><p>Ich setze die Automatisierung in dem um, was du schon nutzt. Kein Systemwechsel, keine Schulung für dein Team.</p></article>
+    <article class="sc glass" style="--n:3"><span class="m">Schritt vier</span><div><h3>Testen, übergeben, dann zahlen</h3></div><p>Test mit echten Fällen, Einweisung, Dokumentation. Die Rechnung kommt erst, wenn es läuft.</p></article>
+  </div>
+</section>
+
+<section class="mq" aria-label="Festpreis, keine Vorkasse, Nacharbeit inklusive, in deinen Tools">
+  <div id="m1" aria-hidden="true">Festpreis · Keine Vorkasse · Nacharbeit inklusive · Festpreis · Keine Vorkasse · Nacharbeit inklusive ·</div>
+  <div id="m2" aria-hidden="true">In deinen Tools · Live in 7–14 Tagen · Direkt mit mir · In deinen Tools · Live in 7–14 Tagen · Direkt mit mir ·</div>
+</section>
+
+<section class="sec">
+  <h2 class="big">Acht Aufgaben, die heute schon automatisch laufen.</h2>
+  <div class="tiles">
+    <div class="tile glass"><span class="m">rund um die Uhr</span><h3>Anfragen beantworten</h3><p>In Minuten statt Tagen, mit Terminvorschlag.</p></div>
+    <div class="tile glass"><span class="m">Minuten statt Stunden</span><h3>Angebote schreiben</h3><p>Aus Notizen, Mails oder CRM-Daten.</p></div>
+    <div class="tile glass"><span class="m">24/7 erreichbar</span><h3>Anrufe annehmen</h3><p>Klärt das Anliegen, bucht oder leitet weiter.</p></div>
+    <div class="tile glass"><span class="m">−40 % No-Shows</span><h3>Termine koordinieren</h3><p>Ohne Hin und Her per Mail.</p></div>
+    <div class="tile glass"><span class="m">0 vergessene Angebote</span><h3>Nachfassen</h3><p>Nichts bleibt liegen.</p></div>
+    <div class="tile glass"><span class="m">0 × doppelt eintippen</span><h3>Daten übertragen</h3><p>CRM, Excel und Buchhaltung synchron.</p></div>
+    <div class="tile glass"><span class="m">−95 % Handarbeit</span><h3>Dokumente auslesen</h3><p>Rechnungen, Verträge, Formulare.</p></div>
+    <div class="tile glass"><span class="m">Montag 7:00 fertig</span><h3>Berichte erstellen</h3><p>Zahlen aus allen Quellen im Postfach.</p></div>
+  </div>
+  <p class="note">Typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher.</p>
+</section>
+
+<section class="sec me" style="padding-top:0">
+  <img src="assets/alina.webp" alt="Porträt von Alina Nath" loading="lazy">
+  <div>
+    <h2 class="big">Technologie soll befreien, nicht auslaugen.</h2>
+    <p>Ich bin Alina und komme aus der Industrieautomation. Ich baue Abläufe wie Anlagen: erst messen, dann umbauen, dann mit echten Fällen testen. Keine Agentur. Du arbeitest direkt mit mir.</p>
+  </div>
+</section>
+
+<section class="close glass">
+  <h2>Wo verlierst du gerade Zeit?</h2>
+  <p>30 Minuten, kostenlos. Wenn es sich nicht lohnt, sage ich es dir.</p>
+  <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+</section>
+</main>
+<footer><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(function(){
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* Signatur: ein lebender Farbverlauf, direkt auf der Grafikkarte gerechnet */
+const cv=$('#gl'),gl=cv.getContext('webgl',{antialias:false,alpha:false});
+let draw=()=>{};
+if(gl){
+  const vs='attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+  const fs=`precision highp float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float s;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,v=0.;for(int i=0;i<4;i++){v+=a*n(p);p=p*2.+vec2(3.1,1.7);a*=.5;}return v;}
+void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.25;p+=(m-.5)*.35;float tt=t*.05+s*2.2;
+vec2 q=vec2(fbm(p+tt),fbm(p-tt+4.));float f=fbm(p+q*1.7+vec2(tt*.5,-tt*.3));float g=fbm(p*.7-q*1.3+7.+s);
+vec3 c=mix(vec3(.93,.95,1.),vec3(.66,.73,1.),smoothstep(.28,.78,f));
+c=mix(c,vec3(1.,.80,.71),smoothstep(.42,.8,g)*.85);
+c=mix(c,vec3(.74,.94,.88),smoothstep(.5,.85,q.x)*.6);
+c=mix(c,vec3(.80,.72,1.),smoothstep(.55,.9,q.y)*s);
+gl_FragColor=vec4(c,1.);}`;
+  const sh=(type,src)=>{const o=gl.createShader(type);gl.shaderSource(o,src);gl.compileShader(o);return o};
+  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
+  if(gl.getProgramParameter(pr,gl.LINK_STATUS)){
+    gl.useProgram(pr);gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+    const a=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+    const U=k=>gl.getUniformLocation(pr,k),ur=U('r'),ut=U('t'),um=U('m'),us=U('s');
+    const size=()=>{cv.width=Math.round(innerWidth*.5);cv.height=Math.round(innerHeight*.5);gl.viewport(0,0,cv.width,cv.height)};
+    size();addEventListener('resize',size);
+    let mx=.5,my=.5,tx=.5,ty=.5;addEventListener('pointermove',e=>{tx=e.clientX/innerWidth;ty=1-e.clientY/innerHeight},{passive:true});
+    draw=time=>{mx+=(tx-mx)*.04;my+=(ty-my)*.04;
+      const s=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight);
+      gl.uniform2f(ur,cv.width,cv.height);gl.uniform1f(ut,time*.001);gl.uniform2f(um,mx,my);gl.uniform1f(us,s);gl.drawArrays(gl.TRIANGLES,0,3)};
+  }else cv.remove();
+}else cv.remove();
+if(rm||!window.gsap){document.documentElement.classList.add('rm');draw(4000);return}
+const loop=t=>{draw(t);requestAnimationFrame(loop)};requestAnimationFrame(loop);
+
+gsap.registerPlugin(ScrollTrigger);
+if(matchMedia('(pointer:fine)').matches&&window.Lenis){const l=new Lenis({lerp:.11});l.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>l.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+
+gsap.from('.ln>span',{yPercent:112,duration:1.2,ease:'power4.out',stagger:.12,delay:.15});
+gsap.from('.hero-b>*',{opacity:0,y:24,duration:.8,stagger:.1,delay:.75});
+const say=$('#say');say.innerHTML=say.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
+gsap.to('#say span',{opacity:1,stagger:.08,ease:'none',scrollTrigger:{trigger:'.say',start:'top top',end:'bottom bottom',scrub:.4}});
+
+/* Karten stapeln sich und treten zurück */
+const cards=$$('.sc');
+cards.forEach((c,i)=>{if(i==cards.length-1)return;
+  gsap.to(c,{scale:.9,opacity:.55,ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top 82%',end:'top 16%',scrub:true}})});
+gsap.fromTo('#m1',{xPercent:0},{xPercent:-32,ease:'none',scrollTrigger:{trigger:'.mq',start:'top bottom',end:'bottom top',scrub:.4}});
+gsap.fromTo('#m2',{xPercent:-32},{xPercent:0,ease:'none',scrollTrigger:{trigger:'.mq',start:'top bottom',end:'bottom top',scrub:.4}});
+gsap.from('.tile',{opacity:0,y:50,scale:.94,stagger:.06,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.tiles',start:'top 80%'}});
+gsap.from('.close',{scale:.86,opacity:0,ease:'none',scrollTrigger:{trigger:'.close',start:'top 96%',end:'top 50%',scrub:.5}});
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
