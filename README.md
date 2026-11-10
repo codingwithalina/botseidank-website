@@ -4,7 +4,8 @@ Statische Website, keine Build-Schritte.
 
 | Datei | Inhalt |
 |---|---|
-| `index.html` | Hauptseite mit mehreren Unterseiten in einer Datei: `#start`, `#angebot`, `#use-cases` (mit `#r-<slug>`-Detailseiten und `#speed-to-lead`), `#erstgespraech`. Alte Adressen (`#angebote`, `#repertoire`, `#ki-automatisierung`, `#potenzial-check`) leiten weiter. |
+| `index.html` | Startseite im Aurora-Look (Palette „Violett bis Mint“): Selbsttest, Beispielwoche, Rechner, Bereiche „Heute/Danach“, Angebot in drei Stufen (`#angebot`), Über mich (`#ueber-mich`), Terminbuchung (`#erstgespraech`). Alte Adressen leiten weiter: Use-Case-Adressen nach `use-cases.html`, der Rest auf die passenden Abschnitte. |
+| `use-cases.html` | Frühere `index.html`. Zeigt nur noch die Use Cases (`#use-cases`, `#r-<slug>`-Detailseiten, `#speed-to-lead`) im bisherigen Look. `#start`, `#angebot`, `#erstgespraech` und `#ueber-mich` leiten auf `index.html` um. |
 | `ablauf-sprint.html` | 8-Wochen-Programm „Zeitfresser finden und abschaffen“ (6.000 €, zwei Raten nach Ergebnis) |
 | `lead-revenue-system.html` | Paket aus drei Systemen (9.900 € + 1.790 €/Monat) |
 | `leadblitz-60.html` | System: KI-Rückruf in 60 Sekunden (4.900 € + 790 €/Monat) |
@@ -18,6 +19,12 @@ Statische Website, keine Build-Schritte.
 - **Noch keine Idee?** 8-Wochen-Programm: 6.000 € in zwei Raten.
 - **Danach:** Betreuung 490–990 €/Monat, monatlich kündbar.
 - **Versprechen (überall gleich):** 0 € vorab, erste Hälfte bei Go-Live, zweite Hälfte nach bestandenem Test mit echten Fällen, bei verfehlter Kennzahl Nacharbeit ohne Mehrkosten.
+
+## Startseite
+- Angebotsleiter: „Ein Zeitfresser weniger“ (Umsetzung), „Der größte Zeitfresser, gefunden und abgeschafft“ (8-Wochen-Programm), „Dein Vertrieb läuft von allein“ (Lead Revenue System).
+- Porträt: `assets/alina-frei.webp` (freigestellt) und `assets/alina-kontur.webp` (Maske für die Kontur, Farbe kommt aus dem CSS). `assets/alina.webp` ist das Original für das kleine Bild bei der Terminbuchung.
+- Die Beispielwoche ist ausgedacht und als Beispiel gekennzeichnet. Der Rechner rechnet nur mit den Eingaben des Besuchers.
+- Kalender-Look: Die Startseite setzt `window.AWA_CAL_UI` (helles Design), `assets/site.js` liest das. Ohne diese Angabe bleibt der Kalender dunkel wie auf den übrigen Seiten.
 
 ## Einstellungen
 - `assets/site.js` ganz oben (`AWA_CONFIG`): `GA_ID` (GA4, Format `G-…`), `ADS_ID` und `ADS_CONVERSION` (Google Ads), `CONVERSION_ON` (`click` oder `booking`), `CAL_LINK`.

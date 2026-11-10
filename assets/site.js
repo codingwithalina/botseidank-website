@@ -139,7 +139,9 @@ function mountCal(el, prefill){
   var id = "my-cal-inline-" + ns;
   el.innerHTML = '<div class="cal-loading">Kalender wird geladen …</div><div class="cal-target" id="' + id + '"></div>';
   var target = el.querySelector(".cal-target"), loading = el.querySelector(".cal-loading");
-  var cfg = { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "dark" };
+  var UI = window.AWA_CAL_UI || {};                          // optional je Seite: { theme, cssVarsPerTheme }
+  var theme = UI.theme || "dark";
+  var cfg = { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: theme };
   prefill = prefill || {};
   if (prefill.name) cfg.name = prefill.name;
   if (prefill.email) cfg.email = prefill.email;
@@ -149,8 +151,8 @@ function mountCal(el, prefill){
   window.Cal.config.forwardQueryParams = true;
   window.Cal.ns[ns]("inline", { elementOrSelector: "#" + id, config: cfg, calLink: C.CAL_LINK });
   window.Cal.ns[ns]("ui", {
-    theme: "dark", hideEventTypeDetails: true, layout: "month_view",
-    cssVarsPerTheme: { dark: {
+    theme: theme, hideEventTypeDetails: true, layout: "month_view",
+    cssVarsPerTheme: UI.cssVarsPerTheme || { dark: {
       "cal-brand": "#22D3EE", "cal-brand-emphasis": "#67E8F9", "cal-brand-text": "#04101C",
       "cal-bg": "#0C1626", "cal-bg-muted": "#0A1424", "cal-bg-subtle": "#101D31", "cal-bg-emphasis": "#16263D",
       "cal-border": "#1E2C40", "cal-border-subtle": "#18253A", "cal-border-booker": "#0C1626",
