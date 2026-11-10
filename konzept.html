@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot sei Dank · Konzept Leitstand</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --bg:#07080A;--ink:#F2F4EE;--ink-2:#8B918A;--line:rgba(242,244,238,.16);--sig:#CFFF3E;--on:#0B0D06;--warn:#FF7A3D;
+  --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --gut:clamp(18px,3vw,48px);
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg)}
+body{font:400 clamp(16px,1.1vw,18px)/1.55 var(--f-t);color:var(--ink);overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;letter-spacing:-.04em;line-height:.92}
+.m{font-family:var(--f-m);font-size:clamp(11px,.82vw,13px);letter-spacing:.07em;text-transform:uppercase}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+.nav{position:fixed;z-index:20;top:0;left:0;right:0;padding:16px var(--gut);display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--bg);border-bottom:1px solid var(--line)}
+.logo{display:block;width:clamp(116px,9.5vw,146px);aspect-ratio:526/81.5;background:var(--ink);-webkit-mask:url(assets/logo.svg) left center/contain no-repeat;mask:url(assets/logo.svg) left center/contain no-repeat}
+.nav nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav nav a{text-decoration:none}
+.nav nav a:not(.cta):hover{color:var(--sig)}
+.cta{display:inline-block;background:var(--sig);color:var(--on);text-decoration:none;font:500 clamp(12px,.9vw,14px)/1 var(--f-m);letter-spacing:.05em;text-transform:uppercase;padding:13px 16px;transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.hud{position:fixed;z-index:20;bottom:14px;left:var(--gut);right:var(--gut);display:flex;justify-content:space-between;color:var(--ink-2);pointer-events:none}
+.hud b{font-weight:500;color:var(--ink)}
+
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:90px var(--gut) clamp(52px,8vh,84px)}
+.hero h1{font-size:clamp(58px,13.4vw,258px);text-transform:none}
+.hero h1 span{display:block}
+.hero h1 .o{color:var(--sig)}
+.hero-b{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:end;margin-top:clamp(20px,3vh,38px);max-width:1300px}
+.hero-b p{max-width:36em;font-size:1.1em}
+
+.stage{height:100vh;height:100svh;position:relative;overflow:hidden}
+.panel{position:absolute;left:var(--gut);top:50%;width:min(39vw,560px);transform:translateY(-44%);opacity:0;transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+.panel.on{opacity:1;visibility:visible;transform:translateY(-50%)}
+.panel .m{color:var(--sig);margin-bottom:1.4em;display:block}
+.panel h2{font-size:clamp(40px,5vw,86px);line-height:.98}
+.panel p{margin-top:1.1em;color:#C4C9C1;max-width:30em}
+.ticks{position:absolute;right:var(--gut);top:50%;transform:translateY(-50%);display:grid;gap:9px}
+.ticks i{display:block;width:26px;height:2px;background:var(--line);transition:background-color .3s,width .3s}
+.ticks i.on{width:44px;background:var(--sig)}
+
+section.b{background:rgba(7,8,10,.84);border-top:1px solid var(--line);padding:clamp(60px,11vh,130px) var(--gut)}
+.h2{font-size:clamp(40px,6.4vw,118px);max-width:12em}
+.log{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);margin-top:clamp(36px,7vh,70px)}
+.lines{list-style:none;padding:0;font:400 clamp(13px,.98vw,15.5px)/1.5 var(--f-m)}
+.lines li{display:grid;grid-template-columns:5.6em 3.2em 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.lines time{color:var(--ink-2)}
+.lines b{font-weight:500;color:var(--sig)}
+.router h3{font-size:clamp(26px,2.6vw,44px);line-height:1;letter-spacing:-.03em}
+.router>p{margin:.8em 0 1.5em;color:#C4C9C1}
+.cases{display:grid;gap:8px}
+.cases button{all:unset;box-sizing:border-box;cursor:pointer;padding:14px 16px;border:1px solid var(--line);font-size:.96em;transition:background-color .2s,color .2s}
+.cases button:hover{border-color:var(--ink)}
+.cases button:focus-visible{outline:2px solid var(--sig);outline-offset:2px}
+.cases button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.result{margin-top:18px;padding:18px;background:var(--sig);color:var(--on)}
+.result strong{display:block;font:800 clamp(28px,3vw,50px)/1 var(--f-d);letter-spacing:-.035em}
+.result span{display:block;margin-top:.45em}
+.result.human{background:var(--warn)}
+
+.mods{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--line);border-top:1px solid var(--line);margin-top:clamp(36px,7vh,70px)}
+.mod{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px;min-height:clamp(220px,34vh,330px);display:flex;flex-direction:column;transition:background-color .2s,color .2s}
+.mod:hover{background:var(--sig);color:var(--on)}
+.mod:hover p,.mod:hover .m{color:var(--on)}
+.mod .m{color:var(--ink-2);min-height:2.8em}
+.mod h3{margin-top:auto;font-size:clamp(23px,2vw,33px);line-height:1;letter-spacing:-.025em}
+.mod p{margin-top:.55em;color:var(--ink-2);font-size:.92em}
+.note{margin-top:14px;color:var(--ink-2)}
+
+.paths{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(36px,7vh,70px);gap:1px;background:var(--line);border:1px solid var(--line)}
+.path{background:var(--bg);padding:clamp(20px,2.4vw,40px);display:flex;flex-direction:column;text-decoration:none;min-height:clamp(330px,52vh,520px);transition:background-color .2s,color .2s}
+.path:hover{background:var(--ink);color:var(--bg)}
+.path .m{color:var(--sig)}
+.path:hover .m{color:var(--bg)}
+.path h3{font-size:clamp(38px,4.6vw,82px);margin-top:.5em}
+.path p{margin-top:1em;max-width:30em}
+.path strong{margin-top:auto;font:500 clamp(14px,1.05vw,17px)/1.3 var(--f-m);padding-top:30px}
+
+.prom{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(40px,8vh,84px);position:relative;padding-top:18px}
+.prom::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--line)}
+.prom u{position:absolute;top:0;left:0;right:0;height:2px;background:var(--sig);transform:scaleX(0);transform-origin:left}
+.prom div{padding-right:22px}
+.prom b{display:block;font:800 clamp(26px,2.5vw,42px)/1 var(--f-d);letter-spacing:-.03em;margin-bottom:.45em}
+.prom span{color:#C4C9C1}
+
+.me{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,5vw,90px);align-items:end}
+.me img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08)}
+.me h2{font-size:clamp(40px,5.8vw,104px)}
+.me p{margin-top:1em;max-width:36em;color:#C4C9C1}
+
+.close{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px var(--gut)}
+.close h2{font-size:clamp(36px,5.2vw,94px);max-width:9.5em;line-height:.96;text-wrap:balance}
+.close p{margin:1em 0 1.8em;color:#C4C9C1}
+.close .cta{font-size:clamp(14px,1.1vw,17px);padding:18px 24px}
+footer{padding:0 var(--gut) 52px;display:flex;gap:20px;color:var(--ink-2)}
+
+@media (max-width:860px){
+  .nav nav a:not(.cta){display:none}
+  .hud span:last-child{display:none}
+  .hero-b{grid-template-columns:1fr}
+  .panel{width:auto;right:var(--gut);top:auto;bottom:66px;transform:translateY(16px)}
+  .panel.on{transform:none}
+  .panel h2{font-size:clamp(32px,9vw,46px)}
+  .panel p{font-size:15px}
+  .ticks{display:none}
+  .log,.paths,.me{grid-template-columns:1fr}
+  .mods{grid-template-columns:1fr 1fr}
+  .mod{padding:13px;min-height:220px}
+  .prom{grid-template-columns:1fr;gap:20px}
+  .me img{max-width:62%}
+  .lines li{grid-template-columns:4.8em 2.6em 1fr}
+}
+.rm .panel{position:static;opacity:1;visibility:visible;transform:none;width:auto;margin:0 var(--gut) 3em}
+.rm .stage{height:auto;padding-top:60px}.rm .ticks{display:none}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="nav">
+  <a class="logo" href="index.html" aria-label="Bot sei Dank, zur Startseite"></a>
+  <nav class="m"><a href="index.html#angebot">Angebot</a><a href="index.html#use-cases">Use Cases</a><a class="cta" href="index.html#erstgespraech">Gespräch buchen</a></nav>
+</header>
+<div class="hud m" aria-hidden="true"><span>Lokalzeit <b id="now">00:00:00</b></span><span>Seit deinem Besuch läuft es <b id="since">00:00</b></span></div>
+
+<main>
+<section class="hero">
+  <h1><span>Deine Zeitfresser,</span><span class="o">automatisiert.</span></h1>
+  <div class="hero-b">
+    <p>Ich baue KI-Automatisierungen in deine bestehenden Tools. Festpreis, bezahlt erst, wenn es läuft.</p>
+    <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch</a>
+  </div>
+</section>
+
+<section class="stage" id="stage" aria-label="Die Eckdaten">
+  <article class="panel"><span class="m">Zustand heute</span><h2>Mails. Excel. Abstimmung.</h2><p>Dein Team verliert jeden Tag Zeit an Arbeit, die kein Mensch machen müsste. Es sieht nach viel Bewegung aus, und nichts davon bringt dich weiter.</p></article>
+  <article class="panel"><span class="m">Betrieb</span><span class="sr">24/7:</span><h2>Ein Mitarbeiter, der nie schläft.</h2><p>Die KI liest, versteht und erledigt die nächsten Schritte in den Programmen, die du schon nutzt. Nicht irgendwann. Sofort.</p></article>
+  <article class="panel"><span class="m">Du hast eine Idee</span><span class="sr">7 bis 14 Tage:</span><h2>Von der Idee bis live in Tagen.</h2><p>Umsetzung zum Festpreis ab 2.900 €, direkt in deinen Tools.</p></article>
+  <article class="panel"><span class="m">Du hast noch keine</span><span class="sr">8 Wochen:</span><h2>Wir finden den größten Zeitfresser.</h2><p>Acht Wochen Programm, 6.000 € Festpreis in zwei Raten, fällig erst bei Ergebnis.</p></article>
+  <article class="panel"><span class="m">Vorkasse</span><span class="sr">0 Euro:</span><h2>Du zahlst erst, wenn es läuft.</h2><p>Kein Risiko auf deiner Seite. Ohne Kleingedrucktes.</p></article>
+  <div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+</section>
+
+<section class="b">
+  <h2 class="h2">Freitagabend, im Protokoll.</h2>
+  <div class="log">
+    <ol class="lines" id="lines">
+      <li><time>Fr 19:42</time><b>EIN</b><span>Anfrage über dein Webformular: Wärmepumpe, Einfamilienhaus, Baujahr 1998.</span></li>
+      <li><time>Fr 19:42</time><b>KI</b><span>Neukunde, Termin gewünscht, Postleitzahl im Einzugsgebiet.</span></li>
+      <li><time>Fr 19:43</time><b>OK</b><span>Antwort in deinem Ton, drei Terminvorschläge, Bitte um Foto vom Heizraum.</span></li>
+      <li><time>Fr 19:43</time><b>OK</b><span>Kontakt im CRM angelegt, Verkäufer informiert.</span></li>
+      <li><time>Sa 08:15</time><b>OK</b><span>Kunde bucht Dienstag 10:00 und schickt das Foto.</span></li>
+      <li><time>Mo 07:30</time><b>DU</b><span>Erinnerung an dich. Du gehst vorbereitet hin.</span></li>
+    </ol>
+    <div class="router">
+      <h3>Und wenn sie sich nicht sicher ist?</h3>
+      <p>Probier es aus. Wähle einen Fall:</p>
+      <div class="cases" id="cases">
+        <button aria-pressed="true" data-t="Läuft automatisch" data-d="Antwort und Terminvorschlag gehen sofort raus, jeder Schritt wird protokolliert.">Klare Anfrage aus dem Einzugsgebiet</button>
+        <button aria-pressed="false" data-h="1" data-t="Geht an dich" data-d="Unklare Fälle gehen an einen Menschen. Die KI fragt, statt zu raten.">Kunde schreibt etwas Mehrdeutiges</button>
+        <button aria-pressed="false" data-h="1" data-t="Nur mit Freigabe" data-d="Sensible Aktionen laufen erst, wenn du zugestimmt hast.">Sensible Aktion steht an</button>
+      </div>
+      <div class="result" id="result" aria-live="polite"><strong>Läuft automatisch</strong><span>Antwort und Terminvorschlag gehen sofort raus, jeder Schritt wird protokolliert.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="b">
+  <h2 class="h2">Acht Module. Sofort einsetzbar.</h2>
+  <div class="mods">
+    <div class="mod"><span class="m" data-s>Rund um die Uhr</span><h3>Anfragen beantworten</h3><p>In Minuten statt Tagen, mit Terminvorschlag.</p></div>
+    <div class="mod"><span class="m" data-s>Minuten statt Stunden</span><h3>Angebote schreiben</h3><p>Aus Notizen, Mails oder CRM-Daten.</p></div>
+    <div class="mod"><span class="m" data-s>24/7 erreichbar</span><h3>Anrufe annehmen</h3><p>Klärt das Anliegen, bucht oder leitet weiter.</p></div>
+    <div class="mod"><span class="m" data-s>−40 % No-Shows</span><h3>Termine koordinieren</h3><p>Ohne Hin und Her per Mail.</p></div>
+    <div class="mod"><span class="m" data-s>0 vergessene Angebote</span><h3>Nachfassen</h3><p>Nichts bleibt liegen.</p></div>
+    <div class="mod"><span class="m" data-s>0 × doppelt eintippen</span><h3>Daten übertragen</h3><p>CRM, Excel und Buchhaltung synchron.</p></div>
+    <div class="mod"><span class="m" data-s>−95 % Handarbeit</span><h3>Dokumente auslesen</h3><p>Rechnungen, Verträge, Formulare.</p></div>
+    <div class="mod"><span class="m" data-s>Montag 7:00 fertig</span><h3>Berichte erstellen</h3><p>Zahlen aus allen Quellen im Postfach.</p></div>
+  </div>
+  <p class="note m">Typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher.</p>
+</section>
+
+<section class="b">
+  <h2 class="h2">Wo stehst du gerade?</h2>
+  <div class="paths">
+    <a class="path" href="ablauf-sprint.html"><span class="m">8-Wochen-Programm</span><h3>Noch keine Idee?</h3><p>Gemeinsam messen wir deine Abläufe an echten Fällen, finden den größten Zeitfresser und automatisieren ihn.</p><strong>6.000 € Festpreis, zwei Raten</strong></a>
+    <a class="path" href="index.html#use-cases"><span class="m">Umsetzung</span><h3>Schon eine Idee?</h3><p>Du weißt, was automatisch laufen soll. Ich setze es in deinen Tools um, live in 7–14 Tagen.</p><strong>ab 2.900 € Festpreis</strong></a>
+  </div>
+  <div class="prom" id="prom"><u id="pb"></u>
+    <div><b>0 € Vorkasse</b><span>Ich baue, du schaust zu.</span></div>
+    <div><b>Go-Live</b><span>Erst jetzt wird die erste Hälfte fällig.</span></div>
+    <div><b>Test bestanden</b><span>Dann die zweite Hälfte, mit echten Fällen geprüft.</span></div>
+    <div><b>Ziel verfehlt?</b><span>Ich arbeite ohne Mehrkosten nach.</span></div>
+  </div>
+</section>
+
+<section class="b me">
+  <img src="assets/alina.webp" alt="Porträt von Alina Nath" loading="lazy">
+  <div>
+    <h2>Keine Agentur. Du sprichst direkt mit mir.</h2>
+    <p>Ich komme aus der Industrieautomation und baue Abläufe wie Anlagen: erst messen, dann umbauen, dann mit echten Fällen testen. Vor allem anderen stelle ich eine Frage: Wo verlierst du gerade Zeit, Geld und Nerven?</p>
+  </div>
+</section>
+
+<section class="close" id="close">
+  <h2>Schalte deinen größten Zeitfresser ab.</h2>
+  <p>30 Minuten, kostenlos. Wenn es sich nicht lohnt, sage ich es dir.</p>
+  <a class="cta" href="index.html#erstgespraech">Erstgespräch buchen</a>
+</section>
+</main>
+<footer class="m"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(async function(){
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.documentElement.classList.add(rm?'rm':'motion');
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* Uhr: echte Werte, keine erfundenen Zähler */
+const t0=Date.now(),p2=n=>String(n).padStart(2,'0');
+setInterval(()=>{const d=new Date();$('#now').textContent=`${p2(d.getHours())}:${p2(d.getMinutes())}:${p2(d.getSeconds())}`;const s=Math.floor((Date.now()-t0)/1000);$('#since').textContent=`${p2(Math.floor(s/60))}:${p2(s%60)}`},1000);
+
+/* Fall-Router */
+$('#cases').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('#cases button').forEach(x=>x.setAttribute('aria-pressed',x===b));const r=$('#result');r.classList.toggle('human',!!b.dataset.h);r.innerHTML=`<strong>${b.dataset.t}</strong><span>${b.dataset.d}</span>`});
+
+/* Partikel */
+const cv=$('#fx'),c=cv.getContext('2d');
+let W,H,dpr;const mobile=()=>innerWidth<=860;
+const N=matchMedia('(max-width:860px)').matches?2000:5200;
+const x=new Float32Array(N),y=new Float32Array(N),vx=new Float32Array(N),vy=new Float32Array(N),tx=new Float32Array(N),ty=new Float32Array(N),k=new Float32Array(N);
+const shapes={};
+function region(){return mobile()?{x:W*.05,y:H*.1,w:W*.9,h:H*.42}:{x:W*.43,y:H*.14,w:W*.5,h:H*.72}}
+function textShape(str){
+  const R=region(),o=document.createElement('canvas');o.width=W;o.height=H;const g=o.getContext('2d',{willReadFrequently:true});
+  let fs=R.h;g.font=`800 ${fs}px "Bricolage Grotesque"`;const mw=g.measureText(str).width;fs=Math.min(fs,fs*R.w/mw);g.font=`800 ${fs}px "Bricolage Grotesque"`;
+  g.textBaseline='middle';g.textAlign='center';g.fillStyle='#fff';g.fillText(str,R.x+R.w/2,R.y+R.h/2);
+  const d=g.getImageData(0,0,W,H).data,pts=[];const st=mobile()?2:3;
+  for(let j=0;j<H;j+=st)for(let i=0;i<W;i+=st)if(d[(j*W+i)*4+3]>128)pts.push(i,j);
+  const a=new Float32Array(N*2);const n=pts.length/2;
+  for(let i=0;i<N;i++){const q=Math.floor(Math.random()*n);a[i*2]=pts[q*2]+Math.random()*2;a[i*2+1]=pts[q*2+1]+Math.random()*2}
+  return a}
+function chaos(){const R=mobile()?{cx:W*.5,cy:H*.28,rx:W*.5,ry:H*.22}:{cx:W*.68,cy:H*.34,rx:W*.3,ry:H*.3};const a=new Float32Array(N*2);for(let i=0;i<N;i++){const t=Math.random()*6.283,r=Math.sqrt(Math.random());a[i*2]=R.cx+Math.cos(t)*r*R.rx;a[i*2+1]=R.cy+Math.sin(t)*r*R.ry}return a}
+function grid(){const a=new Float32Array(N*2),cols=Math.ceil(Math.sqrt(N*W/H)),rows=Math.ceil(N/cols);for(let i=0;i<N;i++){a[i*2]=((i%cols)+.5)*W/cols;a[i*2+1]=(Math.floor(i/cols)+.5)*H/rows}return a}
+function ring(){const a=new Float32Array(N*2),R=Math.min(W,H)*.43;for(let i=0;i<N;i++){const t=i/N*6.283*3,w=(i%3)*14+Math.random()*7;a[i*2]=W/2+Math.cos(t)*(R+w);a[i*2+1]=H/2+Math.sin(t)*(R+w)}return a}
+function build(){dpr=Math.min(devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+  shapes.chaos=chaos();shapes.grid=grid();shapes.ring=ring();shapes.n247=textShape('24/7');shapes.n714=textShape('7–14');shapes.n8=textShape('8');shapes.n0=textShape('0 €')}
+build();
+for(let i=0;i<N;i++){x[i]=Math.random()*W;y[i]=Math.random()*H;k[i]=.018+Math.random()*.05}
+let state='',alpha=.95,alphaT=.95,flow=1;
+function go(s){if(s===state)return;state=s;const a=shapes[s];for(let i=0;i<N;i++){tx[i]=a[i*2];ty[i]=a[i*2+1]}
+  flow=s==='chaos'?1:0;alphaT=s==='grid'?.17:s==='ring'?.72:.95}
+go('chaos');
+let mx=-9e3,my=-9e3;addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+function frame(time){
+  const t=time*.0006;alpha+=(alphaT-alpha)*.06;
+  c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);c.globalAlpha=alpha;c.fillStyle='#CFFF3E';
+  for(let i=0;i<N;i++){
+    let ax=(tx[i]-x[i])*k[i],ay=(ty[i]-y[i])*k[i];
+    if(flow){ax+=Math.cos(y[i]*.008+t+i*.002)*.85;ay+=Math.sin(x[i]*.008-t+i*.0013)*.85}
+    const dx=x[i]-mx,dy=y[i]-my,d=dx*dx+dy*dy;if(d<18000&&d>1){const f=(18000-d)/18000*2.6/Math.sqrt(d);ax+=dx*f;ay+=dy*f}
+    vx[i]=(vx[i]+ax)*.86;vy[i]=(vy[i]+ay)*.86;x[i]+=vx[i];y[i]+=vy[i];
+    c.fillRect(x[i],y[i],1.5,1.5)}
+  raf=requestAnimationFrame(frame)}
+let raf;
+if(rm){for(let i=0;i<N;i++){x[i]=shapes.grid[i*2];y[i]=shapes.grid[i*2+1]}c.setTransform(dpr,0,0,dpr,0,0);c.globalAlpha=.17;c.fillStyle='#CFFF3E';for(let i=0;i<N;i++)c.fillRect(x[i],y[i],1.5,1.5);return}
+raf=requestAnimationFrame(frame);
+/* Partikel laufen sofort, die Ziffern werden nachgeschärft, sobald die Schrift da ist */
+document.fonts.load('800 100px "Bricolage Grotesque"').then(()=>{build();const s=state;state='';go(s)}).catch(()=>{});
+document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);if(!document.hidden)raf=requestAnimationFrame(frame)});
+let lw=innerWidth,rt;addEventListener('resize',()=>{if(innerWidth===lw)return;lw=innerWidth;clearTimeout(rt);rt=setTimeout(()=>{build();const s=state;state='';go(s)},200)});
+
+/* Scroll */
+gsap.registerPlugin(ScrollTrigger);
+if(matchMedia('(pointer:fine)').matches&&window.Lenis){const l=new Lenis({lerp:.11});l.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>l.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+const panels=$$('.panel'),ticks=$$('.ticks i'),order=['chaos','n247','n714','n8','n0'];
+function setP(i){panels.forEach((p,j)=>p.classList.toggle('on',j===i));ticks.forEach((t,j)=>t.classList.toggle('on',j===i));go(order[i])}
+setP(0);go('chaos');
+ScrollTrigger.create({trigger:'#stage',pin:true,start:'top top',end:'+=420%',scrub:true,onUpdate:s=>setP(Math.min(4,Math.floor(s.progress*5))),onLeave:()=>go('grid'),onEnterBack:()=>setP(4),onLeaveBack:()=>go('chaos')});
+ScrollTrigger.create({trigger:'#close',start:'top 60%',onEnter:()=>go('ring'),onLeaveBack:()=>go('grid')});
+gsap.from('#lines li',{opacity:0,duration:.01,stagger:.22,scrollTrigger:{trigger:'#lines',start:'top 74%'}});
+gsap.fromTo('#pb',{scaleX:0},{scaleX:1,ease:'none',scrollTrigger:{trigger:'#prom',start:'top 86%',end:'top 42%',scrub:.5}});
+
+/* Zeichen-Scramble an den Kennzahlen */
+const G='█▓▒░/<>#01';
+$$('[data-s]').forEach(el=>{const parent=el.closest('.mod'),orig=el.textContent;parent.addEventListener('pointerenter',()=>{let n=0;clearInterval(el._t);el._t=setInterval(()=>{el.textContent=[...orig].map((ch,i)=>i<n?ch:ch===' '?' ':G[Math.floor(Math.random()*G.length)]).join('');n+=1.4;if(n>=orig.length){clearInterval(el._t);el.textContent=orig}},24)})});
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
