@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot sei Dank · Konzept Kino</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--bg:#fff;--ink:#0B0B12;--ink-2:#63636F;--line:rgba(11,11,18,.13);--acc:#5B3DF5;
+  --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --gut:clamp(20px,5vw,88px)}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg)}
+body{font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t);color:var(--ink);overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-d);font-weight:700;letter-spacing:-.04em;line-height:.95;text-wrap:balance}
+.m{font:500 clamp(11px,.8vw,12.5px)/1 var(--f-m);letter-spacing:.06em;text-transform:uppercase}
+.nav{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:clamp(14px,1.5vw,20px) var(--gut);color:var(--ink);transition:color .4s}
+.logo{display:block;width:clamp(116px,9.5vw,146px);aspect-ratio:526/81.5;background:currentColor;-webkit-mask:url(assets/logo.svg) left center/contain no-repeat;mask:url(assets/logo.svg) left center/contain no-repeat}
+.cta{display:inline-flex;font-weight:600;text-decoration:none;padding:.75em 1.2em;border-radius:999px;background:var(--ink);color:#fff;font-size:.93em;white-space:nowrap;transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .3s,color .3s}
+.cta:hover{transform:translateY(-2px);background:var(--acc)}
+.dark .nav{color:#fff}
+.dark .nav .cta,.cta.w{background:#fff;color:var(--ink)}
+
+.scene{height:440vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#120E2E}
+.stage video,.win video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mask{position:absolute;inset:0;background:#fff;color:#000;mix-blend-mode:screen;display:grid;place-items:center;will-change:transform,opacity}
+.mask h1{font-size:min(13vw,23vh);font-weight:800;line-height:.86;letter-spacing:-.055em;text-align:center;padding-bottom:9vh}
+.mask h1 span{display:block}
+.under{position:absolute;left:0;right:0;bottom:clamp(26px,6vh,60px);display:flex;flex-direction:column;align-items:center;gap:1.1em;text-align:center;padding:0 var(--gut)}
+.under p{max-width:33em}
+.beat{position:absolute;left:var(--gut);bottom:clamp(60px,12vh,130px);width:min(40rem,calc(100% - 2*var(--gut)));color:#fff;opacity:0;visibility:hidden;will-change:transform,opacity}
+.beat::before{content:"";position:absolute;inset:-80px -140px -70px -200px;z-index:-1;background:radial-gradient(closest-side,rgba(14,10,36,.85) 40%,rgba(14,10,36,0))}
+.beat h2{font-size:clamp(38px,5.6vw,96px)}
+.beat p{margin-top:1em;max-width:30em;color:#DDD9F2;font-size:1.06em}
+
+.sec{padding:clamp(80px,14vh,170px) var(--gut)}
+.big{font-size:clamp(40px,5.8vw,104px);max-width:12em}
+.rows{margin-top:clamp(36px,7vh,76px);border-bottom:1px solid var(--line)}
+.rw{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,5fr) minmax(0,3fr);gap:20px;align-items:baseline;padding:clamp(16px,2.4vh,26px) clamp(0px,1vw,16px);border-top:1px solid var(--line);overflow:hidden;transition:color .3s}
+.rw::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.rw:hover{color:#fff}.rw:hover::before{transform:scaleY(1)}
+.rw h3{font-size:clamp(26px,3.1vw,54px)}
+.rw p{color:var(--ink-2);transition:color .3s}.rw:hover p{color:#C9C9D6}
+.rw span{text-align:right;font:500 clamp(12px,.95vw,15px)/1.2 var(--f-m);color:var(--acc);transition:color .3s}.rw:hover span{color:#fff}
+.note{margin-top:18px;color:var(--ink-2);font-size:.86em}
+.prom{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,110px);align-items:start}
+.prom h2{position:sticky;top:16vh}
+.prom li{list-style:none;padding:clamp(26px,5vh,54px) 0;border-top:1px solid var(--line)}
+.prom ol{padding:0}
+.prom li b{display:block;font:700 clamp(30px,3.6vw,62px)/1 var(--f-d);letter-spacing:-.035em;margin-bottom:.35em}
+.prom li span{color:var(--ink-2);font-size:1.05em}
+.me{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,6vw,110px);align-items:end}
+.imgw{overflow:hidden;border-radius:16px;clip-path:inset(100% 0 0 0)}
+.me img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transform:scale(1.25)}
+.me p{margin-top:1.2em;max-width:34em;color:#30303A}
+.winsec{height:100vh;height:100svh;position:relative;overflow:hidden}
+.win{position:absolute;inset:0;clip-path:inset(24% 30% round 28px);background:#120E2E;will-change:clip-path}
+.wtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 var(--gut);opacity:0}
+.wtxt h2{font-size:clamp(46px,8vw,150px);max-width:9em}
+.wtxt p{margin:1.2em 0 1.8em;color:#DDD9F2}
+.wtxt .cta{font-size:1.08em;padding:.95em 1.5em}
+footer{padding:26px var(--gut) 40px;display:flex;gap:1.5em;color:var(--ink-2);font-size:.86em}
+@media (max-width:860px){
+  .mask h1{font-size:min(15.5vw,20vh);padding-bottom:14vh}
+  .under p{font-size:15.5px}
+  .beat{bottom:56px}
+  .beat::before{inset:-60px -40px -70px -40px;background:linear-gradient(rgba(14,10,36,0),rgba(14,10,36,.88) 30%)}
+  .rw{grid-template-columns:1fr auto}.rw p{grid-row:2;grid-column:1/-1}
+  .prom,.me{grid-template-columns:1fr}.prom h2{position:static}
+  .imgw{max-width:62%}
+  .win{clip-path:inset(30% 12% round 22px)}
+}
+.rm .scene{height:auto}.rm .stage{position:relative;height:auto;background:#fff;overflow:visible;padding:110px 0 40px}
+.rm .stage video{display:none}.rm .mask{position:static;mix-blend-mode:normal}.rm .mask h1{padding:0}
+.rm .under{position:static;margin-top:2em}.rm .beat{position:static;opacity:1;visibility:visible;color:var(--ink);margin:3em var(--gut) 0}.rm .beat p{color:var(--ink-2)}.rm .beat::before{display:none}
+.rm .imgw{clip-path:none}.rm .me img{transform:none}.rm .win{clip-path:none}.rm .wtxt{opacity:1}.rm .win video{display:none}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="index.html" aria-label="Bot sei Dank, zur Startseite"></a>
+  <a class="cta" href="index.html#erstgespraech">Erstgespräch buchen</a>
+</header>
+<main>
+<section class="scene" aria-label="Einstieg">
+  <div class="stage">
+    <video id="v1" muted playsinline loop preload="auto" poster="assets/welle-poster.jpg" aria-hidden="true"></video>
+    <div class="mask" id="mask"><h1><span>Deine</span><span>Zeitfresser,</span><span>automatisiert.</span></h1></div>
+    <div class="under" id="under">
+      <p>Ich baue KI-Automatisierungen in deine bestehenden Tools. Festpreis, bezahlt erst, wenn es läuft.</p>
+      <a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+    </div>
+    <div class="beat"><h2>Die KI liest, versteht und handelt.</h2><p>In den Programmen, die du schon nutzt. Nicht irgendwann. Sofort.</p></div>
+    <div class="beat"><h2>Rund um die Uhr. Auch wenn niemand da ist.</h2><p>Unklare Fälle gehen an einen Menschen, jeder Schritt wird protokolliert.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="big">Was sie bei dir übernehmen kann.</h2>
+  <div class="rows">
+    <div class="rw"><h3>Anfragen beantworten</h3><p>In Minuten statt Tagen, mit Terminvorschlag.</p><span>rund um die Uhr</span></div>
+    <div class="rw"><h3>Angebote schreiben</h3><p>Aus Notizen, Mails oder CRM-Daten, in deinem Layout.</p><span>Minuten statt Stunden</span></div>
+    <div class="rw"><h3>Anrufe annehmen</h3><p>Klärt das Anliegen, bucht oder leitet weiter.</p><span>24/7 erreichbar</span></div>
+    <div class="rw"><h3>Termine koordinieren</h3><p>Vorschläge, Buchung, Erinnerung, Verschiebung.</p><span>−40 % No-Shows</span></div>
+    <div class="rw"><h3>Nachfassen</h3><p>Offene Angebote, geplatzte Termine, alte Kontakte.</p><span>0 vergessene Angebote</span></div>
+    <div class="rw"><h3>Daten übertragen</h3><p>CRM, Excel und Buchhaltung bleiben synchron.</p><span>0 × doppelt eintippen</span></div>
+    <div class="rw"><h3>Dokumente auslesen</h3><p>Rechnungen, Verträge, Formulare.</p><span>−95 % Handarbeit</span></div>
+    <div class="rw"><h3>Berichte erstellen</h3><p>Zahlen aus allen Quellen, fertig im Postfach.</p><span>Montag 7:00 fertig</span></div>
+  </div>
+  <p class="note">Typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher.</p>
+</section>
+
+<section class="sec prom" style="padding-top:0">
+  <h2 class="big">Du zahlst erst, wenn es läuft.</h2>
+  <ol>
+    <li><b>0 € Vorkasse</b><span>Wir starten ohne Anzahlung. Ich baue, du schaust zu.</span></li>
+    <li><b>Erste Hälfte bei Go-Live</b><span>Wenn das System in deinen Tools live läuft.</span></li>
+    <li><b>Zweite Hälfte nach dem Test</b><span>Wenn der Ablauf den Test mit echten Fällen bestanden hat.</span></li>
+    <li><b>Ziel verfehlt?</b><span>Dann arbeite ich ohne Mehrkosten nach, bis es klappt.</span></li>
+  </ol>
+</section>
+
+<section class="sec me" style="padding-top:0">
+  <div class="imgw" id="imgw"><img src="assets/alina.webp" alt="Porträt von Alina Nath" loading="lazy"></div>
+  <div>
+    <h2 class="big">Technologie soll befreien, nicht auslaugen.</h2>
+    <p>Ich bin Alina und komme aus der Industrieautomation. Ich baue Abläufe wie Anlagen: erst messen, dann umbauen, dann mit echten Fällen testen. Keine Agentur. Du arbeitest direkt mit mir.</p>
+  </div>
+</section>
+
+<section class="winsec" id="winsec">
+  <div class="win" id="win"><video id="v2" muted playsinline loop preload="none" poster="assets/welle-poster.jpg" aria-hidden="true"></video></div>
+  <div class="wtxt" id="wtxt">
+    <h2>Wo verlierst du gerade Zeit?</h2>
+    <p>30 Minuten, kostenlos. Wenn es sich nicht lohnt, sage ich es dir.</p>
+    <a class="cta w" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
+  </div>
+</section>
+</main>
+<footer><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(function(){
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(rm||!window.gsap){document.documentElement.classList.add('rm');return}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const ss=(a,b,v)=>{const t=Math.min(1,Math.max(0,(v-a)/(b-a)));return t*t*(3-2*t)};
+const src=matchMedia('(max-width:860px)').matches?'assets/welle-m.mp4':'assets/welle.mp4';
+const v1=$('#v1'),v2=$('#v2');v1.src=src;v1.play().catch(()=>{});
+gsap.registerPlugin(ScrollTrigger);
+if(matchMedia('(pointer:fine)').matches&&window.Lenis){const l=new Lenis({lerp:.11});l.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>l.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+
+/* Signatur: das Video scheint durch die Schrift, dann fliegt man hindurch */
+const mask=$('#mask'),under=$('#under'),beats=$$('.beat'),R=[[.5,.68],[.78,1.2]];
+function render(p){
+  const z=ss(.06,.46,p),sc=1+z*z*z*26;
+  mask.style.transform=`scale(${sc})`;
+  const mo=1-ss(.3,.45,p);mask.style.opacity=mo;mask.style.visibility=mo<.01?'hidden':'visible';
+  const uo=1-ss(.02,.1,p);under.style.opacity=uo;under.style.visibility=uo<.01?'hidden':'visible';
+  document.body.classList.toggle('dark',p>.36&&p<1);
+  beats.forEach((b,i)=>{const[a,e]=R[i],inn=ss(a-.06,a,p),out=1-ss(e,e+.05,p),o=inn*out;b.style.opacity=o;b.style.transform=`translateY(${(1-inn)*30-(1-out)*30}px)`;b.style.visibility=o<.01?'hidden':'visible'});
+}
+ScrollTrigger.create({trigger:'.scene',start:'top top',end:'bottom bottom',scrub:true,onUpdate:s=>render(s.progress),
+  onLeave:()=>{document.body.classList.remove('dark');v1.pause()},onEnterBack:()=>v1.play().catch(()=>{})});
+render(0);
+
+gsap.from('.rw',{opacity:0,y:26,stagger:.06,duration:.6,scrollTrigger:{trigger:'.rows',start:'top 78%'}});
+gsap.from('.prom li',{opacity:0,y:40,stagger:.15,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.prom ol',start:'top 76%'}});
+gsap.timeline({scrollTrigger:{trigger:'#imgw',start:'top 82%',end:'top 30%',scrub:.6}})
+  .to('#imgw',{clipPath:'inset(0% 0 0 0)',ease:'none'},0).to('#imgw img',{scale:1,ease:'none'},0);
+
+/* Schluss: ein Videofenster wächst zur ganzen Seite */
+const win=$('#win'),m=matchMedia('(max-width:860px)').matches,a0=m?30:24,b0=m?12:30,r0=m?22:28;
+ScrollTrigger.create({trigger:'#winsec',start:'top bottom',onEnter:()=>{if(!v2.src)v2.src=src;v2.play().catch(()=>{})},onLeaveBack:()=>v2.pause()});
+ScrollTrigger.create({trigger:'#winsec',pin:true,start:'top top',end:'+=130%',scrub:.5,onUpdate:s=>{
+  const q=ss(0,.7,s.progress);win.style.clipPath=`inset(${a0*(1-q)}% ${b0*(1-q)}% round ${r0*(1-q)}px)`;
+  const t=ss(.55,.9,s.progress);$('#wtxt').style.opacity=t;$('#wtxt').style.transform=`translateY(${(1-t)*30}px)`;
+  document.body.classList.toggle('dark',s.progress>.5)}});
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
