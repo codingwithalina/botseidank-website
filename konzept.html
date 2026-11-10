@@ -8,14 +8,15 @@
 <link rel="icon" href="assets/favicon.svg">
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
-:root{--ink:#0C0F24;--acc:#4B3DF0;--bad:#DD4426;--fb:linear-gradient(135deg,#EEF2FF,#FFCFB8 60%,#C2F0E0);
+/* Palette „Violett bis Mint“ */
+:root{--ink:#2A0A52;--acc:#6234BC;--bad:#D8456B;--mint:#A5FCDF;
   --ink-2:color-mix(in srgb,var(--ink) 64%,#fff);--ink-3:color-mix(in srgb,var(--ink) 86%,#fff);--line:color-mix(in srgb,var(--ink) 15%,transparent);
   --bad-s:color-mix(in srgb,var(--bad) 20%,#fff);--bad-d:color-mix(in srgb,var(--bad) 62%,#000);--glass:rgba(255,255,255,.56);
   --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
   --gut:clamp(20px,5vw,88px)}
 *{box-sizing:border-box;margin:0}
-html{background:var(--fb)}
-body{font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t);color:var(--ink);overflow-x:hidden;padding-bottom:84px}
+html{background:linear-gradient(135deg,#F1FFFA,#6CBCE0 60%,#8ADEDD)}
+body{font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t);color:var(--ink);overflow-x:hidden}
 a{color:inherit}
 h1,h2,h3{font-family:var(--f-d);font-weight:700;letter-spacing:-.04em;line-height:.98;text-wrap:balance}
 .m{font:500 clamp(11px,.8vw,12.5px)/1.2 var(--f-m);letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
@@ -31,32 +32,52 @@ h1,h2,h3{font-family:var(--f-d);font-weight:700;letter-spacing:-.04em;line-heigh
 .chips{display:flex;flex-wrap:wrap;gap:.4em 1.4em;color:var(--ink-3);font-size:.92em;list-style:none;padding:0}
 .chips li::before{content:"✓ ";color:var(--acc);font-weight:700}
 input:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+button{font:inherit;color:inherit}
 
 /* 1 Einstieg */
-.hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(24px,4vw,70px);align-items:end;padding:118px var(--gut) 100px}
-.hero h1{font-size:clamp(46px,7.3vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.9}
+.hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(24px,4vw,70px);align-items:end;padding:100px var(--gut) clamp(34px,6vh,70px)}
+.kat{display:inline-block;border-radius:999px;padding:.6em 1em;margin-bottom:1.2em}
+.hero h1{font-size:clamp(46px,min(6.6vw,12.4vh),136px);font-weight:800;letter-spacing:-.055em;line-height:.9}
 .ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
 .ln>span{display:block;will-change:transform}
-.hero-b{margin-top:clamp(20px,3.6vh,40px)}
-.hero-b p{max-width:31em;font-size:1.12em;color:var(--ink-3)}
-.hero-b .cta{display:flex;width:fit-content;margin:1.4em 0 1.1em}
-.pt{position:relative;justify-self:end;width:min(100%,62vh)}
-.frame{border-radius:36px;padding:10px}
-.frame img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:27px}
-.tag{position:absolute;border-radius:18px;padding:.7em 1em;font-size:.9em;line-height:1.3;white-space:nowrap;background:rgba(255,255,255,.8)}
+.hero-b{margin-top:clamp(18px,3.2vh,36px)}
+.hero-b p{max-width:32em;font-size:1.12em;color:var(--ink-3)}
+.hero-b .cta{display:flex;width:fit-content;margin:1.3em 0 1em}
+.pt{position:relative;justify-self:end;width:min(100%,60vh);aspect-ratio:696/828}
+.pcard{position:absolute;left:4%;right:4%;top:17%;bottom:0;border-radius:36px;background:linear-gradient(165deg,var(--ink),color-mix(in srgb,var(--acc) 78%,var(--ink)));box-shadow:0 40px 70px -40px var(--ink)}
+.pclip{position:absolute;left:4%;right:4%;top:0;bottom:0;border-radius:0 0 36px 36px;overflow:hidden}
+.pclip>*{position:absolute;left:-4.35%;top:0;width:108.7%;height:100%}
+.ol{background:linear-gradient(180deg,var(--acc) 0 13%,var(--mint) 23% 100%);-webkit-mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat;mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat}
+.pclip img{display:block;object-fit:fill}
+.tag{position:absolute;border-radius:18px;padding:.7em 1em;font-size:.9em;line-height:1.3;white-space:nowrap;background:rgba(255,255,255,.86)}
 .tag b{display:block;font-weight:700}
 .tag span{color:var(--ink-2);font-size:.9em}
-.t1{left:-9%;bottom:9%}.t2{right:-5%;top:11%;font-weight:600}
+.t1{left:-9%;bottom:7%}.t2{right:-4%;top:24%;font-weight:600}
 
-/* 2 Problem */
-.say{min-height:190vh;padding:0 var(--gut)}
+/* 2 Wiedererkennen */
+.sec{padding:clamp(72px,13vh,160px) var(--gut)}
+.big{font-size:clamp(36px,5.2vw,92px);max-width:13em}
+.lead{margin-top:1.1em;max-width:35em;font-size:1.1em;color:var(--ink-3)}
+.chk{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.1vw,18px);margin-top:clamp(30px,6vh,60px)}
+.sym{appearance:none;text-align:left;cursor:pointer;border-radius:22px;padding:20px 20px 20px 60px;position:relative;min-height:132px;display:flex;flex-direction:column;justify-content:center;font-size:1.05em;line-height:1.35;transition:background-color .3s,color .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.sym:hover{transform:translateY(-4px)}
+.sym::before{content:"";position:absolute;left:20px;top:50%;margin-top:-13px;width:26px;height:26px;border-radius:9px;border:2px solid var(--ink-2);display:grid;place-items:center;font-weight:700;font-size:15px;transition:background-color .2s,border-color .2s}
+.sym small{display:none;margin-top:.7em;font-size:.86em;color:var(--mint)}
+.sym[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sym[aria-pressed=true]::before{content:"✓";background:var(--mint);border-color:var(--mint);color:var(--ink)}
+.sym[aria-pressed=true] small{display:block}
+.chk-r{margin-top:clamp(10px,1.1vw,18px);border-radius:22px;padding:18px 18px 18px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.chk-r p{font-size:1.1em;font-weight:600;max-width:36em}
+.chk-r b{font:800 1.5em/1 var(--f-d);letter-spacing:-.03em;color:var(--acc);margin-right:.3em}
+
+/* 3 Zuspitzung */
+.say{min-height:180vh;padding:0 var(--gut)}
 .say>div{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center}
 .say p{font:700 clamp(32px,5.1vw,88px)/1.05 var(--f-d);letter-spacing:-.035em;max-width:15em}
 .say p span{opacity:.14}
-.say small{display:block;margin-top:2em;font-size:clamp(16px,1.3vw,21px);color:var(--ink-3);max-width:33em}
 
-/* 3 Woche */
-.week{height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,72px);padding:clamp(92px,12vh,116px) var(--gut) 84px}
+/* 4 Woche */
+.week{height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,72px);padding:clamp(92px,12vh,116px) var(--gut) clamp(20px,4vh,44px)}
 .copy{position:relative;align-self:center;min-height:56vh}
 .ph{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
 .ph+.ph{opacity:0;visibility:hidden}
@@ -75,10 +96,7 @@ input:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible{o
 .tally b{font:800 clamp(34px,4vw,68px)/1 var(--f-d);letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .tally>span{max-width:26em;text-align:right;color:var(--ink-2);font-size:.82em;line-height:1.35}
 
-/* 4 Rechner */
-.sec{padding:clamp(72px,13vh,160px) var(--gut)}
-.big{font-size:clamp(36px,5.2vw,92px);max-width:13em}
-.lead{margin-top:1.1em;max-width:34em;font-size:1.1em;color:var(--ink-3)}
+/* 5 Rechner */
 .calc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,5vw,90px);align-items:center}
 .calc label{display:block;margin-top:1.8em;color:var(--ink-3)}
 .calc label b{float:right;font:500 1.1em/1 var(--f-m);color:var(--ink)}
@@ -95,41 +113,61 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .cmp .cta{margin-top:1.2em}
 .fine{display:block;color:var(--ink-2);font-size:.82em;margin-top:.9em}
 
-/* 5 Ergebnis, Weg */
-.tiles{margin-top:clamp(30px,6vh,64px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.2vw,20px)}
-.tile{border-radius:24px;padding:20px;min-height:clamp(230px,33vh,300px);display:flex;flex-direction:column;transition:transform .4s cubic-bezier(.2,.8,.2,1),background-color .3s}
-.tile:hover{transform:translateY(-8px);background:rgba(255,255,255,.88)}
-.tile h3{margin-top:auto;font-size:clamp(21px,1.75vw,28px);letter-spacing:-.025em;line-height:1.05}
-.tile p{margin-top:.5em;color:var(--ink-2);font-size:.93em}
-.safe{margin-top:clamp(10px,1.2vw,20px);border-radius:24px;padding:clamp(20px,2.6vw,38px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:3vw;align-items:center}
+/* 6 Was ich mache */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(30px,6vh,60px)}
+.tab{appearance:none;cursor:pointer;border-radius:999px;padding:.7em 1.15em;font-weight:600;font-size:.97em;white-space:nowrap;transition:background-color .25s,color .25s}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pan{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(10px,1.4vw,24px);align-items:stretch;margin-top:clamp(12px,1.4vw,22px)}
+.ba{border-radius:30px;padding:clamp(22px,3vw,48px);min-height:clamp(240px,36vh,340px);display:flex;flex-direction:column}
+.ba .m{margin-bottom:auto}
+.ba p{font:600 clamp(21px,2.1vw,34px)/1.2 var(--f-d);letter-spacing:-.025em;margin-top:1.4em}
+.ba.vor{background:color-mix(in srgb,var(--bad) 13%,rgba(255,255,255,.6))}
+.ba.vor .m{color:var(--bad-d)}
+.ba.nach{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ba.nach .m{color:var(--mint)}
+.ba.nach small{display:block;margin-top:1.2em;font:500 clamp(12px,.9vw,14px)/1 var(--f-m);letter-spacing:.05em;text-transform:uppercase;color:var(--mint)}
+.arr{align-self:center;font:700 clamp(28px,3vw,50px)/1 var(--f-d);color:var(--acc)}
+.safe{margin-top:clamp(12px,1.4vw,22px);border-radius:24px;padding:clamp(20px,2.6vw,38px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:3vw;align-items:center}
 .safe h3{font-size:clamp(24px,2.4vw,40px)}
 .note{margin-top:16px;color:var(--ink-2);font-size:.84em}
+
+/* 7 Weg */
 .deck{margin-top:clamp(30px,6vh,64px);padding-bottom:4vh}
 .sc{position:sticky;top:calc(13vh + var(--n) * 20px);min-height:min(56vh,480px);border-radius:30px;padding:clamp(22px,3.4vw,54px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:4vw;align-items:end;margin-bottom:7vh;transform-origin:50% 0;will-change:transform}
 .sc .m{align-self:start;grid-column:1/-1}
 .sc h3{font-size:clamp(34px,4.4vw,76px)}
 .sc p{font-size:1.1em;color:var(--ink-3);max-width:28em}
 
-/* 6 Angebot */
-.offer{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.4vw,24px);margin-top:clamp(30px,6vh,64px)}
-.of{border-radius:30px;padding:clamp(22px,2.8vw,44px);display:flex;flex-direction:column;position:relative}
-.of.top{background:rgba(255,255,255,.86)}
-.badge{position:absolute;top:clamp(18px,2.2vw,34px);right:clamp(18px,2.2vw,34px);background:var(--ink);color:#fff;border-radius:999px;padding:.5em .9em}
-.of h3{font-size:clamp(30px,3.3vw,56px);margin:.45em 0 .3em}
-.of>p{color:var(--ink-3);max-width:27em}
-.price{font:800 clamp(40px,4.6vw,78px)/1 var(--f-d);letter-spacing:-.045em;margin-top:.6em}
-.price small{display:block;font:400 clamp(13px,.95vw,15.5px)/1.4 var(--f-t);letter-spacing:0;color:var(--ink-2);margin-top:.7em}
-.of ul,.me ul{list-style:none;padding:0;margin:1.4em 0}
-.of li,.me li{padding:.7em 0 .7em 1.8em;border-top:1px solid var(--line);position:relative}
-.of li::before,.me li::before{content:"✓";position:absolute;left:0;color:var(--acc);font-weight:700}
-.gar{margin-top:auto;border-radius:16px;background:color-mix(in srgb,var(--acc) 10%,transparent);padding:1em 1.15em;font-size:.95em}
+/* 8 Angebot */
+.offer{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.2vw,20px);margin-top:clamp(30px,6vh,64px)}
+.of{border-radius:30px;padding:clamp(20px,2.2vw,36px);display:flex;flex-direction:column;position:relative}
+.of.top{background:rgba(255,255,255,.88)}
+.badge{align-self:flex-start;background:var(--ink);color:#fff;border-radius:999px;padding:.5em .9em;margin-bottom:1.2em}
+.of h3{font-size:clamp(26px,2.5vw,42px);margin:.5em 0 .35em;line-height:1.02}
+.of>p{color:var(--ink-3)}
+.price{font:800 clamp(34px,3.3vw,56px)/1 var(--f-d);letter-spacing:-.045em;margin-top:.7em;white-space:nowrap}
+.price small{display:block;font:400 clamp(13px,.92vw,15px)/1.4 var(--f-t);letter-spacing:0;color:var(--ink-2);margin-top:.7em;white-space:normal}
+.of ul,.me ul{list-style:none;padding:0;margin:1.3em 0}
+.of li,.me li{padding:.62em 0 .62em 1.8em;border-top:1px solid var(--line);position:relative}
+.of li::before,.me li::before,.incl li::before{content:"✓";position:absolute;left:0;color:var(--acc);font-weight:700}
+.ex{font-size:.88em;color:var(--ink-2);margin-bottom:1.2em}
+.ex b{color:var(--ink);font-weight:600;white-space:nowrap}
+.gar{margin-top:auto;border-radius:16px;background:color-mix(in srgb,var(--acc) 10%,transparent);padding:1em 1.15em;font-size:.93em}
 .gar b{display:block}
-.of .cta{margin-top:1.3em;align-self:flex-start}
-.care{margin-top:clamp(12px,1.4vw,24px);border-radius:30px;padding:clamp(20px,2.6vw,40px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) auto;gap:3vw;align-items:center}
+.of .cta{margin-top:1.2em;align-self:flex-start}
+.incl{margin-top:clamp(10px,1.2vw,20px);border-radius:30px;padding:clamp(20px,2.6vw,40px);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:3vw;align-items:start}
+.incl h3{font-size:clamp(24px,2.4vw,40px)}
+.incl ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 3vw}
+.incl li{padding:.62em 0 .62em 1.8em;border-top:1px solid var(--line);position:relative}
+.care{margin-top:clamp(10px,1.2vw,20px);border-radius:30px;padding:clamp(20px,2.6vw,40px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) auto;gap:3vw;align-items:center}
 .care h3{font-size:clamp(24px,2.4vw,40px);margin-top:.35em}
 .care strong{font:800 clamp(26px,2.6vw,44px)/1 var(--f-d);letter-spacing:-.04em;white-space:nowrap}
 .care strong small{font:400 .42em/1 var(--f-t);letter-spacing:0;color:var(--ink-2)}
-.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,40px);margin-top:clamp(36px,7vh,76px);position:relative;padding-top:24px}
+.slots{margin-top:clamp(10px,1.2vw,20px);border-radius:22px;padding:16px 16px 16px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--ink);color:#fff}
+.slots p{font-weight:600;font-size:1.05em}
+.slots .cta{background:var(--mint);color:var(--ink)}
+.slots .cta:hover{background:#fff}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,40px);margin-top:clamp(40px,8vh,84px);position:relative;padding-top:24px}
 .pay::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:3px;background:var(--line)}
 .pay u{position:absolute;left:0;right:0;top:0;height:3px;border-radius:3px;background:var(--acc);transform:scaleX(0);transform-origin:left}
 .pay b{display:block;font:800 clamp(34px,4.4vw,76px)/1 var(--f-d);letter-spacing:-.045em;margin:.25em 0 .3em}
@@ -143,7 +181,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .mq div{white-space:nowrap;font:700 clamp(50px,9vw,160px)/1.05 var(--f-d);letter-spacing:-.045em;will-change:transform}
 .mq div+div{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
 
-/* 7 Vertrauen, Schluss */
+/* 9 Vertrauen, Schluss */
 .me{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,110px);align-items:start}
 .me p{max-width:35em;color:var(--ink-3)}
 .me p+p{margin-top:1em}
@@ -158,35 +196,28 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .close h2{font-size:clamp(40px,6.6vw,124px);max-width:10em}
 .close p{margin:1.1em 0 1.6em;color:var(--ink-3);max-width:33em}
 .close .chips{justify-content:center;margin-top:1.6em}
-footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;color:var(--ink-2);font-size:.86em}
+footer{padding:0 var(--gut) 34px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;color:var(--ink-2);font-size:.86em}
 
-/* Farbtest: nur für die Vorschau */
-.pal{position:fixed;z-index:50;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;max-width:calc(100vw - 20px);background:rgba(255,255,255,.86)}
-.pal span{font:500 11px/1 var(--f-m);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:#333}
-.pal div{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding:3px}
-.pal button{all:unset;flex:none;width:30px;height:30px;border-radius:50%;cursor:pointer;box-shadow:0 0 0 1px rgba(0,0,0,.14);transition:transform .2s}
-.pal button:hover{transform:scale(1.12)}
-.pal button[aria-pressed=true]{box-shadow:0 0 0 2px #fff,0 0 0 4px #111}
-#pn{min-width:9em}
-
+@media (max-width:1080px){.offer{grid-template-columns:1fr}.price{white-space:normal}}
 @media (max-width:860px){
   .nav nav a:not(.cta){display:none}
-  .hero{grid-template-columns:1fr;padding-top:104px;gap:34px}
+  .hero{grid-template-columns:1fr;padding-top:100px;gap:30px}
   .hero h1{font-size:clamp(44px,12.6vw,66px)}
-  .pt{justify-self:center;width:78%}.t1{left:-12%}.t2{right:-10%;top:4%}.tag{font-size:12.5px}
+  .pt{justify-self:center;width:82%}.t1{left:-9%}.t2{right:-9%}.tag{font-size:12.5px}
+  .chk{grid-template-columns:1fr}.sym{min-height:0;padding-block:16px}
   .say p{font-size:clamp(28px,7.6vw,38px)}
-  .week{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:10px;padding-top:80px;padding-bottom:78px}
+  .week{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:10px;padding-top:80px}
   .copy{min-height:30vh;align-self:start}.ph{top:0;transform:none}
   .ph h2{font-size:clamp(30px,8.4vw,40px)}.ph p{font-size:15px;margin-top:.5em}
   .planner{border-radius:20px}
   .grid{grid-template-columns:2.2em repeat(3,1fr)}.d3,.d4{display:none}
   .tally>span{font-size:10.5px}
-  .calc,.safe,.offer,.care,.me,.faqw{grid-template-columns:1fr}
-  .tiles{grid-template-columns:1fr 1fr}.tile{padding:14px;min-height:200px;border-radius:18px}
+  .calc,.safe,.care,.me,.faqw,.incl,.incl ul{grid-template-columns:1fr}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut)}
+  .pan{grid-template-columns:1fr}.arr{justify-self:center;transform:rotate(90deg)}
+  .ba{min-height:0;border-radius:22px}.ba p{margin-top:1em}
   .sc{grid-template-columns:1fr;align-content:end;gap:14px;min-height:52vh;border-radius:24px}
   .pay,.alt{grid-template-columns:1fr}
-  .badge{position:static;align-self:flex-start;margin-bottom:1em}
-  #pn{display:none}
 }
 .rm .say{min-height:0}.rm .say>div{position:static;height:auto;padding:90px 0}.rm .say p span{opacity:1}
 .rm .week{height:auto}.rm .copy{min-height:0}.rm .ph{position:static;transform:none;opacity:1!important;visibility:visible!important;margin-bottom:2em}
@@ -197,37 +228,59 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
 <canvas id="gl" aria-hidden="true"></canvas>
 <header class="nav glass">
   <a class="logo" href="#top" aria-label="Bot sei Dank, zum Seitenanfang"></a>
-  <nav><a href="#woche">Deine Woche</a><a href="#wert">Dein Ergebnis</a><a href="#angebot">Angebot</a><a class="cta" href="index.html#erstgespraech">Erstgespräch buchen</a></nav>
+  <nav><a href="#check">Kennst du das?</a><a href="#wert">Was ich mache</a><a href="#angebot">Angebot</a><a class="cta" href="index.html#erstgespraech">Erstgespräch buchen</a></nav>
 </header>
 
 <main id="top">
-<!-- 1 · Versprechen und Gesicht -->
+<!-- 1 · Was ich mache, in einem Blick -->
 <section class="hero">
   <div>
+    <span class="kat glass m">KI-Automatisierung für deinen Betrieb</span>
     <h1><span class="ln"><span>Deine</span></span><span class="ln"><span>Zeitfresser,</span></span><span class="ln"><span>automatisiert.</span></span></h1>
     <div class="hero-b">
-      <p>Dein Betrieb verliert jede Woche Stunden an Mails, Excel und Abstimmung. Ich hole sie dir zurück, in den Programmen, die du schon nutzt.</p>
+      <p>Ich finde die Handarbeit, die sich in deinem Betrieb jeden Tag wiederholt, und sorge dafür, dass sie von allein läuft: Anfragen, Angebote, Rechnungen, Termine.</p>
       <a class="cta l" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
       <ul class="chips"><li>0 € Vorkasse</li><li>Festpreis</li><li>Bezahlt erst, wenn es läuft</li></ul>
     </div>
   </div>
   <div class="pt" id="pt">
-    <div class="frame glass"><img src="assets/alina.webp" alt="Porträt von Alina Nath" width="640" height="800"></div>
+    <div class="pcard"></div>
+    <div class="pclip"><div class="ol"></div><img src="assets/alina-frei.webp" alt="Porträt von Alina Nath" width="696" height="828"></div>
     <div class="tag glass t1"><b>Alina Nath</b><span>Geprüfte KI-Expertin, AI Netzwerk DACH</span></div>
     <div class="tag glass t2">Du sprichst direkt mit mir</div>
   </div>
 </section>
 
-<!-- 2 · Das Problem -->
+<!-- 2 · Wiedererkennen: der Selbsttest -->
+<section class="sec" id="check" style="padding-top:clamp(40px,8vh,90px)">
+  <h2 class="big">Kennst du das aus deinem Betrieb?</h2>
+  <p class="lead">Tippe an, was bei euch vorkommt. Sei ehrlich, es sieht keiner zu.</p>
+  <div class="chk" id="chk">
+    <button class="sym glass" aria-pressed="false">Anfragen vom Freitagabend beantworten wir am Montag.<small>Bald: Jede Anfrage bekommt in Minuten eine Antwort mit Terminvorschlag.</small></button>
+    <button class="sym glass" aria-pressed="false">Angebote schreibe ich abends, weil tagsüber keine Zeit ist.<small>Bald: Das Angebot entsteht aus deinen Notizen, fertig in deinem Layout.</small></button>
+    <button class="sym glass" aria-pressed="false">Dieselben Daten tippen wir in zwei oder drei Programme.<small>Bald: Einmal erfasst, überall aktuell.</small></button>
+    <button class="sym glass" aria-pressed="false">Rechnungen und Belege bearbeitet bei uns jemand von Hand.<small>Bald: Rechnungen gehen von allein raus, Belege landen im richtigen System.</small></button>
+    <button class="sym glass" aria-pressed="false">Nachfassen fällt hinten runter, sobald viel los ist.<small>Bald: Kein offenes Angebot bleibt mehr liegen.</small></button>
+    <button class="sym glass" aria-pressed="false">Für einen Termin gehen mehrere Mails hin und her.<small>Bald: Kunden buchen selbst und werden erinnert.</small></button>
+    <button class="sym glass" aria-pressed="false">Das Telefon klingelt, wenn gerade niemand rangehen kann.<small>Bald: Es wird abgenommen und das Anliegen landet bei dir.</small></button>
+    <button class="sym glass" aria-pressed="false">Für die Monatszahlen suche ich mir alles einzeln zusammen.<small>Bald: Der Bericht liegt montags fertig im Postfach.</small></button>
+    <button class="sym glass" aria-pressed="false">Fällt eine Kollegin aus, weiß niemand, wie ihr Ablauf geht.<small>Bald: Der Ablauf ist dokumentiert und läuft weiter.</small></button>
+  </div>
+  <div class="chk-r glass">
+    <p id="chk-t" aria-live="polite">Tippe an, was auf deinen Betrieb zutrifft.</p>
+    <a class="cta" href="index.html#erstgespraech">Darüber im Erstgespräch sprechen</a>
+  </div>
+</section>
+
+<!-- 3 · Zuspitzung -->
 <section class="say"><div>
-  <p id="say">Freitag, 19:42 Uhr. Eine Anfrage kommt rein. Im Betrieb ist niemand mehr. Sie wartet bis Montag. Bis dahin hat der Kunde zwei andere Anbieter angefragt.</p>
-  <small>So gehen Aufträge verloren, während du Feierabend hast. Und das ist nur einer von vielen Zeitfressern.</small>
+  <p id="say">Jede dieser Aufgaben dauert nur ein paar Minuten. Aber sie kommt jeden Tag wieder. Und zusammen fressen sie deine Woche.</p>
 </div></section>
 
-<!-- 3 · Wiedererkennen und Aha -->
+<!-- 4 · Aha: die Woche -->
 <section class="week" id="woche">
   <div class="copy">
-    <div class="ph"><h2>Kommt dir diese Woche bekannt vor?</h2><p>Alles Farbige ist Handarbeit: Mails sortieren, Angebote tippen, Daten übertragen. <b><span id="tot">30</span> Stunden</b>, die dir für Kunden fehlen.</p></div>
+    <div class="ph"><h2>So sieht das in einer Woche aus.</h2><p>Alles Farbige ist Handarbeit, die sich wiederholt: Mails sortieren, Angebote tippen, Daten übertragen. <b><span id="tot">30</span> Stunden</b>, die dir für Kunden fehlen.</p></div>
     <div class="ph"><h2>Jetzt fällt ein Zeitfresser nach dem anderen weg.</h2><p>Was sich wiederholt, läuft ab jetzt von allein. Deine Kundentermine bleiben.</p></div>
     <div class="ph"><h2>Das ist deine Woche.</h2><p>Mit Raum für die Arbeit, die wirklich zählt. Und für einen Feierabend, der einer ist.</p></div>
   </div>
@@ -237,11 +290,11 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
   </div>
 </section>
 
-<!-- 4 · Die eigene Zahl -->
+<!-- 5 · Die eigene Zahl -->
 <section class="sec calc" id="rechner">
   <div>
-    <h2 class="big">Und bei dir?</h2>
-    <p class="lead">Drei Regler, deine Zahlen. Dann siehst du, was dich allein das Bearbeiten von Anfragen kostet.</p>
+    <h2 class="big">Und was kostet dich das?</h2>
+    <p class="lead">Ein Beispiel zum Nachrechnen: nur das Bearbeiten von Anfragen. Drei Regler, deine Zahlen.</p>
     <label for="a">Anfragen pro Woche <b id="av">30</b></label>
     <input id="a" type="range" min="5" max="200" step="5" value="30">
     <label for="mi">Minuten Handarbeit je Anfrage <b id="mv">12</b></label>
@@ -253,32 +306,28 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
     <div class="out" id="out" aria-live="polite">312</div>
     <p class="out-l">Stunden im Jahr nur fürs Lesen, Eintippen und Antworten. Das sind <strong id="wk">7,8 Arbeitswochen</strong> und rund <strong id="cost">18.720 €</strong>, jedes Jahr.</p>
     <div class="cmp">
-      <p>Zum Vergleich: Eine Umsetzung kostet einmalig 2.900 bis 4.900 € Festpreis. Und du zahlst erst, wenn sie läuft.</p>
+      <p>Zum Vergleich: Diesen Ablauf zu automatisieren kostet einmalig 2.900 bis 4.900 € Festpreis. Und du zahlst erst, wenn er läuft.</p>
       <a class="cta l" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a>
       <small class="fine">Gerechnet nur mit deinen Eingaben, auf 52 Wochen und 40 Stunden je Arbeitswoche. Keine Prognose.</small>
     </div>
   </div>
 </section>
 
-<!-- 5 · Das Ergebnis -->
+<!-- 6 · Was ich mache -->
 <section class="sec" id="wert" style="padding-top:0">
-  <h2 class="big">Was sich für dich ändert.</h2>
-  <p class="lead">Keine neue Software, keine Schulung. Alles läuft in den Programmen, die dein Team schon nutzt.</p>
-  <div class="tiles">
-    <div class="tile glass"><span class="m">rund um die Uhr</span><h3>Keine Anfrage wartet mehr bis Montag</h3><p>Antwort in Minuten, mit Terminvorschlag.</p></div>
-    <div class="tile glass"><span class="m">Minuten statt Stunden</span><h3>Angebote sind fertig, bevor du dich hinsetzt</h3><p>Aus Notizen, Mails oder Kundendaten, in deinem Layout.</p></div>
-    <div class="tile glass"><span class="m">24/7 erreichbar</span><h3>Kein Anruf geht mehr verloren</h3><p>Es wird abgenommen, das Anliegen geklärt, gebucht oder weitergeleitet.</p></div>
-    <div class="tile glass"><span class="m">−40 % No-Shows</span><h3>Weniger geplatzte Termine</h3><p>Vorschläge, Buchung, Erinnerung, Verschiebung. Ohne Hin und Her.</p></div>
-    <div class="tile glass"><span class="m">0 vergessene Angebote</span><h3>Kein Angebot bleibt mehr liegen</h3><p>Offene Angebote und alte Kontakte werden von allein nachgefasst.</p></div>
-    <div class="tile glass"><span class="m">0 × doppelt eintippen</span><h3>Nichts mehr doppelt eintippen</h3><p>Kundendaten, Excel und Buchhaltung bleiben auf demselben Stand.</p></div>
-    <div class="tile glass"><span class="m">−95 % Handarbeit</span><h3>Der Papierkram erledigt sich selbst</h3><p>Rechnungen, Verträge und Formulare landen im richtigen System.</p></div>
-    <div class="tile glass"><span class="m">Montag 7:00 fertig</span><h3>Deine Zahlen liegen im Postfach</h3><p>Wochen- und Monatsbericht, ohne dass jemand sie zusammensucht.</p></div>
+  <h2 class="big">Ich nehme dir die Arbeit ab, die sich jeden Tag wiederholt.</h2>
+  <p class="lead">Ich schaue mir an, wie die Arbeit in deinem Betrieb heute läuft. Was immer wieder gleich abläuft, baue ich so um, dass es von allein passiert, in den Programmen, die ihr schon nutzt. Du und dein Team macht nur noch das, wofür es einen Menschen braucht.</p>
+  <div class="tabs" role="tablist" aria-label="Bereiche" id="tabs"></div>
+  <div class="pan" id="pan" role="tabpanel">
+    <div class="ba vor glass"><span class="m">Heute</span><p id="vor">Die Anfrage kommt abends rein und wartet bis zum nächsten Werktag. Anrufe gehen ins Leere, wenn alle im Einsatz sind.</p></div>
+    <span class="arr" aria-hidden="true">→</span>
+    <div class="ba nach glass"><span class="m">Danach</span><p id="nach">Jede Anfrage bekommt in Minuten eine Antwort mit Terminvorschlag. Anrufe werden angenommen, das Anliegen landet als Vorgang bei dir.</p><small id="kz">rund um die Uhr erreichbar</small></div>
   </div>
-  <div class="safe glass"><h3>Und wenn sie sich nicht sicher ist?</h3><p>Dann fragt sie dich. Unklare Fälle gehen an einen Menschen, jeder Schritt wird protokolliert, sensible Aktionen laufen nur mit deiner Freigabe.</p></div>
-  <p class="note">Die Kennzahlen sind typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher.</p>
+  <div class="safe glass"><h3>Und wenn die Automatik sich nicht sicher ist?</h3><p>Dann fragt sie dich. Unklare Fälle gehen an einen Menschen, jeder Schritt wird protokolliert, heikle Aktionen laufen nur mit deiner Freigabe.</p></div>
+  <p class="note">Die Kennzahlen sind typische Werte aus solchen Projekten. Deine Kennzahl vereinbaren wir vorher. Dein Ablauf ist nicht dabei? Dann sprechen wir drüber, fast alles, was sich wiederholt, lässt sich automatisieren.</p>
 </section>
 
-<!-- 6 · Der Weg -->
+<!-- 7 · Der Weg -->
 <section class="sec" id="ablauf" style="padding-top:0">
   <h2 class="big">Vier Schritte. Dein Aufwand: ein Gespräch.</h2>
   <div class="deck">
@@ -289,46 +338,62 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
   </div>
 </section>
 
-<!-- 7 · Das Angebot -->
+<!-- 8 · Das Angebot -->
 <section class="sec" id="angebot" style="padding-top:0">
-  <h2 class="big">Ein Angebot, bei dem das Risiko bei mir liegt.</h2>
-  <p class="lead">Zwei Wege, je nachdem, wo du stehst. Für beide gilt: Festpreis, keine Vorkasse, bezahlt erst, wenn es läuft.</p>
+  <h2 class="big">Erst läuft es. Dann zahlst du.</h2>
+  <p class="lead">Drei Stufen, je nachdem, wo du stehst. Für alle gilt: Festpreis, keine Vorkasse, und das Risiko liegt bei mir.</p>
   <div class="offer">
     <article class="of glass top">
-      <span class="badge m" style="color:#fff">Empfohlen</span>
-      <span class="m">Du weißt schon, was nervt</span>
-      <h3>Ein Zeitfresser weniger, in 7–14 Tagen</h3>
-      <p>Du sagst mir, welche Aufgabe von allein laufen soll. Ich baue sie fertig in deine Programme.</p>
-      <div class="price">ab 2.900 €<small>Festpreis 2.900–4.900 € je nach Umfang · einmalig</small></div>
-      <ul><li>Deine Idee oder eine der acht Aufgaben von oben</li><li>Eingerichtet in deinen Programmen, kein Systemwechsel</li><li>Testlauf mit echten Vorgängen</li><li>Einweisung und Übergabe-Doku</li></ul>
+      <span class="badge m" style="color:#fff">Schnellster Einstieg</span>
+      <span class="m">Du weißt, was nervt</span>
+      <h3>Ein Zeitfresser weniger</h3>
+      <p>Du sagst mir, welche Aufgabe von allein laufen soll. In 7 bis 14 Tagen läuft sie.</p>
+      <div class="price">2.900 bis 4.900 €<small>Festpreis, einmalig. Dein Preis steht nach dem Erstgespräch fest, bevor irgendetwas startet.</small></div>
+      <ul><li>Deine Idee oder ein fertiges System</li><li>Aufgebaut in deinen Programmen</li><li>Testlauf mit echten Vorgängen</li><li>Einweisung und Übergabe-Doku</li></ul>
+      <p class="ex">Zum Beispiel: Alte Kontakte zurückholen <b>2.900 €</b>, Anrufe annehmen, wenn niemand kann <b>3.900 €</b>, jede Anfrage in 60 Sekunden zurückrufen <b>4.900 €</b>.</p>
       <div class="gar"><b>Leistungsgarantie</b>Wir vereinbaren vorab eine Kennzahl. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach.</div>
-      <a class="cta" href="index.html#erstgespraech">Idee im Erstgespräch besprechen</a>
+      <a class="cta" href="index.html#erstgespraech">Idee besprechen</a>
     </article>
     <article class="of glass">
       <span class="m">Du weißt nur, dass Zeit verloren geht</span>
-      <h3>Wir finden deinen größten Zeitfresser und schaffen ihn ab</h3>
+      <h3>Der größte Zeitfresser, gefunden und abgeschafft</h3>
       <p>Acht Wochen, gemeinsam mit deinem Team. Am Ende nutzt es die Lösung selbst.</p>
-      <div class="price">6.000 €<small>Festpreis · zwei Raten à 3.000 € · fällig erst bei Ergebnis</small></div>
-      <ul><li>Deine Abläufe an echten Fällen gemessen</li><li>Größter Zeitfresser gefunden, Ziel und Kennzahl vereinbart</li><li>Lösung in deinen Programmen gebaut und getestet</li><li>Einarbeitung, Dokumentation, Auswertung vorher und nachher</li></ul>
+      <div class="price">6.000 €<small>Festpreis in zwei Raten à 3.000 €, fällig erst bei Ergebnis.</small></div>
+      <ul><li>Deine Abläufe an echten Fällen gemessen</li><li>Größter Zeitfresser gefunden, Ziel vereinbart</li><li>Lösung gebaut und getestet</li><li>Einarbeitung, Doku, Vergleich vorher und nachher</li></ul>
       <div class="gar"><b>Zeitgarantie</b>Mindestens 30 % weniger Zeitaufwand im vereinbarten Ablauf, sonst arbeite ich ohne Mehrkosten nach.</div>
       <a class="cta" href="ablauf-sprint.html">Programm im Detail</a>
     </article>
+    <article class="of glass">
+      <span class="m">Du willst einen ganzen Bereich abgeben</span>
+      <h3>Dein Vertrieb läuft von allein</h3>
+      <p>Drei Systeme als eine Strecke, von der ersten Anfrage bis zum Auftrag. In 21 Tagen live.</p>
+      <div class="price">9.900 €<small>Einrichtung einmalig, danach 1.790 € im Monat für den laufenden Betrieb.</small></div>
+      <ul><li>Jede neue Anfrage wird in 60 Sekunden zurückgerufen</li><li>Offene Angebote werden nachgefasst</li><li>Alte Kontakte werden zurückgeholt</li><li>Ich betreibe es jeden Monat weiter</li></ul>
+      <div class="gar"><b>Garantie je System</b>Jedes der drei Systeme hat eine eigene, messbare Garantie. Bezahlt erst, wenn es läuft.</div>
+      <a class="cta" href="lead-revenue-system.html">Paket ansehen</a>
+    </article>
+  </div>
+  <div class="incl glass">
+    <h3>Immer dabei, in jeder Stufe.</h3>
+    <ul><li>Kennzahl vorab vereinbart, an der du das Ergebnis misst</li><li>Aufbau in deinen Programmen, kein Systemwechsel</li><li>Test mit echten Fällen, nicht mit Beispielen</li><li>Einweisung für dein Team und Dokumentation</li><li>Nacharbeit ohne Mehrkosten, falls das Ziel verfehlt wird</li><li>Ein Ansprechpartner: ich</li></ul>
   </div>
   <div class="care glass">
     <div><span class="m">Danach, wenn du willst</span><h3>Es läuft dauerhaft. Ich kümmere mich.</h3></div>
     <p>Überwachung im laufenden Betrieb, Anpassungen, wenn sich etwas ändert, monatlicher Kurzbericht. Keine Mindestlaufzeit, monatlich kündbar.</p>
     <strong>ab 490 € <small>/ Monat</small></strong>
   </div>
+  <div class="slots"><p>Ich arbeite an höchstens zwei Projekten gleichzeitig. Startplätze sind deshalb begrenzt.</p><a class="cta" href="index.html#erstgespraech">Kostenloses Erstgespräch buchen</a></div>
+
   <div class="pay" id="pay"><u id="pb"></u>
     <div><span class="m">Start</span><b>0 €</b><span>Wir starten ohne Anzahlung. Ich fange an zu bauen.</span></div>
-    <div><span class="m">Go-Live</span><b>Erste Hälfte</b><span>Fällig, wenn es bei dir live läuft und du erste Ergebnisse siehst.</span></div>
+    <div><span class="m">Es läuft bei dir</span><b>Erste Hälfte</b><span>Fällig, wenn es bei dir live läuft und du erste Ergebnisse siehst.</span></div>
     <div><span class="m">Test bestanden</span><b>Zweite Hälfte</b><span>Fällig, wenn der Ablauf den Test mit echten Fällen bestanden hat.</span></div>
   </div>
 </section>
 
 <section class="mq" aria-label="Festpreis, keine Vorkasse, Nacharbeit inklusive">
   <div id="m1" aria-hidden="true">Festpreis · Keine Vorkasse · Nacharbeit inklusive · Festpreis · Keine Vorkasse · Nacharbeit inklusive ·</div>
-  <div id="m2" aria-hidden="true">Du zahlst erst, wenn es läuft · Du zahlst erst, wenn es läuft · Du zahlst erst, wenn es läuft ·</div>
+  <div id="m2" aria-hidden="true">Erst läuft es, dann zahlst du · Erst läuft es, dann zahlst du · Erst läuft es, dann zahlst du ·</div>
 </section>
 
 <section class="sec" style="padding-top:0">
@@ -340,7 +405,7 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
   </div>
 </section>
 
-<!-- 8 · Vertrauen -->
+<!-- 9 · Vertrauen -->
 <section class="sec me" style="padding-top:0">
   <h2 class="big">Technologie soll befreien, nicht auslaugen.</h2>
   <div>
@@ -353,18 +418,19 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
 <section class="sec faqw" style="padding-top:0">
   <h2 class="big">Kurz beantwortet.</h2>
   <div class="faq">
-    <details class="glass" open><summary>Was kostet das?</summary><p>Die Umsetzung einer Idee kostet einen Festpreis zwischen 2.900 und 4.900 €, je nach Umfang. Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</p></details>
+    <details class="glass" open><summary>Was genau machst du?</summary><p>Ich schaue mir an, welche Aufgaben in deinem Betrieb immer wieder gleich ablaufen, zum Beispiel Anfragen beantworten, Angebote schreiben, Rechnungen verschicken oder Daten übertragen. Diese Aufgaben baue ich so um, dass sie von allein laufen, in den Programmen, die ihr schon nutzt.</p></details>
+    <details class="glass"><summary>Was kostet das?</summary><p>Die Umsetzung einer Idee kostet einen Festpreis zwischen 2.900 und 4.900 €, je nach Umfang. Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</p></details>
     <details class="glass"><summary>Wann zahle ich?</summary><p>Nichts vorab. Die erste Hälfte wird fällig, wenn das System bei dir live läuft und du erste Ergebnisse siehst. Die zweite Hälfte erst, wenn der Ablauf den Test mit echten Fällen bestanden hat.</p></details>
     <details class="glass"><summary>Was passiert, wenn das Ziel nicht erreicht wird?</summary><p>Wir vereinbaren vor dem Start eine Kennzahl, zum Beispiel wie viel Zeit der Ablauf danach weniger kosten soll. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach, bis sie erreicht ist. Die zweite Rate wird erst danach fällig.</p></details>
-    <details class="glass"><summary>Idee oder Programm, wie entscheide ich das?</summary><p>Wenn du schon weißt, welche Aufgabe von allein laufen soll, ist die Umsetzung der schnellere Weg: 7 bis 14 Tage bis live. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten.</p></details>
+    <details class="glass"><summary>Welche Stufe passt zu mir?</summary><p>Wenn du schon weißt, welche Aufgabe von allein laufen soll, ist die Umsetzung der schnellere Weg: 7 bis 14 Tage bis live. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten.</p></details>
     <details class="glass"><summary>Funktioniert das mit unseren bestehenden Programmen?</summary><p>Meist ja. Ich binde an, was du schon nutzt: Kundenverwaltung, E-Mail, Kalender, Telefon und Tabellen. Einen Systemwechsel brauchst du nicht.</p></details>
     <details class="glass"><summary>Ist das DSGVO-konform?</summary><p>Ja. Ich arbeite mit Auftragsverarbeitungsverträgen, prüfe jeden eingesetzten Dienst und betreibe die Automatisierung auf Wunsch auf einem Server in Deutschland. Welche Daten wohin fließen, ist dokumentiert.</p></details>
     <details class="glass"><summary>Muss mein Team geschult werden?</summary><p>Nein. Das System läuft im Hintergrund. Dein Team bekommt eine kurze Einweisung, wer wann eingreift, und eine Übersicht der Rollen.</p></details>
-    <details class="glass"><summary>Was passiert, wenn eine Aufgabe falsch ausgeführt wird?</summary><p>Sensible Schritte laufen nur mit Freigabe, unklare Fälle gehen an einen Menschen. Jeder Schritt wird protokolliert, und bei Fehlern werde ich automatisch alarmiert und behebe sie.</p></details>
+    <details class="glass"><summary>Was passiert, wenn eine Aufgabe falsch ausgeführt wird?</summary><p>Heikle Schritte laufen nur mit Freigabe, unklare Fälle gehen an einen Menschen. Jeder Schritt wird protokolliert, und bei Fehlern werde ich automatisch alarmiert und behebe sie.</p></details>
   </div>
 </section>
 
-<!-- 9 · Der eine nächste Schritt -->
+<!-- 10 · Der eine nächste Schritt -->
 <section class="close glass" id="close">
   <h2>Welcher Ablauf kostet dich am meisten Zeit?</h2>
   <p>In 30 Minuten schauen wir gemeinsam drauf. Danach weißt du, was sich für dich lohnt, oder dass es sich nicht lohnt.</p>
@@ -373,8 +439,6 @@ footer{padding:0 var(--gut) 30px;display:flex;flex-wrap:wrap;gap:.6em 1.5em;colo
 </section>
 </main>
 <footer><span>Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</span><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></footer>
-
-<div class="pal glass" role="group" aria-label="Farbpalette testen (nur in der Vorschau)"><span>Farbtest</span><div id="pals"></div><span id="pn"></span></div>
 
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
@@ -385,24 +449,25 @@ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.do
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ss=(a,b,v)=>{const t=Math.min(1,Math.max(0,(v-a)/(b-a)));return t*t*(3-2*t)};
 
-/* Farbpaletten: sh = fünf Farben für den Verlauf (Grund zuerst) */
-const P=[
- {n:'Aurora (bisher)',sh:['#EEF2FF','#ADB8FF','#FFCFB8','#C2F0E0','#CCB8FF'],ink:'#0C0F24',acc:'#4B3DF0',bad:'#DD4426'},
- {n:'Pastell',sh:['#FAF4FB','#ACD0FA','#F2B0CC','#C9B5D9','#F6C9DE'],ink:'#2A2140',acc:'#7350A6',bad:'#CB3A70'},
- {n:'Ozean',sh:['#EEF9FC','#A5DFEF','#50B0D4','#D2EFF6','#7FB4DA'],ink:'#03045E',acc:'#2468A8',bad:'#E0553A'},
- {n:'Beere',sh:['#F6FAFB','#E9A0BC','#E0708E','#D3ECF1','#F0BBCB'],ink:'#4E1016',acc:'#C2364A',bad:'#9A1F2C'},
- {n:'Violett',sh:['#F3FCFC','#BECFE9','#AE9AD6','#C8F7F6','#C7A6DE'],ink:'#2A1250',acc:'#6431B0',bad:'#D2456A'},
- {n:'Pflaume',sh:['#F1F4FE','#CBD8FC','#80A8F0','#BDB6DE','#DDB9D2'],ink:'#481436',acc:'#6B2259',bad:'#C2385A'},
- {n:'Pink bis Blau',sh:['#F8F3FC','#A9D2FB','#F5A3C8','#CDB9E6','#B9C5F0'],ink:'#2B1E4A',acc:'#C23B80',bad:'#E04A5F'},
- {n:'Violett bis Mint',sh:['#F1FFFA','#A5FCDF','#6CBCE0','#8ADEDD','#A9A8E6'],ink:'#2A0A52',acc:'#6234BC',bad:'#D8456B'},
- {n:'Bordeaux',sh:['#F1F2F6','#E0E1E6','#E7B7C6','#D5D7DF','#DDA9B4'],ink:'#2B2F38',acc:'#AD2452',bad:'#861B2C'}];
-const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255);
-let pal=0,setCols=()=>{};
-function applyPal(i){pal=i;const p=P[i];root.style.setProperty('--ink',p.ink);root.style.setProperty('--acc',p.acc);root.style.setProperty('--bad',p.bad);
-  root.style.setProperty('--fb',`linear-gradient(135deg,${p.sh[0]},${p.sh[2]} 60%,${p.sh[3]})`);setCols(p.sh);
-  $$('#pals button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));$('#pn').textContent=p.n;try{localStorage.setItem('bsd-pal',i)}catch(e){}}
-$('#pals').innerHTML=P.map((p,i)=>`<button type="button" title="${p.n}" aria-label="Palette ${p.n}" aria-pressed="false" style="background:conic-gradient(${p.sh[1]} 0 25%,${p.sh[2]} 0 50%,${p.acc} 0 75%,${p.ink} 0)"></button>`).join('');
-$$('#pals button').forEach((b,i)=>b.onclick=()=>applyPal(i));
+/* Selbsttest */
+const syms=$$('.sym'),ct=$('#chk-t');
+function chk(){const n=syms.filter(s=>s.getAttribute('aria-pressed')==='true').length;
+  ct.innerHTML=n===0?'Tippe an, was auf deinen Betrieb zutrifft.':n<3?`<b>${n} von ${syms.length}</b> Jeder davon lässt sich abschaffen.`:`<b>${n} von ${syms.length}</b> Das ist viel Handarbeit, die sich wiederholt. Genau dafür bin ich da.`}
+syms.forEach(s=>s.onclick=()=>{s.setAttribute('aria-pressed',s.getAttribute('aria-pressed')!=='true');chk()});
+
+/* Bereiche: heute und danach */
+const A=[
+ {n:'Anfragen & Telefon',v:'Die Anfrage kommt abends rein und wartet bis zum nächsten Werktag. Anrufe gehen ins Leere, wenn alle im Einsatz sind.',d:'Jede Anfrage bekommt in Minuten eine Antwort mit Terminvorschlag. Anrufe werden angenommen, das Anliegen landet als Vorgang bei dir.',k:'rund um die Uhr erreichbar'},
+ {n:'Angebote & Nachfassen',v:'Angebote entstehen abends aus Notizen. Ob der Kunde sich danach meldet, prüft niemand.',d:'Das Angebot ist in Minuten fertig, in deinem Layout. Offene Angebote werden von allein nachgefasst.',k:'0 vergessene Angebote'},
+ {n:'Buchhaltung & Belege',v:'Rechnungen werden von Hand geschrieben, verschickt und abgehakt. Belege und Formulare tippt jemand ab.',d:'Rechnungen werden erstellt, verschickt und nachverfolgt. Belege, Verträge und Formulare landen im richtigen System.',k:'−95 % Handarbeit'},
+ {n:'Termine & Kalender',v:'Für einen Termin gehen mehrere Mails hin und her. Wer nicht erinnert wird, kommt oft nicht.',d:'Kunden buchen selbst, werden erinnert und können verschieben. Ohne dass jemand von euch etwas tut.',k:'−40 % No-Shows'},
+ {n:'Daten & Berichte',v:'Dieselben Daten stehen in drei Programmen, jedes mit anderem Stand. Für die Monatszahlen sucht jemand alles zusammen.',d:'Einmal erfasst, überall aktuell. Der Bericht liegt montags um 7:00 fertig im Postfach.',k:'0 × doppelt eintippen'},
+ {n:'Bestandskunden',v:'Alte Anfragen und stille Kunden liegen in der Kartei. Niemand hat Zeit, sie anzurufen.',d:'Sie werden Schritt für Schritt wieder angesprochen. Dein Vertrieb bekommt nur die, die Interesse haben.',k:'aus alten Kontakten wird Umsatz'}];
+const tabs=$('#tabs');tabs.innerHTML=A.map((x,i)=>`<button class="tab glass" role="tab" aria-selected="${i===0}">${x.n}</button>`).join('');
+const tb=$$('.tab');
+function area(i,anim){tb.forEach((b,j)=>b.setAttribute('aria-selected',j===i));const x=A[i],set=()=>{$('#vor').textContent=x.v;$('#nach').textContent=x.d;$('#kz').textContent=x.k};
+  if(anim&&window.gsap&&!rm){gsap.to('.ba p,.ba small',{opacity:0,y:10,duration:.16,onComplete:()=>{set();gsap.fromTo('.ba.vor p',{opacity:0,y:14},{opacity:1,y:0,duration:.4});gsap.fromTo('.ba.nach p,.ba.nach small',{opacity:0,y:14},{opacity:1,y:0,duration:.45,delay:.14,stagger:.08})}})}else set()}
+tb.forEach((b,i)=>b.onclick=()=>area(i,true));
 
 /* Rechner: nur die Eingaben des Besuchers */
 const a=$('#a'),mi=$('#mi'),eu=$('#eu'),de=(n,o)=>n.toLocaleString('de-DE',o);
@@ -426,6 +491,7 @@ const free=$('#free'),vis=$$('.bk.f').filter(e=>e.offsetParent),total=vis.reduce
 $('#tot').textContent=total;
 
 /* Lebender Farbverlauf, direkt auf der Grafikkarte gerechnet */
+const COL=['#F1FFFA','#A5FCDF','#6CBCE0','#8ADEDD','#A9A8E6'].map(h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255));
 const cv=$('#gl'),gl=cv.getContext('webgl',{antialias:false,alpha:false});let draw=null;
 if(gl){
   const fs=`precision highp float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float s;uniform vec3 c0,c1,c2,c3,c4;
@@ -444,43 +510,45 @@ gl_FragColor=vec4(c,1.);}`;
   if(gl.getProgramParameter(pr,gl.LINK_STATUS)){
     gl.useProgram(pr);gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
     const al=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(al);gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
-    const U=k=>gl.getUniformLocation(pr,k),ur=U('r'),ut=U('t'),um=U('m'),us=U('s'),uc=[0,1,2,3,4].map(i=>U('c'+i));
-    /* Farben gleiten beim Palettenwechsel weich über */
-    let cur=P[0].sh.map(rgb),tar=cur.map(c=>c.slice());setCols=cols=>{tar=cols.map(rgb);if(rm){cur=tar.map(c=>c.slice());draw(4000)}};
+    const U=k=>gl.getUniformLocation(pr,k),ur=U('r'),ut=U('t'),um=U('m'),us=U('s');
+    COL.forEach((c,i)=>gl.uniform3f(U('c'+i),c[0],c[1],c[2]));
     const size=()=>{cv.width=Math.round(innerWidth*.5);cv.height=Math.round(innerHeight*.5);gl.viewport(0,0,cv.width,cv.height)};
     size();addEventListener('resize',size);
     let mx=.5,my=.5,tx=.5,ty=.5;addEventListener('pointermove',e=>{tx=e.clientX/innerWidth;ty=1-e.clientY/innerHeight},{passive:true});
     draw=time=>{mx+=(tx-mx)*.04;my+=(ty-my)*.04;
-      cur.forEach((c,i)=>{for(let k=0;k<3;k++)c[k]+=(tar[i][k]-c[k])*(rm?1:.08);gl.uniform3f(uc[i],c[0],c[1],c[2])});
       gl.uniform2f(ur,cv.width,cv.height);gl.uniform1f(ut,time*.001);gl.uniform2f(um,mx,my);gl.uniform1f(us,scrollY/Math.max(1,root.scrollHeight-innerHeight));gl.drawArrays(gl.TRIANGLES,0,3)};
   }
 }
 if(!draw)cv.remove();
-let start=0;try{start=+localStorage.getItem('bsd-pal')||0}catch(e){}
-applyPal(P[start]?start:0);
 if(rm||!window.gsap){root.classList.add('rm');free.textContent=total;if(draw)draw(4000);return}
 const loop=t=>{draw(t);requestAnimationFrame(loop)};if(draw)requestAnimationFrame(loop);
 
 gsap.registerPlugin(ScrollTrigger);
 let lenis=null;
 if(matchMedia('(pointer:fine)').matches&&window.Lenis){lenis=new Lenis({lerp:.11});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
-$$('a[href^="#"]').forEach(l=>l.addEventListener('click',e=>{const t=$(l.getAttribute('href'));if(!t)return;e.preventDefault();lenis?lenis.scrollTo(t,{offset:-70}):t.scrollIntoView({behavior:'smooth'})}));
+$$('a[href^="#"]').forEach(l=>l.addEventListener('click',e=>{const t=$(l.getAttribute('href'));if(!t)return;e.preventDefault();lenis?lenis.scrollTo(t,{offset:-80}):t.scrollIntoView({behavior:'smooth'})}));
 
 /* 1 · Einstieg */
-gsap.from('.ln>span',{yPercent:112,duration:1.2,ease:'power4.out',stagger:.12,delay:.15});
-gsap.from('.hero-b>*',{opacity:0,y:24,duration:.8,stagger:.1,delay:.7});
-gsap.from('.frame',{opacity:0,y:60,scale:.94,duration:1.2,ease:'power3.out',delay:.35});
-gsap.from('.tag',{opacity:0,scale:.8,duration:.7,ease:'back.out(1.6)',stagger:.18,delay:1.1});
-gsap.to('.t1',{y:-10,duration:2.6,ease:'sine.inOut',repeat:-1,yoyo:true,delay:2});
-gsap.to('.t2',{y:10,duration:3.1,ease:'sine.inOut',repeat:-1,yoyo:true,delay:2});
-gsap.to('#pt',{yPercent:-9,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+const intro=[gsap.from('.kat',{opacity:0,y:16,duration:.7,delay:.05}),
+ gsap.from('.ln>span',{yPercent:112,duration:1.2,ease:'power4.out',stagger:.12,delay:.15}),
+ gsap.from('.hero-b>*',{opacity:0,y:24,duration:.8,stagger:.1,delay:.7}),
+ gsap.from('.pcard',{opacity:0,y:70,scale:.94,duration:1.1,ease:'power3.out',delay:.3}),
+ gsap.from('.pclip',{opacity:0,y:40,duration:1.1,ease:'power3.out',delay:.55}),
+ gsap.from('.tag',{opacity:0,scale:.8,duration:.7,ease:'back.out(1.6)',stagger:.18,delay:1.2})];
+/* Absicherung: spätestens nach 2,6 s steht der Einstieg, auch wenn der Browser Animationen drosselt */
+setTimeout(()=>intro.forEach(t=>t.progress(1)),2600);
+gsap.to('.t1',{y:-10,duration:2.6,ease:'sine.inOut',repeat:-1,yoyo:true,delay:2.1});
+gsap.to('.t2',{y:10,duration:3.1,ease:'sine.inOut',repeat:-1,yoyo:true,delay:2.1});
+gsap.to('#pt',{yPercent:-8,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
-/* 2 · Das Problem, Wort für Wort */
+/* 2 · Selbsttest */
+gsap.from('.sym',{opacity:0,y:40,stagger:.05,duration:.7,ease:'power3.out',scrollTrigger:{trigger:'#chk',start:'top 82%'}});
+
+/* 3 · Zuspitzung, Wort für Wort */
 const say=$('#say');say.innerHTML=say.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
 gsap.to('#say span',{opacity:1,stagger:.08,ease:'none',scrollTrigger:{trigger:'.say',start:'top top',end:'bottom bottom',scrub:.4}});
-gsap.from('.say small',{opacity:0,y:20,ease:'none',scrollTrigger:{trigger:'.say',start:'70% bottom',end:'bottom bottom',scrub:.4}});
 
-/* 3 · Die Woche leert sich */
+/* 4 · Die Woche leert sich */
 let seed=11;const r=()=>(seed=seed*16807%2147483647)/2147483647;
 const notes=vis.map(e=>({e,o:r()})).sort((x,y)=>x.o-y.o).map(x=>x.e),ph=$$('.ph');
 const tl=gsap.timeline({scrollTrigger:{trigger:'#woche',pin:true,start:'top top',end:'+=380%',scrub:.5}});
@@ -492,11 +560,11 @@ const setPh=(el,o)=>{el.style.opacity=o;el.style.visibility=o<.01?'hidden':'visi
 gsap.ticker.add(()=>{const T=tl.time();let h=0;spots.forEach(s=>{if(T>=s.t)h+=s.h});if(free.textContent!=h)free.textContent=h;
   setPh(ph[0],1-ss(.45,.85,T));setPh(ph[1],ss(.8,1.2,T)*(1-ss(endN-.3,endN+.1,T)));setPh(ph[2],ss(endN+.1,endN+.5,T))});
 
-/* 4 bis 9 */
+/* 5 bis 10 */
 gsap.from('.res',{opacity:0,y:60,scale:.95,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.calc',start:'top 72%'}});
-gsap.from('.tile',{opacity:0,y:50,scale:.94,stagger:.06,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.tiles',start:'top 80%'}});
+gsap.from('.ba',{opacity:0,y:50,stagger:.18,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'#pan',start:'top 82%'}});
 const cards=$$('.sc');cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.9,opacity:.55,ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top 82%',end:'top 16%',scrub:true}})});
-gsap.from('.of',{opacity:0,y:60,stagger:.15,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.offer',start:'top 80%'}});
+gsap.from('.of',{opacity:0,y:60,stagger:.14,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.offer',start:'top 80%'}});
 gsap.fromTo('#pb',{scaleX:0},{scaleX:1,ease:'none',scrollTrigger:{trigger:'#pay',start:'top 86%',end:'top 40%',scrub:.5}});
 gsap.fromTo('#m1',{xPercent:0},{xPercent:-32,ease:'none',scrollTrigger:{trigger:'.mq',start:'top bottom',end:'bottom top',scrub:.4}});
 gsap.fromTo('#m2',{xPercent:-32},{xPercent:0,ease:'none',scrollTrigger:{trigger:'.mq',start:'top bottom',end:'bottom top',scrub:.4}});
