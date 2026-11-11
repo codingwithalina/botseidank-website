@@ -29,12 +29,11 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 <meta property="og:url" content="https://www.botseidank.com/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/aurora.css?v=20261111">
-<link rel="stylesheet" href="assets/bausteine.css?v=20261111">
+<link rel="stylesheet" href="assets/aurora.css?v=2026111203">
+<link rel="stylesheet" href="assets/bausteine.css?v=2026111203">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 /* Startseite: nur, was es hier gibt. Gemeinsames steht in assets/aurora.css */
-#gl{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
 
 /* 1 Einstieg */
 .hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(24px,4vw,70px);align-items:end;padding:100px var(--gut) var(--sec-h)}
@@ -81,7 +80,7 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 .ph{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
 .ph+.ph{opacity:0;visibility:hidden}
 .ph p{margin-top:1em;max-width:27em;font-size:1.08em;color:var(--ink-3)}
-.ph b{color:var(--bad)}
+.ph b{color:var(--bad-t)}
 .planner{display:flex;flex-direction:column;min-height:0;border-radius:30px;padding:clamp(12px,1.4vw,22px)}
 .grid{flex:1;min-height:0;display:grid;grid-template-columns:2.4em repeat(5,1fr);grid-template-rows:auto repeat(9,1fr)}
 .d{grid-row:1;font:500 clamp(10.5px,.8vw,12.5px)/1 var(--f-m);padding:4px 6px 10px;border-left:1px solid var(--line)}
@@ -120,7 +119,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .rc h3{margin-top:auto}
 .rc p{margin-top:.8em;color:var(--ink-3)}
 .rc:nth-child(3n+1){background:var(--ink);color:#fff;border-color:var(--ink)}
-.rc:nth-child(3n+1) .m{color:var(--mint)}
+
 .rc:nth-child(3n+1) p{color:color-mix(in srgb,#fff 82%,var(--ink))}
 .signs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.2vw,20px);margin-top:clamp(30px,6vh,60px)}
 .sign{border-radius:24px;padding:clamp(18px,1.8vw,28px);min-height:clamp(210px,30vh,280px);display:flex;flex-direction:column}
@@ -294,14 +293,14 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <h2 class="big">Fast alles, was sich wiederholt, kann von allein laufen.</h2>
   <p class="lead">Viele denken bei Automatisierung an Kleinigkeiten. Dabei lassen sich ganze Aufgabenbereiche abgeben. Ein paar Beispiele:</p>
   <div class="track" id="track">
-    <article class="rc glass"><span class="m">Buchhaltung</span><h3>Die Buchhaltung, von der Rechnung bis zum Steuerberater</h3><p>Rechnungen werden geschrieben, verschickt und nachgehalten. Belege werden gelesen und zugeordnet. Du gibst nur noch frei.</p></article>
-    <article class="rc glass"><span class="m">Telefon</span><h3>Ein Telefon, das nie besetzt ist</h3><p>Jeder Anruf wird angenommen, das Anliegen geklärt, der Termin gebucht. Auch um 22 Uhr und am Sonntag.</p></article>
-    <article class="rc glass"><span class="m">Angebote</span><h3>Angebote, die sich selbst schreiben</h3><p>Aus deinem Kundengespräch entsteht das fertige Angebot samt Projektplan. Du liest nur noch drüber.</p></article>
-    <article class="rc glass"><span class="m">Postfach</span><h3>Ein Postfach, das sich selbst aufräumt</h3><p>Mails werden sortiert, Standardfragen beantwortet, Wichtiges liegt oben.</p></article>
-    <article class="rc glass"><span class="m">Bestandskunden</span><h3>Kunden, die von allein zurückkommen</h3><p>Alte Anfragen und stille Kunden werden Schritt für Schritt wieder angesprochen. Du sprichst nur mit denen, die wollen.</p></article>
-    <article class="rc glass"><span class="m">Zahlen</span><h3>Zahlen, die dich warnen, bevor es eng wird</h3><p>Deine Liquidität wird vorausberechnet, alle Kennzahlen laufen an einer Stelle zusammen. Montags liegt der Bericht im Postfach.</p></article>
-    <article class="rc glass"><span class="m">Bewertungen</span><h3>Bewertungen, die sich selbst einsammeln</h3><p>Nach jedem Auftrag wird nachgefragt, jede Bewertung bekommt eine passende Antwort.</p></article>
-    <article class="rc glass"><span class="m">Wissen</span><h3>Wissen, das nicht mehr in einem Kopf steckt</h3><p>Abläufe werden dokumentiert, während sie laufen. Fällt jemand aus, geht es trotzdem weiter.</p></article>
+    <article class="rc glass"><h3>Die Buchhaltung, von der Rechnung bis zum Steuerberater</h3><p>Rechnungen werden geschrieben, verschickt und nachgehalten. Belege werden gelesen und zugeordnet. Du gibst nur noch frei.</p></article>
+    <article class="rc glass"><h3>Ein Telefon, das nie besetzt ist</h3><p>Jeder Anruf wird angenommen, das Anliegen geklärt, der Termin gebucht. Auch um 22 Uhr und am Sonntag.</p></article>
+    <article class="rc glass"><h3>Angebote, die sich selbst schreiben</h3><p>Aus deinem Kundengespräch entsteht das fertige Angebot samt Projektplan. Du liest nur noch drüber.</p></article>
+    <article class="rc glass"><h3>Ein Postfach, das sich selbst aufräumt</h3><p>Mails werden sortiert, Standardfragen beantwortet, Wichtiges liegt oben.</p></article>
+    <article class="rc glass"><h3>Kunden, die von allein zurückkommen</h3><p>Alte Anfragen und stille Kunden werden Schritt für Schritt wieder angesprochen. Du sprichst nur mit denen, die wollen.</p></article>
+    <article class="rc glass"><h3>Zahlen, die dich warnen, bevor es eng wird</h3><p>Deine Liquidität wird vorausberechnet, alle Kennzahlen laufen an einer Stelle zusammen. Montags liegt der Bericht im Postfach.</p></article>
+    <article class="rc glass"><h3>Bewertungen, die sich selbst einsammeln</h3><p>Nach jedem Auftrag wird nachgefragt, jede Bewertung bekommt eine passende Antwort.</p></article>
+    <article class="rc glass"><h3>Wissen, das nicht mehr in einem Kopf steckt</h3><p>Abläufe werden dokumentiert, während sie laufen. Fällt jemand aus, geht es trotzdem weiter.</p></article>
   </div>
 </section>
 
@@ -351,8 +350,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <div class="offer">
     <article class="of glass top">
       <span class="badge m" style="color:#fff">Schnellster Einstieg</span>
-      <span class="m">Du weißt, was nervt</span>
       <h3>Ein Zeitfresser weniger</h3>
+      <p class="fit">Du weißt, was nervt</p>
       <p>Du sagst mir, welche Aufgabe von allein laufen soll. In 4 Wochen läuft sie.</p>
       <div class="price">2.900 bis 3.900 €<small>Festpreis, einmalig. Dein Preis steht nach dem Erstgespräch fest, bevor irgendetwas startet.</small></div>
       <ul><li>Deine Idee oder ein fertiges System</li><li>Aufgebaut in deinen Programmen</li><li>Testlauf mit echten Vorgängen</li><li>Einweisung und Übergabe-Doku</li></ul>
@@ -361,8 +360,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <a class="cta" href="#erstgespraech">Idee besprechen</a>
     </article>
     <article class="of glass">
-      <span class="m">Du weißt nur, dass Zeit verloren geht</span>
       <h3>Der größte Zeitfresser, gefunden und abgeschafft</h3>
+      <p class="fit">Du weißt nur, dass Zeit verloren geht</p>
       <p>Acht Wochen, gemeinsam mit deinem Team. Am Ende nutzt es die Lösung selbst.</p>
       <div class="price">6.000 €<small>Festpreis in zwei Raten à 3.000 €, fällig erst bei Ergebnis.</small></div>
       <ul><li>Deine Abläufe an echten Fällen gemessen</li><li>Größter Zeitfresser gefunden, Ziel vereinbart</li><li>Lösung gebaut und getestet</li><li>Einarbeitung, Doku, Vergleich vorher und nachher</li></ul>
@@ -370,8 +369,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <a class="cta" href="ablauf-sprint.html" data-track="programm">Programm im Detail</a>
     </article>
     <article class="of glass">
-      <span class="m">Du willst einen ganzen Bereich abgeben</span>
       <h3>Dein Vertrieb läuft von allein</h3>
+      <p class="fit">Du willst einen ganzen Bereich abgeben</p>
       <p>Drei Systeme als eine Strecke, von der ersten Anfrage bis zum Auftrag. In 12 Wochen steht alles.</p>
       <div class="price">9.900 €<small>Einrichtung einmalig, danach 1.790 € im Monat für den laufenden Betrieb.</small></div>
       <ul><li>Jede neue Anfrage wird in 60 Sekunden zurückgerufen</li><li>Offene Angebote werden nachgefasst</li><li>Alte Kontakte werden zurückgeholt</li><li>Ich betreibe es jeden Monat weiter</li></ul>
@@ -469,7 +468,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="assets/site.js?v=20261111"></script>
+<script src="assets/aurora-gl.js?v=2026111203"></script>
+<script src="assets/site.js?v=2026111203"></script>
 <script>
 (function(){
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.documentElement;
@@ -517,38 +517,7 @@ $('#grid').innerHTML=html;
 const free=$('#free'),vis=$$('.bk.f').filter(e=>e.offsetParent),total=vis.reduce((n,e)=>n+ +e.dataset.h,0);
 $('#tot').textContent=total;
 
-/* Lebender Farbverlauf, direkt auf der Grafikkarte gerechnet */
-const COL=['#F1FFFA','#A5FCDF','#6CBCE0','#8ADEDD','#A9A8E6'].map(h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255));
-const cv=$('#gl'),gl=cv.getContext('webgl',{antialias:false,alpha:false});let draw=null;
-if(gl){
-  const fs=`precision highp float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float s;uniform vec3 c0,c1,c2,c3,c4;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}
-float fbm(vec2 p){float a=.5,v=0.;for(int i=0;i<4;i++){v+=a*n(p);p=p*2.+vec2(3.1,1.7);a*=.5;}return v;}
-void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.25;p+=(m-.5)*.35;float tt=t*.05+s*2.2;
-vec2 q=vec2(fbm(p+tt),fbm(p-tt+4.));float f=fbm(p+q*1.7+vec2(tt*.5,-tt*.3));float g=fbm(p*.7-q*1.3+7.+s);
-vec3 c=mix(c0,c1,smoothstep(.28,.78,f));
-c=mix(c,c2,smoothstep(.42,.8,g)*.8);
-c=mix(c,c3,smoothstep(.5,.85,q.x)*.55);
-c=mix(c,c4,smoothstep(.55,.9,q.y)*(.3+s*.7));
-gl_FragColor=vec4(c,1.);}`;
-  const sh=(ty,src)=>{const o=gl.createShader(ty);gl.shaderSource(o,src);gl.compileShader(o);return o};
-  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
-  if(gl.getProgramParameter(pr,gl.LINK_STATUS)){
-    gl.useProgram(pr);gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-    const al=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(al);gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
-    const U=k=>gl.getUniformLocation(pr,k),ur=U('r'),ut=U('t'),um=U('m'),us=U('s');
-    COL.forEach((c,i)=>gl.uniform3f(U('c'+i),c[0],c[1],c[2]));
-    const size=()=>{cv.width=Math.round(innerWidth*.5);cv.height=Math.round(innerHeight*.5);gl.viewport(0,0,cv.width,cv.height)};
-    size();addEventListener('resize',size);
-    let mx=.5,my=.5,tx=.5,ty=.5;addEventListener('pointermove',e=>{tx=e.clientX/innerWidth;ty=1-e.clientY/innerHeight},{passive:true});
-    draw=time=>{mx+=(tx-mx)*.04;my+=(ty-my)*.04;
-      gl.uniform2f(ur,cv.width,cv.height);gl.uniform1f(ut,time*.001);gl.uniform2f(um,mx,my);gl.uniform1f(us,scrollY/Math.max(1,root.scrollHeight-innerHeight));gl.drawArrays(gl.TRIANGLES,0,3)};
-  }
-}
-if(!draw)cv.remove();
-if(rm||!window.gsap){root.classList.add('rm');free.textContent=total;if(draw)draw(4000);return}
-const loop=t=>{draw(t);requestAnimationFrame(loop)};if(draw)requestAnimationFrame(loop);
+if(rm||!window.gsap){root.classList.add('rm');free.textContent=total;return}
 
 gsap.registerPlugin(ScrollTrigger);
 let lenis=null;

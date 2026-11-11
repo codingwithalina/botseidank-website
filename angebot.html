@@ -24,13 +24,15 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 <meta property="og:url" content="https://www.botseidank.com/angebot.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/aurora.css?v=20261111">
-<link rel="stylesheet" href="assets/bausteine.css?v=20261111">
+<link rel="stylesheet" href="assets/aurora.css?v=2026111203">
+<link rel="stylesheet" href="assets/bausteine.css?v=2026111203">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 /* Angebotsseite: Zahlungsbalken ohne Animation voll zeigen */
 .pay u{transform:none}
 .offer{margin-top:0}
+/* Kopf und Stufen gehören zusammen: kein voller Blockabstand dazwischen */
+#stufen{padding-top:0}
 </style>
 </head>
 <body>
@@ -56,12 +58,13 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
   <p class="lead">Drei Stufen, je nachdem, wo du stehst. Für alle gilt: Festpreis, keine Vorkasse, und das Risiko liegt bei mir.</p>
 </section>
 
-<section class="sec" id="stufen" aria-label="Die drei Stufen">
+<section class="sec" id="stufen" aria-labelledby="stufen-h">
+  <h2 class="vh" id="stufen-h">Die drei Stufen</h2>
   <div class="offer">
     <article class="of glass top">
       <span class="badge m" style="color:#fff">Schnellster Einstieg</span>
-      <span class="m">Du weißt, was nervt</span>
       <h3>Ein Zeitfresser weniger</h3>
+      <p class="fit">Du weißt, was nervt</p>
       <p>Du sagst mir, welche Aufgabe von allein laufen soll. In 4 Wochen läuft sie.</p>
       <div class="price">2.900 bis 3.900 €<small>Festpreis, einmalig. Dein Preis steht nach dem Erstgespräch fest, bevor irgendetwas startet.</small></div>
       <ul><li>Deine Idee oder ein fertiges System</li><li>Aufgebaut in deinen Programmen</li><li>Testlauf mit echten Vorgängen</li><li>Einweisung und Übergabe-Doku</li></ul>
@@ -70,8 +73,8 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
       <a class="cta" href="#erstgespraech">Idee besprechen</a>
     </article>
     <article class="of glass">
-      <span class="m">Du weißt nur, dass Zeit verloren geht</span>
       <h3>Der größte Zeitfresser, gefunden und abgeschafft</h3>
+      <p class="fit">Du weißt nur, dass Zeit verloren geht</p>
       <p>Acht Wochen, gemeinsam mit deinem Team. Am Ende nutzt es die Lösung selbst.</p>
       <div class="price">6.000 €<small>Festpreis in zwei Raten à 3.000 €, fällig erst bei Ergebnis.</small></div>
       <ul><li>Deine Abläufe an echten Fällen gemessen</li><li>Größter Zeitfresser gefunden, Ziel vereinbart</li><li>Lösung gebaut und getestet</li><li>Einarbeitung, Doku, Vergleich vorher und nachher</li></ul>
@@ -79,8 +82,8 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
       <a class="cta" href="ablauf-sprint.html" data-track="programm">Programm im Detail</a>
     </article>
     <article class="of glass">
-      <span class="m">Du willst einen ganzen Bereich abgeben</span>
       <h3>Dein Vertrieb läuft von allein</h3>
+      <p class="fit">Du willst einen ganzen Bereich abgeben</p>
       <p>Drei Systeme als eine Strecke, von der ersten Anfrage bis zum Auftrag. In 12 Wochen steht alles.</p>
       <div class="price">9.900 €<small>Einrichtung einmalig, danach 1.790 € im Monat für den laufenden Betrieb.</small></div>
       <ul><li>Jede neue Anfrage wird in 60 Sekunden zurückgerufen</li><li>Offene Angebote werden nachgefasst</li><li>Alte Kontakte werden zurückgeholt</li><li>Ich betreibe es jeden Monat weiter</li></ul>
@@ -99,7 +102,7 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
     <ul><li>Kennzahl vorab vereinbart, an der du das Ergebnis misst</li><li>Aufbau in deinen Programmen, kein Systemwechsel</li><li>Test mit echten Fällen, nicht mit Beispielen</li><li>Einweisung für dein Team und Dokumentation</li><li>Nacharbeit ohne Mehrkosten, falls das Ziel verfehlt wird</li><li>Ein Ansprechpartner: ich</li></ul>
   </div>
   <div class="care glass">
-    <div><span class="m">Danach, wenn du willst</span><h3>Es läuft dauerhaft. Ich kümmere mich.</h3></div>
+    <div><h3>Es läuft dauerhaft. Ich kümmere mich.</h3><p class="fit">Danach, wenn du willst</p></div>
     <p>Überwachung im laufenden Betrieb, Anpassungen, wenn sich etwas ändert, monatlicher Kurzbericht. Keine Mindestlaufzeit, monatlich kündbar.</p>
     <strong>ab 490 € <small>/ Monat</small></strong>
   </div>
@@ -185,6 +188,7 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 </footer>
 <!-- /layout:footer -->
 
-<script src="assets/site.js?v=20261111"></script>
+<script src="assets/aurora-gl.js?v=2026111203"></script>
+<script src="assets/site.js?v=2026111203"></script>
 </body>
 </html>

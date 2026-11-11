@@ -5,9 +5,9 @@
 /* Palette „Violett bis Mint“, Schriften, Skala */
 :root{
   --ink:#2A0A52;--acc:#6234BC;--bad:#D8456B;--mint:#A5FCDF;
-  --ink-2:color-mix(in srgb,var(--ink) 64%,#fff);--ink-3:color-mix(in srgb,var(--ink) 86%,#fff);
+  --ink-2:color-mix(in srgb,var(--ink) 80%,#fff);--ink-3:color-mix(in srgb,var(--ink) 86%,#fff);
   --line:color-mix(in srgb,var(--ink) 15%,transparent);
-  --bad-s:color-mix(in srgb,var(--bad) 20%,#fff);--bad-d:color-mix(in srgb,var(--bad) 62%,#000);
+  --bad-s:color-mix(in srgb,var(--bad) 20%,#fff);--bad-t:color-mix(in srgb,var(--bad) 70%,#000);--bad-d:color-mix(in srgb,var(--bad) 62%,#000);
   --glass:rgba(255,255,255,.56);--paper-2:#fff;--berry:var(--acc);
   --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
   --f-display:var(--f-d);
@@ -25,12 +25,17 @@
   --head:84px;
 }
 *{box-sizing:border-box;margin:0}
-html{background:linear-gradient(135deg,#F1FFFA,#6CBCE0 60%,#8ADEDD) fixed;-webkit-text-size-adjust:100%}
+/* Ruhiger Grund ohne WebGL; mit WebGL liegt die lebende Aurora (assets/aurora-gl.js) darüber */
+html{background:#CFF3EE radial-gradient(60% 50% at 18% 12%,#F1FFFA,transparent 70%),radial-gradient(55% 45% at 85% 30%,#A5FCDF,transparent 70%),radial-gradient(70% 60% at 30% 90%,#8ADEDD,transparent 70%),radial-gradient(50% 40% at 80% 85%,#A9C9EE,transparent 70%) fixed;-webkit-text-size-adjust:100%}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:-1}
 body{font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
+::selection{background:var(--ink);color:var(--mint)}
+html{caret-color:var(--acc);accent-color:var(--acc)}
 img{max-width:100%}
 button{font:inherit;color:inherit}
 [hidden]{display:none!important}
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 h1,h2,h3,h4{font-family:var(--f-d);font-weight:700;letter-spacing:-.04em;line-height:.98;text-wrap:balance}
 h1{font-size:var(--fs-h1);font-weight:800;letter-spacing:-.05em;line-height:.92}
 h2{font-size:var(--fs-h2)}
@@ -56,7 +61,10 @@ main [id]{scroll-margin-top:calc(var(--head) + 10px)}
 .logo{display:block;width:clamp(110px,9vw,138px);aspect-ratio:526/81.5;background:var(--ink);-webkit-mask:url(logo.svg) left center/contain no-repeat;mask:url(logo.svg) left center/contain no-repeat}
 
 /* Header: auf allen Seiten identisch */
-.site-nav{position:fixed;z-index:60;top:12px;left:var(--gut);right:var(--gut);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:9px 9px 9px 20px;border-radius:999px}
+.site-nav{position:fixed;z-index:60;top:12px;left:var(--gut);right:var(--gut);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:9px 9px 9px 20px;border-radius:999px;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s}
+/* Über dem Footer weicht der Header nach oben aus, damit er nichts verdeckt */
+.site-nav.away:not(.open){transform:translateY(calc(-100% - 20px));opacity:0;pointer-events:none}
+.site-nav .logo{padding-block:14px;background-clip:content-box;-webkit-mask-origin:content-box;mask-origin:content-box;box-sizing:content-box}
 .site-nav .links{display:flex;gap:clamp(12px,1.6vw,28px);align-items:center;font-size:.93em}
 .site-nav .links a{text-decoration:none;white-space:nowrap}
 .site-nav .links a:not(.cta):hover,.site-nav .links a[aria-current=page]{color:var(--acc)}
@@ -89,13 +97,14 @@ main [id]{scroll-margin-top:calc(var(--head) + 10px)}
 .site-ftr a{text-decoration:none;color:color-mix(in srgb,#fff 88%,var(--ink))}
 .site-ftr a:hover{color:var(--mint)}
 .site-ftr .f-bottom{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8em 2em;padding-top:1.4em;border-top:1px solid rgba(255,255,255,.16);color:color-mix(in srgb,#fff 66%,var(--ink));font-size:.9em}
-.site-ftr .f-bottom nav{flex-direction:row;flex-wrap:wrap;gap:.4em 1.5em}
+.site-ftr .f-bottom nav{flex-direction:row;flex-wrap:wrap;gap:0 1.5em}
+.site-ftr .f-bottom nav>*{padding-block:.55em}
 .site-ftr .consent-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
 .site-ftr .consent-link:hover{color:var(--mint)}
 @media (max-width:1000px){.site-ftr{grid-template-columns:1fr 1fr}.site-ftr>div:first-child{grid-column:1/-1}}
 @media (max-width:560px){.site-ftr{grid-template-columns:1fr}}
 
-@media (prefers-reduced-motion:reduce){.cta,.menu-btn i::before,.menu-btn i::after{transition:none}}
+@media (prefers-reduced-motion:reduce){.site-nav,.cta,.menu-btn i::before,.menu-btn i::after{transition:none}}
 
 /* Seitenkopf der Unterseiten: gleicher Einstieg wie auf der Startseite */
 .page-hero{padding-top:calc(var(--head) + clamp(48px,12vh,140px))}

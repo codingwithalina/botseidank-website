@@ -222,6 +222,15 @@ function splitWords(el){
 }
 
 /* Menü im gemeinsamen Header: auf schmalen Bildschirmen auf- und zuklappen */
+function footerAway(){
+  // Header am Footer ausblenden, damit er Logo und Text dort nicht verdeckt
+  var nav = document.querySelector(".site-nav"), ftr = document.querySelector(".site-ftr");
+  if (!nav || !ftr) return;
+  function check(){ nav.classList.toggle("away", ftr.getBoundingClientRect().top < nav.offsetTop + nav.offsetHeight + 16); }
+  addEventListener("scroll", check, { passive: true });
+  addEventListener("resize", check);
+  check();
+}
 function menu(){
   var nav = document.querySelector(".site-nav"), btn = nav && nav.querySelector(".menu-btn");
   if (!btn) return;
@@ -237,6 +246,7 @@ function start(){
   scanCal();
   magnetic();
   menu();
+  footerAway();
 }
 window.AWA = { track: track, pageview: pageview, conversion: conversion, mountCal: mountCal, calUrl: calUrl, splitWords: splitWords, openConsent: openBanner };
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
