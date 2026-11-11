@@ -221,10 +221,22 @@ function splitWords(el){
   return out;
 }
 
+/* Menü im gemeinsamen Header: auf schmalen Bildschirmen auf- und zuklappen */
+function menu(){
+  var nav = document.querySelector(".site-nav"), btn = nav && nav.querySelector(".menu-btn");
+  if (!btn) return;
+  function set(open){ nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", String(open)); }
+  btn.addEventListener("click", function(){ set(!nav.classList.contains("open")); });
+  nav.querySelectorAll(".links a").forEach(function(a){ a.addEventListener("click", function(){ set(false); }); });
+  document.addEventListener("keydown", function(ev){ if (ev.key === "Escape" && nav.classList.contains("open")) { set(false); btn.focus(); } });
+  document.addEventListener("click", function(ev){ if (nav.classList.contains("open") && !nav.contains(ev.target)) set(false); });
+}
+
 function start(){
   syncConsent();                                             // falls CCM19 schon fertig war, bevor dieses Skript lief
   scanCal();
   magnetic();
+  menu();
 }
 window.AWA = { track: track, pageview: pageview, conversion: conversion, mountCal: mountCal, calUrl: calUrl, splitWords: splitWords, openConsent: openBanner };
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();

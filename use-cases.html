@@ -20,19 +20,18 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/aurora.css?v=20261111">
 <style>
 /* Layout: Editorial-asymmetrisch auf 12 Spalten, in Alinas dunkler Cyan-Welt. Idee „Der Knoten löst sich“: der verknotete Strich wird beim Scrollen zur klaren Cyan-Linie. */
 :root{
-  --paper:#050B16; --paper-2:#0C1626; --ink:#E8EEF6; --ink-2:#8D9AAD; --line:rgba(232,238,246,.12);
-  --berry:#22D3EE; --on-berry:#04101C; --band:#0A1424; --band-fg:#E8EEF6; --band-2:#8D9AAD;
-  --note-bg:rgba(34,211,238,.06);
-  --grad:linear-gradient(92deg,#22D3EE 0%,#8B5CF6 55%,#EC4899 100%);
-  --f-display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
-  --f-body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --s-1:clamp(44px,8.4vw,128px); --s-2:clamp(34px,5.2vw,76px); --s-3:clamp(24px,3vw,40px); --s-4:clamp(19px,1.6vw,23px);
-  --r:14px; --max:1320px;
-  color-scheme:dark;
+  /* Aurora-Palette aus assets/aurora.css, auf die Namen dieser Seite abgebildet */
+  --paper:rgba(255,255,255,.56); --paper-2:rgba(255,255,255,.86); --band:transparent; --band-fg:var(--ink); --band-2:var(--ink-2);
+  --on-berry:#fff; --note-bg:color-mix(in srgb,var(--acc) 6%,transparent);
+  --grad:linear-gradient(var(--acc),var(--acc));
+  --f-display:var(--f-d); --f-body:var(--f-t); --f-mono:var(--f-m);
+  --s-1:var(--fs-h1); --s-2:var(--fs-h2); --s-3:var(--fs-h3); --s-4:var(--fs-lead);
+  --r:24px; --max:none;
+  color-scheme:light;
 }
 /* Bewusst einfarbig dunkel: Alinas Markenwelt. Kein Hellmodus. */
 *{box-sizing:border-box}
@@ -647,25 +646,44 @@ html.no-notes .notes-toggle i{background:var(--line)}
 @media (max-width:760px){.levels{grid-template-columns:1fr}}
 .ftr .big::after{content:attr(data-text);position:absolute;left:0;top:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;clip-path:inset(0 calc(100% - var(--fill,0%)) 0 0)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.tools-row{flex-wrap:wrap;width:auto;row-gap:10px}.tools-row [aria-hidden]{display:none}.ftr .big::after{--fill:100%}}
+
+/* ── Angleichung an die Startseite (Aurora) ── */
+body{background:none;font:400 clamp(16px,1.12vw,18.5px)/1.6 var(--f-t)}
+body::after{display:none}
+h1,h2,h3,h4{letter-spacing:-.04em;line-height:.98}
+h3{letter-spacing:-.03em;line-height:1.04}
+.wrap{max-width:none;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.sec{padding-block:var(--sec-h)}
+.sec + .sec{border-top:0}
+.phero{padding-top:calc(var(--head) + clamp(40px,10vh,120px));padding-bottom:var(--sec-h)}
+.phero h1{margin-top:20px}
+.hero h1 em,.phero h1 em.grad{background:none;color:var(--acc);-webkit-text-fill-color:currentColor;animation:none}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--acc);box-shadow:none}
+.btn-ghost{background:var(--glass);border-color:rgba(255,255,255,.8)}
+.way::after,.rcard::after,.ocard::after,.gcard::after,.path::after,.row::before,.band.glow::before{display:none}
+.tcard.rec,.demo{box-shadow:0 30px 60px -40px color-mix(in srgb,var(--ink) 55%,transparent)}
+.site-nav .logo,.site-ftr .logo{display:block}
 </style>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
 
-<header class="hdr" id="hdr">
-  <div class="wrap">
-    <a class="logo" href="#start" aria-label="Bot sei Dank – Startseite"><img src="assets/logo.svg" alt="Bot sei Dank" width="150" height="23"></a>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menü</button>
-    <nav class="nav" id="nav" aria-label="Hauptnavigation">
-      <a class="nl" href="#angebot" data-nav="angebot">Angebot</a>
-      <a class="nl" href="#use-cases" data-nav="use-cases">Use Cases</a>
-      <a class="nl" href="#ueber-mich" data-nav="ueber-mich">Über mich</a>
-      <a class="btn btn-primary" href="#erstgespraech">Kostenloses Gespräch buchen <span class="arr">→</span></a>
-    </nav>
-  </div>
-  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+<!-- layout:header -->
+<header class="site-nav glass">
+  <a class="logo" href="/" aria-label="Bot sei Dank, zur Startseite"></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links"><i aria-hidden="true"></i>Menü</button>
+  <nav class="links" id="site-links" aria-label="Hauptmenü">
+    <a href="angebot.html">Angebot</a>
+    <a href="ablauf-sprint.html">8-Wochen-Programm</a>
+    <a href="lead-revenue-system.html">Lead Revenue System</a>
+    <a href="use-cases.html" aria-current="page">Use Cases</a>
+    <a class="opt" href="/#ueber-mich">Über mich</a>
+    <a class="cta" href="/#erstgespraech">Erstgespräch buchen</a>
+  </nav>
 </header>
+<!-- /layout:header -->
 
 <main>
 <!-- ═════════ START ═════════ -->
@@ -680,7 +698,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
             <span class="l"><span><em>automatisiert.</em></span></span>
             <span class="tail">Ich baue KI-Automatisierungen in deine bestehenden Tools. Festpreis, bezahlt erst, wenn es läuft.</span>
           </h1>
-          <p class="lede">Für Betriebe, die von Anfragen leben und zu viel Zeit in Mails, Excel und Abstimmung verlieren. Du hast schon eine Idee? Ich setze sie in 7–14 Tagen um. Du hast noch keine? Wir finden in 8 Wochen deinen größten Zeitfresser und schaffen ihn ab.</p>
+          <p class="lede">Für Betriebe, die von Anfragen leben und zu viel Zeit in Mails, Excel und Abstimmung verlieren. Du hast schon eine Idee? Ich setze sie in 4 Wochen um. Du hast noch keine? Wir finden in 8 Wochen deinen größten Zeitfresser und schaffen ihn ab.</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="#erstgespraech">Kostenloses Erstgespräch buchen <span class="arr">→</span></a>
             <a class="btn btn-ghost" href="#angebot">Angebot ansehen</a>
@@ -704,7 +722,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
       </div>
       <div class="facts">
         <div class="fact"><strong>0 €</strong><span>Vorkasse</span></div>
-        <div class="fact"><strong>7–14 Tage</strong><span>von deiner Idee bis live</span></div>
+        <div class="fact"><strong>4 Wochen</strong><span>von deiner Idee bis live</span></div>
         <div class="fact"><strong>8 Wochen</strong><span>Programm für den größten Zeitfresser</span></div>
         <div class="fact"><strong>Festpreis</strong><span>bezahlt erst, wenn es läuft</span></div>
       </div>
@@ -719,7 +737,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Was KI-Automatisierung ist</p>
           <h2 class="h2" id="wi-h">Wie ein Mitarbeiter, der nie schläft und nichts vergisst.</h2>
         </div>
         <p>Etwas passiert in deinem Betrieb: Eine Mail kommt an, ein Anruf, ein Formular. Die KI liest es, versteht, worum es geht, und erledigt die nächsten Schritte in den Programmen, die du schon nutzt. Nicht irgendwann. Sofort.</p>
@@ -751,7 +768,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Zwei Wege rein</p>
           <h2 class="h2" id="fork-h">Wo stehst du gerade?</h2>
         </div>
         <p>Ob du noch suchst, wo deine Zeit verloren geht, oder schon genau weißt, was automatisch laufen soll: Du startest an der Stelle, die zu dir passt. Für beide Wege gilt dasselbe Versprechen: Festpreis, keine Vorkasse, bezahlt erst, wenn es läuft.</p>
@@ -781,7 +797,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
         <span class="p-or" aria-hidden="true">oder</span>
         <article class="path p-b" aria-labelledby="pb-h">
           <span class="p-tag"><i>2</i>Schon eine Idee?</span>
-          <div class="p-title"><h3 id="pb-h">Umsetzung</h3><p class="p-sub">Deine Idee, live in 7–14 Tagen</p><p class="p-meta" id="pCount">ab 2.900 € Festpreis · in deinen Tools · einzeln buchbar</p></div>
+          <div class="p-title"><h3 id="pb-h">Umsetzung</h3><p class="p-sub">Deine Idee, live in 4 Wochen</p><p class="p-meta" id="pCount">ab 2.900 € Festpreis · in deinen Tools · einzeln buchbar</p></div>
           <p class="p-text">Du weißt schon, was automatisch laufen soll, oder suchst Inspiration für den nächsten Schritt? In den Use Cases findest du alle Automatisierungen und sechs fertige Systeme, sortiert nach dem Ergebnis, das sie dir bringen.</p>
           <nav class="p-list" id="pathRep" aria-label="Use Cases nach Ergebnis"></nav>
           <div class="p-foot">
@@ -805,7 +821,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Mein Versprechen</p>
           <h2 class="h2" id="gar-h">Du zahlst erst, wenn es läuft.</h2>
         </div>
         <p>Keine Vorkasse, kein Risiko auf deiner Seite. Das gilt für jede Umsetzung und für das 8-Wochen-Programm, ohne Kleingedrucktes.</p>
@@ -824,10 +839,9 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Was sie bei dir übernehmen kann</p>
           <h2 class="h2" id="kann-h">Acht Aufgaben, die heute schon automatisch laufen</h2>
         </div>
-        <p>Jede davon ist eine Umsetzung aus den Use Cases: Festpreis ab 2.900 €, live in 7–14 Tagen. Die Zahlen sind typische Werte aus solchen Projekten, deine Kennzahl vereinbaren wir vorher.</p>
+        <p>Jede davon ist eine Umsetzung aus den Use Cases: Festpreis ab 2.900 €, live in 4 Wochen. Die Zahlen sind typische Werte aus solchen Projekten, deine Kennzahl vereinbaren wir vorher.</p>
       </div>
       <div class="tasks"><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="task-k">Reaktion in < 5 Min.</span><h3>Anfragen beantworten</h3><p>In Minuten statt Tagen, rund um die Uhr, mit Terminvorschlag.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span><span class="task-k">Minuten statt Stunden</span><h3>Angebote schreiben</h3><p>Aus Gesprächsnotizen, Mails oder CRM-Daten, fertig in deinem Layout.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span class="task-k">24/7 erreichbar</span><h3>Anrufe annehmen</h3><p>Nimmt ab, wenn niemand kann, klärt das Anliegen, bucht oder leitet weiter.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="task-k">−40 % No-Shows</span><h3>Termine koordinieren</h3><p>Vorschläge, Buchung, Erinnerung, Verschiebung. Ohne Hin und Her per Mail.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></span><span class="task-k">0 vergessene Angebote</span><h3>Nachfassen</h3><p>Offene Angebote, geplatzte Termine, alte Kontakte. Nichts bleibt liegen.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span class="task-k">0 × doppelt eintippen</span><h3>Daten übertragen</h3><p>CRM, Excel, Buchhaltung und Tools bleiben von allein synchron.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V5a1 1 0 011-1h2M17 4h2a1 1 0 011 1v2M20 17v2a1 1 0 01-1 1h-2M7 20H5a1 1 0 01-1-1v-2"/><path d="M8 10h8M8 14h5"/></svg></span><span class="task-k">−95 % Handarbeit</span><h3>Dokumente auslesen</h3><p>Rechnungen, Verträge, Formulare werden gelesen und ins richtige System gebracht.</p></a><a class="task" href="#use-cases"><span class="task-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="task-k">Montag 7:00 fertig</span><h3>Berichte erstellen</h3><p>Wochen- und Monatszahlen aus allen Quellen, fertig im Postfach.</p></a></div>
       <div class="levels">
@@ -840,7 +854,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
 
   <section class="sec" aria-labelledby="proc-h">
     <div class="wrap">
-      <p class="eyebrow">So arbeite ich</p>
       <h2 class="h2 mt-s" id="proc-h" style="margin-bottom:56px">Vier Schritte, ein Ablauf. Egal welcher Weg.</h2>
       <div class="steps">
         <div class="step"><span class="n">01</span><h3>Erstgespräch</h3><p>30 Minuten, kostenlos. Wir klären, ob du mit einer Idee startest oder mit dem Programm, und ob sich der Aufwand für dich lohnt. Wenn nicht, sage ich es dir.</p></div>
@@ -858,7 +871,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
         <div class="fb" aria-hidden="true">AN</div>
       </div>
       <div class="a-copy">
-        <p class="eyebrow">Über mich</p>
         <h2 class="h2" id="about-h">Technologie trifft Geschäftsverstand</h2>
         <p>Ich komme aus der Industrieautomation und baue Abläufe wie Anlagen: erst messen, dann umbauen, dann mit echten Fällen testen. Bevor ich irgendetwas entwickle, stelle ich eine einzige Frage:</p>
         <blockquote>„Wo verlierst du gerade <em>Zeit, Geld und Nerven</em>?“</blockquote>
@@ -894,7 +906,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
   <section class="sec" aria-labelledby="faq-h">
     <div class="wrap two">
       <div>
-        <p class="eyebrow">Häufige Fragen</p>
         <h2 class="h2" id="faq-h">Kurz beantwortet</h2>
         <p style="color:var(--ink-2)">Noch etwas offen? Im kostenlosen Erstgespräch beantworte ich alles persönlich.</p>
       </div>
@@ -907,7 +918,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
 <div class="page" data-page="angebot" hidden>
   <section class="phero">
     <div class="wrap">
-      <p class="crumb"><a href="#start">Start</a><span>/</span><span>Angebot</span></p>
+      <p class="crumb"><a href="/">Start</a><span>/</span><span>Angebot</span></p>
       <h1>Zwei Wege. <em class="grad">Ein Versprechen.</em></h1>
       <p class="lede">Entweder du hast schon eine Idee und ich setze sie um. Oder wir finden gemeinsam deinen größten Zeitfresser und schaffen ihn ab. In beiden Fällen gilt: Festpreis, keine Vorkasse, bezahlt erst, wenn es läuft.</p>
       <div class="pills"><span class="pill">Festpreis</span><span class="pill">0 € Vorkasse</span><span class="pill">Tests mit echten Fällen</span><span class="pill">Nacharbeit inklusive</span></div>
@@ -918,7 +929,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Drei Bausteine</p>
           <h2 class="h2" id="ang-tiers">Drei Bausteine. Ein Ziel: mehr Zeit.</h2>
         </div>
         <p>Das Programm, wenn du noch keine Idee hast. Die Umsetzung, wenn du schon weißt, was laufen soll. Die Betreuung danach, wenn du willst, dass es dauerhaft läuft.</p>
@@ -945,10 +955,10 @@ html.no-notes .notes-toggle i{background:var(--line)}
           <span class="t-badge">Empfohlen</span>
           <span class="t-tier">Schon eine Idee?</span>
           <h3>Umsetzung</h3>
-          <p class="t-sub">Deine Idee, live in 7–14 Tagen</p>
+          <p class="t-sub">Deine Idee, live in 4 Wochen</p>
           <p class="t-for">Ein Ablauf, fertig gebaut in deinen Tools</p>
           <p class="t-price">ab 2.900 €</p>
-          <p class="t-line">Festpreis 2.900–4.900 € je nach Umfang · 7–14 Tage</p>
+          <p class="t-line">Festpreis 2.900–4.900 € je nach Umfang · 4 Wochen</p>
           <ul class="t-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Deine Idee oder ein Use Case aus der Liste</span></li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Eingerichtet in deinen Tools, kein Systemwechsel</span></li>
@@ -983,7 +993,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
 
   <section class="sec" aria-labelledby="pay-h">
     <div class="wrap">
-      <p class="eyebrow">So zahlst du</p>
       <h2 class="h2 mt-s" id="pay-h" style="margin-bottom:56px">Drei Zeitpunkte. Keiner davon vorab.</h2>
       <div class="steps steps-3">
         <div class="step"><span class="n">Start</span><h3>0 €</h3><p>Wir starten ohne Anzahlung. Du gibst Zugänge frei, ich fange an zu bauen.</p></div>
@@ -997,7 +1006,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Mein Versprechen</p>
           <h2 class="h2" id="ang-gar">Du zahlst erst, wenn es läuft.</h2>
         </div>
         <p>Keine Vorkasse, kein Risiko auf deiner Seite. Das gilt für jede Umsetzung und für das 8-Wochen-Programm.</p>
@@ -1014,7 +1022,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
 
   <section class="sec" aria-labelledby="ang-faq">
     <div class="wrap two">
-      <div><p class="eyebrow">Häufige Fragen</p><h2 class="h2" id="ang-faq">Kurz beantwortet</h2></div>
+      <div><h2 class="h2" id="ang-faq">Kurz beantwortet</h2></div>
       <div class="faq" id="faqAngebot"></div>
     </div>
   </section>
@@ -1022,7 +1030,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
   <section class="sec band glow" aria-labelledby="ang-cta">
     <div class="wrap offer">
       <div>
-        <p class="eyebrow">Erstgespräch</p>
         <h2 class="h2" id="ang-cta">Welcher Ablauf kostet dich am meisten Zeit?</h2>
         <p class="lede">In 30 Minuten schauen wir gemeinsam drauf. Danach weißt du, ob Umsetzung oder Programm passt, oder ob sich der Aufwand für dich nicht lohnt.</p>
       </div>
@@ -1039,10 +1046,10 @@ html.no-notes .notes-toggle i{background:var(--line)}
 <div class="page" data-page="use-cases" hidden>
   <section class="phero" style="padding-bottom:32px">
     <div class="wrap">
-      <p class="crumb"><a href="#start">Start</a><span>/</span><span>Use Cases</span></p>
+      <p class="crumb"><a href="/">Start</a><span>/</span><span>Use Cases</span></p>
       <h1>Use Cases</h1>
-      <p class="lede">Alles, was ich für dich automatisieren kann, sortiert nach dem Ergebnis, das es dir bringt. Jede Idee wird als Umsetzung gebaut: Festpreis ab 2.900 €, live in 7–14 Tagen, bezahlt erst, wenn es läuft.</p>
-      <div class="pills"><span class="pill">ab 2.900 € Festpreis</span><span class="pill">7–14 Tage bis live</span><span class="pill">In deinen Tools</span><span class="pill">0 € Vorkasse</span></div>
+      <p class="lede">Alles, was ich für dich automatisieren kann, sortiert nach dem Ergebnis, das es dir bringt. Jede Idee wird als Umsetzung gebaut: Festpreis ab 2.900 €, live in 4 Wochen, bezahlt erst, wenn es läuft.</p>
+      <div class="pills"><span class="pill">ab 2.900 € Festpreis</span><span class="pill">4 Wochen bis live</span><span class="pill">In deinen Tools</span><span class="pill">0 € Vorkasse</span></div>
     </div>
   </section>
 
@@ -1050,7 +1057,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">Fertige Systeme</p>
           <h2 class="h2" id="sys-h">Sechs Systeme, die schon laufen</h2>
         </div>
         <p>Für Betriebe, bei denen der Engpass im Vertrieb liegt: Anfragen beantworten, nachfassen, alte Kontakte zurückholen. Jedes System hat eine eigene Seite mit Ablauf, Preis und Garantie.</p>
@@ -1059,7 +1065,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
         <div class="f-l">
           <span class="pill">Paket aus drei Systemen</span>
           <h3>Jede Anfrage beantwortet. Jedes Angebot nachgefasst.</h3>
-          <p>Das Lead Revenue System verbindet LeadBlitz 60, ReaktivierungsBlitz und FollowUpHero, auf Wunsch mit Anrufwächter, zu einer Strecke von der ersten Anfrage bis zum Auftrag. Ich baue es in 21 Tagen und betreibe es danach jeden Monat weiter.</p>
+          <p>Das Lead Revenue System verbindet LeadBlitz 60, ReaktivierungsBlitz und FollowUpHero, auf Wunsch mit Anrufwächter, zu einer Strecke von der ersten Anfrage bis zum Auftrag. Ich baue es in 12 Wochen und betreibe es danach jeden Monat weiter.</p>
           <p class="hl">Drei Systeme zum Paketpreis statt einzeln. Bezahlt erst, wenn es läuft.</p>
           <span class="textlink" style="align-self:flex-start;margin-top:8px">Lead Revenue System ansehen</span>
         </div>
@@ -1114,7 +1120,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
     <div class="wrap">
       <div class="sec-head" style="margin-bottom:8px">
         <div>
-          <p class="eyebrow">Alle Ideen</p>
           <h2 class="h2" id="ideen-h">Nach Ergebnis sortiert</h2>
         </div>
         <p>Jede Idee ist eine Umsetzung: Festpreis zwischen 2.900 und 4.900 €, je nach Umfang. Der genaue Preis steht nach dem Erstgespräch fest, vor dem Start.</p>
@@ -1127,7 +1132,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
   <section class="sec band glow" aria-labelledby="uc-cta">
     <div class="wrap offer">
       <div>
-        <p class="eyebrow">Deine Idee ist nicht dabei?</p>
         <h2 class="h2" id="uc-cta">Dann erzähl sie mir.</h2>
         <p class="lede">Die Liste ist ein Startpunkt, kein Katalog. Wenn du weißt, welche Aufgabe automatisch laufen soll, schauen wir im Erstgespräch, wie das in deinen Tools aussieht.</p>
       </div>
@@ -1143,11 +1147,11 @@ html.no-notes .notes-toggle i{background:var(--line)}
 <div class="page" data-page="speed-to-lead" hidden>
   <section class="phero">
     <div class="wrap">
-      <p class="crumb"><a href="#start">Start</a><span>/</span><a href="#use-cases">Use Cases</a><span>/</span><span>Speed to Lead</span></p>
+      <p class="crumb"><a href="/">Start</a><span>/</span><a href="#use-cases">Use Cases</a><span>/</span><span>Speed to Lead</span></p>
       <p class="eyebrow mt-m">Sekunden statt Stunden</p>
       <h1>Speed to Lead</h1>
       <p class="lede">Neue Leads bekommen innerhalb von Minuten eine passende Antwort, statt nach Tagen oder nie.</p>
-      <div class="pills"><span class="pill">Umsetzung ab 2.900 €</span><span class="pill">7–14 Tage bis live</span><span class="pill">0 € Vorkasse</span></div>
+      <div class="pills"><span class="pill">Umsetzung ab 2.900 €</span><span class="pill">4 Wochen bis live</span><span class="pill">0 € Vorkasse</span></div>
     </div>
   </section>
   <section class="sec" aria-labelledby="stl-ba">
@@ -1169,7 +1173,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
   </section>
   <section class="sec" aria-labelledby="stl-steps">
     <div class="wrap">
-      <p class="eyebrow">Was im Hintergrund passiert</p>
       <h2 class="h2 mt-s" id="stl-steps" style="margin-bottom:56px">Die Schritte im Überblick</h2>
       <div class="steps steps5" id="stlSteps">
         <div class="step"><span class="n">01</span><p style="color:var(--ink);margin-top:14px">Anfragen aus Formular, Telefon oder Anzeigen laufen an einer Stelle zusammen.</p></div>
@@ -1182,7 +1185,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
   </section>
   <section class="sec" aria-labelledby="stl-calc">
     <div class="wrap">
-      <p class="eyebrow">Beispielrechnung</p>
       <h2 class="h2 mt-s" id="stl-calc" style="margin-bottom:40px">Rechne es für dich durch</h2>
       <div class="calc">
         <div class="in">
@@ -1202,7 +1204,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
   </section>
   <section class="sec" aria-labelledby="stl-who">
     <div class="wrap two">
-      <div><p class="eyebrow">Für wen lohnt sich das?</p><h2 class="h2" id="stl-who">Typische Ausgangslagen</h2></div>
+      <div><h2 class="h2" id="stl-who">Typische Ausgangslagen</h2></div>
       <ul class="ticks" style="font-size:var(--s-4)">
         <li>Betriebe, die Anfragen über Formulare oder Werbeanzeigen bekommen</li>
         <li>Branchen mit starkem Wettbewerb, in denen mehrere Anbieter parallel angefragt werden</li>
@@ -1212,7 +1214,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
   </section>
   <section class="sec" aria-labelledby="stl-faq">
     <div class="wrap two">
-      <div><p class="eyebrow">Offene Fragen</p><h2 class="h2" id="stl-faq">Häufige Fragen zu Speed to Lead</h2></div>
+      <div><h2 class="h2" id="stl-faq">Häufige Fragen zu Speed to Lead</h2></div>
       <div class="faq" id="faqSTL"></div>
     </div>
   </section>
@@ -1236,17 +1238,16 @@ html.no-notes .notes-toggle i{background:var(--line)}
 <div class="page" data-page="detail" hidden>
   <section class="phero">
     <div class="wrap">
-      <p class="crumb"><a href="#start">Start</a><span>/</span><a href="#use-cases">Use Cases</a><span>/</span><span id="d-crumb"></span></p>
+      <p class="crumb"><a href="/">Start</a><span>/</span><a href="#use-cases">Use Cases</a><span>/</span><span id="d-crumb"></span></p>
       <p class="eyebrow mt-m" id="d-kicker"></p>
       <h1 id="d-title"></h1>
       <p class="lede" id="d-text"></p>
-      <div class="pills"><span class="pill">Umsetzung ab 2.900 €</span><span class="pill">7–14 Tage bis live</span><span class="pill">0 € Vorkasse</span></div>
+      <div class="pills"><span class="pill">Umsetzung ab 2.900 €</span><span class="pill">4 Wochen bis live</span><span class="pill">0 € Vorkasse</span></div>
     </div>
   </section>
   <section class="sec" aria-labelledby="d-how">
     <div class="wrap">
-      <p class="eyebrow">So läuft die Umsetzung</p>
-      <h2 class="h2 mt-s" id="d-how" style="margin-bottom:56px">Von der Idee bis live in 7–14 Tagen</h2>
+      <h2 class="h2 mt-s" id="d-how" style="margin-bottom:56px">Von der Idee bis live in 4 Wochen</h2>
       <div class="steps">
         <div class="step"><span class="n">01</span><h3>Erstgespräch</h3><p>Wir klären, wie der Ablauf heute läuft, welche Tools beteiligt sind und was am Ende messbar besser sein soll.</p></div>
         <div class="step"><span class="n">02</span><h3>Festpreis</h3><p>Du bekommst einen festen Preis zwischen 2.900 und 4.900 €, je nach Umfang. Keine Anzahlung.</p></div>
@@ -1274,7 +1275,7 @@ html.no-notes .notes-toggle i{background:var(--line)}
 <div class="page" data-page="erstgespraech" hidden>
   <section class="phero" style="padding-bottom:40px">
     <div class="wrap">
-      <p class="crumb"><a href="#start">Start</a><span>/</span><span>Erstgespräch</span></p>
+      <p class="crumb"><a href="/">Start</a><span>/</span><span>Erstgespräch</span></p>
       <p class="eyebrow mt-m">Kostenlos &amp; unverbindlich</p>
       <h1>Erstgespräch buchen</h1>
     </div>
@@ -1304,7 +1305,6 @@ html.no-notes .notes-toggle i{background:var(--line)}
 <section class="sec band" id="home-book" data-only="start" aria-labelledby="hb-h">
   <div class="wrap book">
     <div class="book-copy">
-      <p class="eyebrow">Kostenlos &amp; unverbindlich</p>
       <h2 class="h2" id="hb-h">Lass uns in 30 Minuten klären, wo bei dir Zeit verloren geht.</h2>
       <p class="lede">Wähle direkt einen passenden Termin. Danach weißt du, ob du mit einer Idee oder mit dem Programm startest, und was es kostet. Festpreis, bezahlt erst, wenn es läuft.</p>
       <div class="pills"><span class="pill">30 Minuten</span><span class="pill">100 % kostenlos</span><span class="pill">Kein Verkaufsdruck</span></div>
@@ -1319,36 +1319,43 @@ html.no-notes .notes-toggle i{background:var(--line)}
 </section>
 </main>
 
-<footer class="ftr">
-  <div class="wrap ftr-grid">
-    <div class="brand">
-      <a class="logo" href="#start" style="color:var(--band-fg)"><img src="assets/logo.svg" alt="Bot sei Dank" width="150" height="23"></a>
-      <p>KI-Automatisierung für Betriebe, die von Anfragen leben. Festpreis, bezahlt erst, wenn es läuft.</p>
-      <a class="btn btn-primary" href="#erstgespraech" style="align-self:flex-start">Kostenloses Gespräch buchen <span class="arr">→</span></a>
-    </div>
-    <div class="col">
-      <span class="mono">Navigation</span>
-      <a href="#angebot">Angebot</a>
-      <a href="ablauf-sprint.html">8-Wochen-Programm</a>
-      <a href="#use-cases">Use Cases</a>
-      <a href="#ueber-mich">Über mich</a>
-      <a href="#erstgespraech">Erstgespräch</a>
-    </div>
-    <div class="col">
-      <span class="mono">Kontakt</span>
-      <span style="user-select:all">alina@botseidank.com</span>
-      <a href="https://www.linkedin.com/in/alina-nath/" target="_blank" rel="noopener">linkedin.com/in/alina-nath</a>
-    </div>
-    <div class="big" aria-hidden="true" data-text="befreien.">befreien.</div>
-    <div class="bottom">
-      <span>© 2026 Bot sei Dank · Alina Nath. Alle Rechte vorbehalten.</span>
-      <nav aria-label="Rechtliches"><button type="button" class="consent-link" data-consent-open>Cookie-Einstellungen</button><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></nav>
-    </div>
+<!-- layout:footer -->
+<footer class="site-ftr">
+  <div>
+    <a class="logo" href="/" aria-label="Bot sei Dank, zur Startseite"></a>
+    <p>KI-Automatisierung für deinen Betrieb. Festpreis, bezahlt erst, wenn es läuft.</p>
+  </div>
+  <nav aria-label="Seiten">
+    <span class="m">Seiten</span>
+    <a href="angebot.html">Angebot</a>
+    <a href="ablauf-sprint.html">8-Wochen-Programm</a>
+    <a href="lead-revenue-system.html">Lead Revenue System</a>
+    <a href="use-cases.html">Use Cases</a>
+    <a href="/#ueber-mich">Über mich</a>
+    <a href="/#erstgespraech">Erstgespräch</a>
+  </nav>
+  <nav aria-label="Einzelne Lösungen">
+    <span class="m">Einzelne Lösungen</span>
+    <a href="leadblitz-60.html">LeadBlitz 60</a>
+    <a href="anrufwaechter.html">Anrufwächter 24/7</a>
+    <a href="followup.html">FollowUpHero</a>
+    <a href="reaktivierung.html">ReaktivierungsBlitz</a>
+    <a href="befund-brief.html">Befund-Brief</a>
+  </nav>
+  <div class="f-col">
+    <span class="m">Kontakt</span>
+    <a href="mailto:alina@botseidank.com">alina@botseidank.com</a>
+    <a href="https://www.linkedin.com/in/alina-nath/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 Bot sei Dank · Alina Nath. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</span>
+    <nav aria-label="Rechtliches"><button type="button" class="consent-link" data-consent-open>Cookie-Einstellungen</button><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></nav>
   </div>
 </footer>
+<!-- /layout:footer -->
 
 
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v=20261111"></script>
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/CustomEase.min.js"></script>
@@ -1392,7 +1399,7 @@ var FAQ_START = [
  {q:"Was kostet das?", a:"Die Umsetzung einer Idee kostet einen Festpreis zwischen 2.900 und 4.900 €, je nach Umfang. Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer."},
  {q:"Wann zahle ich?", a:"Nichts vorab. Die erste Hälfte wird fällig, wenn das System in deinen Tools live läuft und du erste Ergebnisse siehst. Die zweite Hälfte erst, wenn der Ablauf den Test mit echten Fällen bestanden hat."},
  {q:"Was passiert, wenn das Ziel nicht erreicht wird?", a:"Wir vereinbaren vor dem Start eine Kennzahl, zum Beispiel wie viel Zeit der Ablauf danach weniger kosten soll. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach, bis sie erreicht ist. Die zweite Rate wird erst danach fällig."},
- {q:"Idee oder Programm, wie entscheide ich das?", a:"Wenn du schon weißt, welche Aufgabe automatisch laufen soll, ist die Umsetzung der schnellere Weg: 7 bis 14 Tage bis live. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten."},
+ {q:"Idee oder Programm, wie entscheide ich das?", a:"Wenn du schon weißt, welche Aufgabe automatisch laufen soll, ist die Umsetzung der schnellere Weg: 4 Wochen bis live. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten."},
  {q:"Funktioniert das mit unseren bestehenden Tools?", a:"Meist ja. Angebunden wird über Schnittstellen oder Webhooks an CRM, E-Mail, Kalender, Telefonie und Tabellen. Einen Systemwechsel brauchst du nicht."},
  {q:"Ist das DSGVO-konform?", a:"Ja. Ich arbeite mit Auftragsverarbeitungsverträgen, prüfe jeden eingesetzten Dienst und betreibe die Automatisierung auf Wunsch selbst gehostet auf einem Server in Deutschland. Welche Daten wohin fließen, ist dokumentiert."},
  {q:"Muss mein Team die KI bedienen oder geschult werden?", a:"Nein. Das System läuft im Hintergrund. Dein Team bekommt eine kurze Einweisung, wer wann eingreift, und eine Übersicht der Rollen."},
@@ -1456,7 +1463,7 @@ var root=document.documentElement;
 $$('.portrait img').forEach(function(img){ img.addEventListener('error',function(){ img.closest('.portrait').classList.add('broken') }); if(img.complete && img.naturalWidth===0) img.closest('.portrait').classList.add('broken'); });
 
 /* ── Mobile Menü ── */
-$('#burger').addEventListener('click',function(){ var o=$('#nav').classList.toggle('open'); this.setAttribute('aria-expanded',String(o)); });
+
 
 /* ── Motion-Engine: Lenis + GSAP, ein Ticker ── */
 var hasG = !!window.gsap, lenis = null, EASE = 'power3.out';
@@ -1471,7 +1478,7 @@ if(hasG){
   }
 }
 var pBar=$('#progressBar');
-function onScrollUI(){ $('#hdr').classList.toggle('scrolled', window.scrollY>10); var h=document.documentElement.scrollHeight-window.innerHeight; if(pBar) pBar.style.transform='scaleX('+(h>0?Math.min(1,window.scrollY/h):0)+')'; }
+function onScrollUI(){ var h=document.documentElement.scrollHeight-window.innerHeight; if(pBar) pBar.style.transform='scaleX('+(h>0?Math.min(1,window.scrollY/h):0)+')'; }
 window.addEventListener('scroll',onScrollUI,{passive:true}); onScrollUI();
 document.addEventListener('pointermove',function(ev){ var c=ev.target.closest && ev.target.closest('.way,.rcard,.ocard,.gcard,.path'); if(!c) return; var r=c.getBoundingClientRect(); c.style.setProperty('--mx',(ev.clientX-r.left)+'px'); c.style.setProperty('--my',(ev.clientY-r.top)+'px'); },{passive:true});
 
@@ -1644,7 +1651,7 @@ function route(){
   if(JUMPS[h]){ jump=h; h=JUMPS[h]; }
   var key=h, detail=null;
   if(h.indexOf('r-')===0){ detail=REP.filter(function(r){return r.s===h.slice(2)})[0]; key=detail?'detail':'use-cases'; }
-  if(!$('[data-page="'+key+'"]')) key='start';
+  if(!$('[data-page="'+key+'"]')) key='use-cases';
   currentPage=key;
   $$('.page').forEach(function(p){ p.hidden = p.getAttribute('data-page')!==key; });
   $('#home-book').hidden = key!=='start';
@@ -1654,7 +1661,6 @@ function route(){
   } else { document.title = TITLES[key]||TITLES.start; }
   var navKey = jump==='ueber-mich' ? 'ueber-mich' : ((key==='speed-to-lead'||key==='detail') ? 'use-cases' : key);
   $$('[data-nav]').forEach(function(a){ if(a.getAttribute('data-nav')===navKey) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
-  $('#nav').classList.remove('open'); $('#burger').setAttribute('aria-expanded','false');
   if(key==='use-cases'){ applyFilter(pendingFilter||""); pendingFilter=null; }
   var page=$('[data-page="'+key+'"]');
   if(lenis) lenis.scrollTo(0,{immediate:true}); else window.scrollTo(0,0);

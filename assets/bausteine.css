@@ -1,0 +1,69 @@
+/* botseidank.com – Bausteine, die Startseite und Angebotsseite teilen: Stufen, Zahlung, Alternativen, FAQ, Terminbuchung */
+.chips{display:flex;flex-wrap:wrap;gap:.4em 1.4em;color:var(--ink-3);font-size:.92em;list-style:none;padding:0}
+.chips li::before{content:"✓ ";color:var(--acc);font-weight:700}
+.chips.col{flex-direction:column;gap:.5em}
+
+/* 8 Angebot */
+.offer{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.2vw,20px);margin-top:clamp(30px,6vh,64px)}
+.of{border-radius:30px;padding:clamp(20px,2.2vw,36px);display:flex;flex-direction:column;position:relative}
+.of.top{background:rgba(255,255,255,.88)}
+.badge{align-self:flex-start;background:var(--ink);color:#fff;border-radius:999px;padding:.5em .9em;margin-bottom:1.2em}
+.of h3{margin:.5em 0 .35em}
+.of>p{color:var(--ink-3)}
+.price{font:800 clamp(34px,3.3vw,56px)/1 var(--f-d);letter-spacing:-.045em;margin-top:.7em;white-space:nowrap}
+.price small{display:block;font:400 clamp(13px,.92vw,15px)/1.4 var(--f-t);letter-spacing:0;color:var(--ink-2);margin-top:.7em;white-space:normal}
+.of ul{list-style:none;padding:0;margin:1.3em 0}
+.of li{padding:.62em 0 .62em 1.8em;border-top:1px solid var(--line);position:relative}
+.of li::before,.incl li::before{content:"✓";position:absolute;left:0;color:var(--acc);font-weight:700}
+.ex{font-size:.88em;color:var(--ink-2);margin-bottom:1.2em}
+.ex b{color:var(--ink);font-weight:600;white-space:nowrap}
+.gar{margin-top:auto;border-radius:16px;background:color-mix(in srgb,var(--acc) 10%,transparent);padding:1em 1.15em;font-size:.93em}
+.gar b{display:block}
+.of .cta{margin-top:1.2em;align-self:flex-start}
+.incl{margin-top:clamp(10px,1.2vw,20px);border-radius:30px;padding:clamp(20px,2.6vw,40px);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:3vw;align-items:start}
+.incl ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 3vw}
+.incl li{padding:.62em 0 .62em 1.8em;border-top:1px solid var(--line);position:relative}
+.care{margin-top:clamp(10px,1.2vw,20px);border-radius:30px;padding:clamp(20px,2.6vw,40px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) auto;gap:3vw;align-items:center}
+.care h3{margin-top:.35em}
+.care strong{font:800 clamp(26px,2.6vw,44px)/1 var(--f-d);letter-spacing:-.04em;white-space:nowrap}
+.care strong small{font:400 .42em/1 var(--f-t);letter-spacing:0;color:var(--ink-2)}
+.slots{margin-top:clamp(10px,1.2vw,20px);border-radius:22px;padding:16px 16px 16px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--ink);color:#fff}
+.slots p{font-weight:600;font-size:1.05em}
+.slots .cta{background:var(--mint);color:var(--ink)}
+.slots .cta:hover{background:#fff}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,40px);margin-top:clamp(40px,8vh,84px);position:relative;padding-top:24px}
+.pay::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:3px;background:var(--line)}
+.pay u{position:absolute;left:0;right:0;top:0;height:3px;border-radius:3px;background:var(--acc);transform:scaleX(0);transform-origin:left}
+.pay b{display:block;font:800 clamp(34px,4.4vw,76px)/1 var(--f-d);letter-spacing:-.045em;margin:.25em 0 .3em}
+.pay span:not(.m){color:var(--ink-3)}
+.alt{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,24px);margin-top:clamp(30px,6vh,64px)}
+.alt div{border-radius:24px;padding:clamp(18px,2.2vw,34px)}
+.alt b{display:block;font:800 clamp(26px,2.8vw,46px)/1.02 var(--f-d);letter-spacing:-.04em;margin-bottom:.45em}
+.alt div:not(.win-a) b{color:var(--ink-2);text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--bad)}
+.alt .win-a{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* FAQ und Terminbuchung */
+.faqw{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,6vw,110px);align-items:start}
+.faq details{border-radius:20px;margin-bottom:10px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;padding:19px 0;font-weight:600;font-size:1.06em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;font:400 1.5em/1 var(--f-t);color:var(--acc);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 30px 20px 0;color:var(--ink-3)}
+.more{margin-top:1.2em}
+.book{border-radius:40px;padding:clamp(22px,3.4vw,56px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,70px);align-items:start}
+.book-copy>p{margin:1.1em 0 1.3em;color:var(--ink-3);font-size:1.08em;max-width:30em}
+.chips.col{flex-direction:column;gap:.5em}
+.who{display:flex;gap:16px;align-items:center;margin-top:1.6em;padding-top:1.4em;border-top:1px solid var(--line)}
+.who img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex:none}
+.who b{display:block}.who span{color:var(--ink-2);font-size:.9em}
+.slot{background:#fff;border-radius:26px;overflow:hidden;border:1px solid var(--line)}
+.slot-top{display:flex;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--line)}
+.cal-target iframe{color-scheme:light}
+
+@media (max-width:1080px){.offer{grid-template-columns:1fr}.price{white-space:normal}}
+@media (max-width:860px){
+  .safe,.care,.faqw,.incl,.incl ul,.book{grid-template-columns:1fr}
+  .book{border-radius:26px}.slot{border-radius:18px}
+  .pay,.alt{grid-template-columns:1fr}
+}
