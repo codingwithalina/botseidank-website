@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bewerte Bot sei Dank</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F2FF">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts.css">
+<!--
+  Bewertungsseite für den QR-Code (https://www.botseidank.com/bewertung/).
+  Kein Tracking, keine Cookies, darum hier kein Cookie-Banner.
+
+  Anleitung: Repo codingwithalina/Bewertungen → ANMELDUNG.md
+-->
+<style>
+:root{
+  --ink:#2A0A52;--ink-2:#5B4A78;--accent:#6234BC;--mint:#A5FCDF;--line:rgba(98,52,188,.16);
+  --card:rgba(255,255,255,.72);--f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;
+  padding:32px 16px;font-family:var(--f-t);color:var(--ink);background:#F6F2FF;
+  background-image:
+    radial-gradient(60% 45% at 15% 10%,rgba(165,252,223,.75),transparent 70%),
+    radial-gradient(55% 45% at 90% 20%,rgba(98,52,188,.28),transparent 70%),
+    radial-gradient(70% 50% at 50% 100%,rgba(165,252,223,.45),transparent 70%);
+}
+.c{width:100%;max-width:440px;text-align:center;background:var(--card);border:1px solid var(--line);
+  border-radius:28px;padding:36px 22px 26px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 30px 60px -30px rgba(42,10,82,.35)}
+.firm{font:700 15px/1 var(--f-d);letter-spacing:.02em;color:var(--accent)}
+.stars{color:#F2B33D;font-size:26px;letter-spacing:5px;margin:16px 0 8px}
+h1{font:700 clamp(24px,6.5vw,30px)/1.15 var(--f-d);margin:0 0 10px;letter-spacing:-.01em}
+p.sub{color:var(--ink-2);margin:0 0 26px;line-height:1.55;font-size:15.5px}
+nav{display:grid;gap:10px}
+.b{display:flex;align-items:center;gap:12px;min-height:56px;padding:14px 18px;border-radius:16px;
+  text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);font:600 16px/1.2 var(--f-t);
+  transition:transform .2s,box-shadow .2s}
+.b:hover,.b:focus-visible{transform:translateY(-1px);box-shadow:0 10px 24px -14px rgba(42,10,82,.45)}
+.b:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.b.first{background:var(--accent);border-color:var(--accent);color:#fff}
+.b.first .d{outline:2px solid #fff}
+.d{width:10px;height:10px;border-radius:50%;flex:none}
+.t{flex:1;text-align:left}
+.a{opacity:.65}
+.f{font-size:13.5px;color:var(--ink-2);margin-top:22px;line-height:1.5}
+.f a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main class="c">
+  <div class="firm">Bot sei Dank</div>
+  <div class="stars" aria-hidden="true">★★★★★</div>
+  <h1>Wie war die Zusammenarbeit?</h1>
+  <p class="sub">Deine Meinung hilft mir und anderen Betrieben bei der Entscheidung. Wähl einfach eine Plattform, dauert unter einer Minute.</p>
+  <nav aria-label="Bewertungsplattformen">
+    <a class="b first" href="https://g.page/r/CV8Ty8qdWUneEBM/review" target="_blank" rel="noopener"><span class="d" style="background:#4285F4"></span><span class="t">Bewerten auf Google</span><span class="a" aria-hidden="true">→</span></a>
+    <a class="b" href="https://www.provenexpert.com/bot-sei-dank/8rzs/" target="_blank" rel="noopener"><span class="d" style="background:#C49A3A"></span><span class="t">ProvenExpert</span><span class="a" aria-hidden="true">→</span></a>
+    <a class="b" href="https://www.trustpilot.com/evaluate/botseidank.com" target="_blank" rel="noopener"><span class="d" style="background:#00B67A"></span><span class="t">Trustpilot</span><span class="a" aria-hidden="true">→</span></a>
+  </nav>
+  <div class="f">Danke dir!<br>Alina · <a href="../">botseidank.com</a></div>
+</main>
+</body>
+</html>
