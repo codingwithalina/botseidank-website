@@ -13,12 +13,15 @@ import pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PARTS = ROOT / "tools" / "partials"
+USE_CASE_PAGES = {"lead-revenue-system.html", "leadblitz-60.html", "anrufwaechter.html", "followup.html", "reaktivierung.html", "befund-brief.html"}
 
 
 def block(name, page):
     html = (PARTS / f"{name}.html").read_text(encoding="utf8").strip()
     if name == "header" and page != "index.html":
-        html = html.replace(f'<a href="{page}">', f'<a href="{page}" aria-current="page">')
+        # Systemseiten gehören zu Use Cases: dort ist „Use Cases“ im Menü aktiv
+        cur = "use-cases.html" if page in USE_CASE_PAGES else page
+        html = html.replace(f'<a href="{cur}">', f'<a href="{cur}" aria-current="page">')
     return f"<!-- layout:{name} -->\n{html}\n<!-- /layout:{name} -->"
 
 

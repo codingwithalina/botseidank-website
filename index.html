@@ -44,10 +44,11 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 .hero-b p{max-width:32em;font-size:1.12em;color:var(--ink-3)}
 .hero-b .cta{display:flex;width:fit-content;margin:1.3em 0 1em}
 .pt{position:relative;justify-self:end;width:min(100%,60vh);aspect-ratio:696/828}
-.pcard{position:absolute;left:4%;right:4%;top:17%;bottom:0;border-radius:36px;background:var(--ink);box-shadow:0 40px 70px -40px var(--ink)}
+.pcard{position:absolute;left:4%;right:4%;top:17%;bottom:0;border-radius:36px;background:linear-gradient(165deg,var(--ink),color-mix(in srgb,var(--acc) 78%,var(--ink)));box-shadow:0 40px 70px -40px var(--ink)}
 .pclip{position:absolute;left:4%;right:4%;top:0;bottom:0;border-radius:0 0 36px 36px;overflow:hidden}
 .pclip>*{position:absolute;left:-4.35%;top:0;width:108.7%;height:100%}
-.ol{background:var(--mint);-webkit-mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat;mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat}
+/* Kontur oben violett, damit sie über der Karte mit ihr verschmilzt (bewusst, trotz Impeccable-Hinweis) */
+.ol{background:linear-gradient(180deg,var(--acc) 0 13%,var(--mint) 23% 100%);-webkit-mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat;mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat}
 .pclip img{display:block;object-fit:fill}
 .tag{position:absolute;border-radius:18px;padding:.7em 1em;font-size:.9em;line-height:1.3;white-space:nowrap;background:rgba(255,255,255,.86)}
 .tag b{display:block;font-weight:700}
@@ -199,7 +200,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <nav class="links" id="site-links" aria-label="Hauptmenü">
     <a href="angebot.html">Angebot</a>
     <a href="ablauf-sprint.html">8-Wochen-Programm</a>
-    <a href="lead-revenue-system.html">Lead Revenue System</a>
     <a href="use-cases.html">Use Cases</a>
     <a class="opt" href="/#ueber-mich">Über mich</a>
     <a class="cta" href="/#erstgespraech">Erstgespräch buchen</a>
@@ -471,13 +471,13 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <span class="m">Seiten</span>
     <a href="angebot.html">Angebot</a>
     <a href="ablauf-sprint.html">8-Wochen-Programm</a>
-    <a href="lead-revenue-system.html">Lead Revenue System</a>
     <a href="use-cases.html">Use Cases</a>
     <a href="/#ueber-mich">Über mich</a>
     <a href="/#erstgespraech">Erstgespräch</a>
   </nav>
-  <nav aria-label="Einzelne Lösungen">
-    <span class="m">Einzelne Lösungen</span>
+  <nav aria-label="Use Cases">
+    <span class="m">Use Cases</span>
+    <a href="lead-revenue-system.html">Lead Revenue System</a>
     <a href="leadblitz-60.html">LeadBlitz 60</a>
     <a href="anrufwaechter.html">Anrufwächter 24/7</a>
     <a href="followup.html">FollowUpHero</a>
