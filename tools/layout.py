@@ -4,6 +4,8 @@
 Aufruf im Repo-Ordner:  python3 tools/layout.py
 Header und Footer stehen in jeder Seite zwischen
 <!-- layout:header --> ... <!-- /layout:header --> bzw. footer.
+Der Angebotsblock (tools/partials/angebot.html) wird überall eingesetzt, wo
+<!-- layout:angebot --> ... <!-- /layout:angebot --> steht.
 Fehlen die Markierungen, wird das erste <header>/<footer> der Seite ersetzt.
 Der Link zur aktuellen Seite bekommt aria-current="page".
 """
@@ -34,6 +36,10 @@ def apply(path):
                 print(f"  {path.name}: kein <{name}> gefunden", file=sys.stderr)
                 continue
             t = tag.sub(lambda m: new, t, count=1)
+    # Optionaler Baustein: Angebot (Startseite und Angebotsseite), nur wo markiert
+    marked = re.compile(r"<!-- layout:angebot -->.*?<!-- /layout:angebot -->", re.S)
+    if marked.search(t):
+        t = marked.sub(lambda m: block("angebot", path.name), t, count=1)
     if t != orig:
         path.write_text(t, encoding="utf8")
         print(f"aktualisiert: {path.name}")

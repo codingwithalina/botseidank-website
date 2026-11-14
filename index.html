@@ -28,9 +28,9 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 <meta property="og:image:height" content="1200">
 <meta property="og:url" content="https://www.botseidank.com/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/fonts.css?v=20261114">
+<link rel="stylesheet" href="assets/fonts.css?v=20261114c">
 <link rel="stylesheet" href="assets/aurora.css?v=2026111401">
-<link rel="stylesheet" href="assets/bausteine.css?v=20261114">
+<link rel="stylesheet" href="assets/bausteine.css?v=20261114c">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 /* Startseite: nur, was es hier gibt. Gemeinsames steht in assets/aurora.css */
@@ -44,10 +44,10 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 .hero-b p{max-width:32em;font-size:1.12em;color:var(--ink-3)}
 .hero-b .cta{display:flex;width:fit-content;margin:1.3em 0 1em}
 .pt{position:relative;justify-self:end;width:min(100%,60vh);aspect-ratio:696/828}
-.pcard{position:absolute;left:4%;right:4%;top:17%;bottom:0;border-radius:36px;background:linear-gradient(165deg,var(--ink),color-mix(in srgb,var(--acc) 78%,var(--ink)));box-shadow:0 40px 70px -40px var(--ink)}
+.pcard{position:absolute;left:4%;right:4%;top:17%;bottom:0;border-radius:36px;background:var(--ink);box-shadow:0 40px 70px -40px var(--ink)}
 .pclip{position:absolute;left:4%;right:4%;top:0;bottom:0;border-radius:0 0 36px 36px;overflow:hidden}
 .pclip>*{position:absolute;left:-4.35%;top:0;width:108.7%;height:100%}
-.ol{background:linear-gradient(180deg,var(--acc) 0 13%,var(--mint) 23% 100%);-webkit-mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat;mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat}
+.ol{background:var(--mint);-webkit-mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat;mask:url(assets/alina-kontur.webp) center/100% 100% no-repeat}
 .pclip img{display:block;object-fit:fill}
 .tag{position:absolute;border-radius:18px;padding:.7em 1em;font-size:.9em;line-height:1.3;white-space:nowrap;background:rgba(255,255,255,.86)}
 .tag b{display:block;font-weight:700}
@@ -83,11 +83,11 @@ window.AWA_CAL_UI={theme:'light',cssVarsPerTheme:{light:{'cal-brand':'#2A0A52','
 .ph b{color:var(--bad-t)}
 .planner{display:flex;flex-direction:column;min-height:0;border-radius:30px;padding:clamp(12px,1.4vw,22px)}
 .grid{flex:1;min-height:0;display:grid;grid-template-columns:2.4em repeat(5,1fr);grid-template-rows:auto repeat(9,1fr)}
-.d{grid-row:1;font:500 clamp(10.5px,.8vw,12.5px)/1 var(--f-m);padding:4px 6px 10px;border-left:1px solid var(--line)}
-.h{grid-column:1;font:400 clamp(9.5px,.72vw,11.5px)/1 var(--f-m);color:var(--ink-2);padding-top:3px;border-top:1px solid var(--line)}
+.d{grid-row:1;font:500 clamp(11px,.8vw,12.5px)/1 var(--f-m);padding:4px 6px 10px;border-left:1px solid var(--line)}
+.h{grid-column:1;font:400 clamp(11px,.76vw,12px)/1 var(--f-m);color:var(--ink-2);padding-top:3px;border-top:1px solid var(--line)}
 .cell{border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.bk{margin:2px;padding:5px 8px;border-radius:9px;font:500 clamp(10px,.84vw,13.5px)/1.15 var(--f-t);overflow:hidden;will-change:transform,opacity;z-index:2}
-.bk.f{background:var(--bad-s);color:var(--bad-d);border-left:3px solid var(--bad)}
+.bk{margin:2px;padding:5px 8px;border-radius:9px;font:500 clamp(11px,.84vw,13.5px)/1.15 var(--f-t);overflow:hidden;will-change:transform,opacity;z-index:2}
+.bk.f{background:var(--bad-s);color:var(--bad-d);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bad) 35%,transparent)}
 .bk.k{background:var(--ink);color:#fff}
 .tally{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:12px 6px 0;border-top:1px solid var(--line)}
 .tally b{font:800 clamp(34px,4vw,68px)/1 var(--f-d);letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -345,42 +345,69 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 
 <!-- 8 · Das Angebot -->
 <section class="sec blk" id="angebot">
-  <h2 class="big">Erst läuft es. Dann zahlst du.</h2>
-  <p class="lead">Drei Stufen, je nachdem, wo du stehst. Für alle gilt: Festpreis, keine Vorkasse, und das Risiko liegt bei mir.</p>
-  <div class="offer">
-    <article class="of glass top">
-      <span class="badge m" style="color:#fff">Schnellster Einstieg</span>
-      <h3>Ein Zeitfresser weniger</h3>
-      <p class="fit">Du weißt, was nervt</p>
-      <p>Du sagst mir, welche Aufgabe von allein laufen soll. In 4 Wochen läuft sie.</p>
-      <div class="price">2.900 bis 3.900 €<small>Festpreis, einmalig. Dein Preis steht nach dem Erstgespräch fest, bevor irgendetwas startet.</small></div>
-      <ul><li>Deine Idee oder ein fertiges System</li><li>Aufgebaut in deinen Programmen</li><li>Testlauf mit echten Vorgängen</li><li>Einweisung und Übergabe-Doku</li></ul>
-      <p class="ex">Zum Beispiel: Alte Kontakte zurückholen <b>2.900 €</b>, Anrufe annehmen, wenn niemand kann <b>3.900 €</b>.</p>
-      <div class="gar"><b>Leistungsgarantie</b>Wir vereinbaren vorab eine Kennzahl. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach.</div>
-      <a class="cta" href="#erstgespraech">Idee besprechen</a>
-    </article>
-    <article class="of glass">
-      <h3>Der größte Zeitfresser, gefunden und abgeschafft</h3>
-      <p class="fit">Du weißt nur, dass Zeit verloren geht</p>
-      <p>Acht Wochen, gemeinsam mit deinem Team. Am Ende nutzt es die Lösung selbst.</p>
-      <div class="price">6.000 €<small>Festpreis in zwei Raten à 3.000 €, fällig erst bei Ergebnis.</small></div>
-      <ul><li>Deine Abläufe an echten Fällen gemessen</li><li>Größter Zeitfresser gefunden, Ziel vereinbart</li><li>Lösung gebaut und getestet</li><li>Einarbeitung, Doku, Vergleich vorher und nachher</li></ul>
-      <div class="gar"><b>Zeitgarantie</b>Mindestens 30 % weniger Zeitaufwand im vereinbarten Ablauf, sonst arbeite ich ohne Mehrkosten nach.</div>
+  <h2 class="big">Zwei Wege. Du entscheidest, wo du stehst.</h2>
+  <p class="lead">Ob du deine Zeitfresser schon kennst oder nicht: Für beide Wege gilt Festpreis, keine Vorkasse, und das Risiko liegt bei mir.</p>
+<!-- layout:angebot -->
+<div class="ways">
+  <article class="way1 of glass">
+    <div class="way1-text">
+      <h3>Weg 1: Du weißt noch nicht, wo deine Zeit verloren geht.</h3>
+      <p class="fit">Das 8-Wochen-Programm</p>
+      <p>Wir schauen uns gemeinsam an, wie bei dir gearbeitet wird, und messen an echten Fällen, welcher Ablauf am meisten Zeit frisst. Genau den automatisiere ich. Nach acht Wochen läuft er, und dein Team arbeitet damit.</p>
+      <ul><li>Deine Abläufe an echten Fällen gemessen</li><li>Größter Zeitfresser gefunden, Ziel vereinbart</li><li>Lösung gebaut, getestet und übergeben</li><li>Vergleich vorher und nachher, schwarz auf weiß</li></ul>
+    </div>
+    <div class="way1-side">
+      <div class="price">6.000&nbsp;€<small>Festpreis in zwei Raten à 3.000&nbsp;€, fällig erst bei Ergebnis.</small></div>
+      <p class="dur">Dauer: <b>8&nbsp;Wochen</b></p>
+      <div class="gar"><b>Zeitgarantie</b>Mindestens 30&nbsp;% weniger Zeitaufwand im vereinbarten Ablauf, sonst arbeite ich ohne Mehrkosten nach.</div>
       <a class="cta" href="ablauf-sprint.html" data-track="programm">Programm im Detail</a>
-    </article>
-    <article class="of glass">
-      <h3>Dein Vertrieb läuft von allein</h3>
-      <p class="fit">Du willst einen ganzen Bereich abgeben</p>
-      <p>Drei Systeme als eine Strecke, von der ersten Anfrage bis zum Auftrag. In 12 Wochen steht alles.</p>
-      <div class="price">9.900 €<small>Einrichtung einmalig, danach 1.790 € im Monat für den laufenden Betrieb.</small></div>
-      <ul><li>Jede neue Anfrage wird in 60 Sekunden zurückgerufen</li><li>Offene Angebote werden nachgefasst</li><li>Alte Kontakte werden zurückgeholt</li><li>Ich betreibe es jeden Monat weiter</li></ul>
-      <div class="gar"><b>Garantie je System</b>Jedes der drei Systeme hat eine eigene, messbare Garantie. Bezahlt erst, wenn es läuft.</div>
-      <a class="cta" href="lead-revenue-system.html" data-track="paket">Paket ansehen</a>
-    </article>
-  </div>
-  <div class="slots"><p>Ich arbeite an höchstens zwei Projekten gleichzeitig. Startplätze sind deshalb begrenzt.</p><a class="cta" href="#erstgespraech">Kostenloses Erstgespräch buchen</a></div>
+    </div>
+  </article>
 
-  <p class="more"><a class="lnk" href="angebot.html">Was in jeder Stufe dabei ist, wie du zahlst und was die Alternativen kosten</a></p>
+  <div class="way2">
+    <h3>Weg 2: Du weißt schon, was von allein laufen soll.</h3>
+    <p class="way2-lead">Dann bauen wir genau das. Wie groß dein Vorhaben ist, erkennst du an den Beispielen. Im Erstgespräch ordnen wir es gemeinsam ein, und dein Festpreis steht fest, bevor irgendetwas startet.</p>
+    <div class="offer pk">
+      <article class="of glass">
+        <h4>Klein</h4>
+        <p class="fit">Ein Handgriff, der nie wieder liegen bleibt</p>
+        <div class="price">2.900 bis 3.900&nbsp;€<small>Festpreis, einmalig</small></div>
+        <p class="dur">Läuft nach <b>4&nbsp;Wochen</b></p>
+        <p class="pk-h">Woran du es erkennst</p>
+        <ul><li>Ein Auslöser, ein klares Ergebnis</li><li>Läuft jedes Mal gleich ab</li><li>1 bis 2 deiner Programme sind beteiligt</li></ul>
+        <p class="pk-h">Zum Beispiel</p>
+        <ul class="ex-list"><li>Nach jedem Auftrag fragt eine Nachricht nach einer Bewertung.</li><li>Rechnungen aus deinem Postfach landen sortiert beim Steuerberater.</li><li>Jede Anfrage über die Website bekommt sofort eine Bestätigung und steht in deiner Kundenliste.</li><li>Alte Kontakte werden angeschrieben und zurückgeholt.</li></ul>
+        <a class="cta" href="#erstgespraech">Idee besprechen</a>
+      </article>
+      <article class="of glass">
+        <h4>Mittel</h4>
+        <p class="fit">Ein ganzer Ablauf, der von allein läuft</p>
+        <div class="price">4.900 bis 6.900&nbsp;€<small>Festpreis, einmalig</small></div>
+        <p class="dur">Läuft nach <b>6&nbsp;Wochen</b></p>
+        <p class="pk-h">Woran du es erkennst</p>
+        <ul><li>Mehrere Schritte hintereinander</li><li>Es muss gelesen, verstanden oder formuliert werden</li><li>Sonderfälle werden erkannt und an dich gegeben</li><li>3 bis 5 deiner Programme sind beteiligt</li></ul>
+        <p class="pk-h">Zum Beispiel</p>
+        <ul class="ex-list"><li>Aus deinen Notizen zum Kundengespräch wird ein fertiges Angebot, das nachgefasst wird.</li><li>Dein Postfach sortiert sich selbst und beantwortet Standardfragen.</li><li>Jede neue Anfrage wird in 60 Sekunden zurückgerufen und bekommt einen Termin.</li></ul>
+        <a class="cta" href="#erstgespraech">Idee besprechen</a>
+      </article>
+      <article class="of glass">
+        <h4>Groß</h4>
+        <p class="fit">Ein ganzer Bereich läuft von allein</p>
+        <div class="price">ab 9.900&nbsp;€<small>Festpreis, einmalig, auf Wunsch mit laufender Betreuung</small></div>
+        <p class="dur">Läuft nach <b>8 bis 12&nbsp;Wochen</b></p>
+        <p class="pk-h">Woran du es erkennst</p>
+        <ul><li>Mehrere Abläufe greifen ineinander</li><li>Mehrere Personen oder Abteilungen sind beteiligt</li><li>6 oder mehr deiner Programme sind beteiligt</li></ul>
+        <p class="pk-h">Zum Beispiel</p>
+        <ul class="ex-list"><li>Dein Vertrieb, von der ersten Anfrage bis zum Auftrag, mit Rückruf, Nachfassen und Reaktivierung.</li><li>Deine Buchhaltung, von der Rechnung über das Mahnwesen bis zum Steuerberater.</li><li>Dein Kundenservice, in dem Telefon, Mail und Chat zusammenarbeiten.</li></ul>
+        <a class="cta" href="#erstgespraech">Vorhaben besprechen</a>
+      </article>
+    </div>
+    <div class="gar gar-all"><b>Leistungsgarantie in jedem Paket</b>Wir vereinbaren vorab eine Kennzahl. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach. Bezahlt wird erst, wenn es läuft.</div>
+  </div>
+</div>
+<!-- /layout:angebot -->
+  <div class="slots"><p>Ich arbeite an höchstens zwei Projekten gleichzeitig. Startplätze sind deshalb begrenzt.</p><a class="cta" href="#erstgespraech">Kostenloses Erstgespräch buchen</a></div>
+  <p class="more"><a class="lnk" href="angebot.html">Was in jedem Paket dabei ist, wie du zahlst und was die Alternativen kosten</a></p>
 </section>
 
 <section class="mq" aria-label="Festpreis, keine Vorkasse, Nacharbeit inklusive">
@@ -406,10 +433,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <h2 class="big">Kurz beantwortet.</h2>
   <div class="faq">
     <details class="glass" open><summary>Was genau machst du?</summary><p>Ich schaue mir an, welche Aufgaben in deinem Betrieb immer wieder gleich ablaufen, zum Beispiel Anfragen beantworten, Angebote schreiben, Rechnungen verschicken oder Daten übertragen. Diese Aufgaben baue ich so um, dass sie von allein laufen, in den Programmen, die ihr schon nutzt.</p></details>
-    <details class="glass"><summary>Was kostet das?</summary><p>Die Umsetzung einer Idee kostet einen Festpreis zwischen 2.900 und 3.900 €, je nach Umfang, und läuft nach 4 Wochen. Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Das Vertriebspaket kostet 9.900 € einmalig plus 1.790 € im Monat und steht nach 12 Wochen. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</p></details>
+    <details class="glass"><summary>Was kostet das?</summary><p>Das 8-Wochen-Programm kostet 6.000 € in zwei Raten. Wenn du schon weißt, was automatisiert werden soll, kostet ein kleines Paket 2.900 bis 3.900 € und läuft nach 4 Wochen, ein mittleres 4.900 bis 6.900 € und läuft nach 6 Wochen, ein großes ab 9.900 € und läuft nach 8 bis 12 Wochen. Das Vertriebspaket kostet 9.900 € einmalig plus 1.790 € im Monat. Die Betreuung danach ist optional und liegt je nach System zwischen 490 und 990 € im Monat, monatlich kündbar. Alle Preise gemäß § 19 UStG ohne Umsatzsteuer.</p></details>
     <details class="glass"><summary>Wann zahle ich?</summary><p>Nichts vorab. Die erste Hälfte wird fällig, wenn das System bei dir live läuft und du erste Ergebnisse siehst. Die zweite Hälfte erst, wenn der Ablauf den Test mit echten Fällen bestanden hat.</p></details>
     <details class="glass"><summary>Was passiert, wenn das Ziel nicht erreicht wird?</summary><p>Wir vereinbaren vor dem Start eine Kennzahl, zum Beispiel wie viel Zeit der Ablauf danach weniger kosten soll. Wird sie verfehlt, arbeite ich ohne Mehrkosten nach, bis sie erreicht ist. Die zweite Rate wird erst danach fällig.</p></details>
-    <details class="glass"><summary>Welche Stufe passt zu mir?</summary><p>Wenn du schon weißt, welche Aufgabe von allein laufen soll, ist die Umsetzung der schnellere Weg: nach 4 Wochen läuft sie. Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Im Erstgespräch klären wir das in wenigen Minuten.</p></details>
+    <details class="glass"><summary>Welcher Weg passt zu mir?</summary><p>Wenn du nur merkst, dass zu viel Zeit verloren geht, aber nicht wo, ist das 8-Wochen-Programm richtig. Wenn du schon weißt, was von allein laufen soll, nimmst du ein Paket: klein, mittel oder groß, je nachdem, wie viele Schritte und Programme beteiligt sind. Im Erstgespräch klären wir das in wenigen Minuten.</p></details>
     <details class="glass"><summary>Funktioniert das mit unseren bestehenden Programmen?</summary><p>Meist ja. Ich binde an, was du schon nutzt: Kundenverwaltung, E-Mail, Kalender, Telefon und Tabellen. Einen Systemwechsel brauchst du nicht.</p></details>
     <details class="glass"><summary>Ist das DSGVO-konform?</summary><p>Ja. Ich arbeite mit Auftragsverarbeitungsverträgen, prüfe jeden eingesetzten Dienst und betreibe die Automatisierung auf Wunsch auf einem Server in Deutschland. Welche Daten wohin fließen, ist dokumentiert.</p></details>
     <details class="glass"><summary>Muss mein Team geschult werden?</summary><p>Nein. Das System läuft im Hintergrund. Dein Team bekommt eine kurze Einweisung, wer wann eingreift, und eine Übersicht der Rollen.</p></details>
@@ -472,8 +499,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="assets/aurora-gl.js?v=20261114"></script>
-<script src="assets/site.js?v=20261114"></script>
+<script src="assets/aurora-gl.js?v=20261114c"></script>
+<script src="assets/site.js?v=20261114c"></script>
 <script>
 (function(){
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.documentElement;
@@ -568,7 +595,8 @@ ScrollTrigger.matchMedia({'(min-width:861px)':()=>{const t=$('#track'),d=()=>t.s
 gsap.from('.sign',{opacity:0,y:40,stagger:.09,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.signs',start:'top 82%'}});
 gsap.from('.ba',{opacity:0,y:50,stagger:.18,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'#pan',start:'top 82%'}});
 const cards=$$('.sc');cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.9,opacity:.55,ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top 82%',end:'top 16%',scrub:true}})});
-gsap.from('.of',{opacity:0,y:60,stagger:.14,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.offer',start:'top 80%'}});
+gsap.from('.way1',{opacity:0,y:60,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.way1',start:'top 85%'}});
+gsap.from('.pk .of',{opacity:0,y:60,stagger:.14,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.pk',start:'top 85%'}});
 gsap.fromTo('#m1',{xPercent:0},{xPercent:-32,ease:'none',scrollTrigger:{trigger:'.mq',start:'top bottom',end:'bottom top',scrub:.4}});
 gsap.fromTo('#m2',{xPercent:-32},{xPercent:0,ease:'none',scrollTrigger:{trigger:'.mq',start:'top bottom',end:'bottom top',scrub:.4}});
 gsap.from('.book',{opacity:0,y:60,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.book',start:'top 88%'}});

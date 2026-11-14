@@ -4,7 +4,7 @@
 (function () {
   var cv = document.getElementById('gl');
   if (!cv) { cv = document.createElement('canvas'); cv.id = 'gl'; cv.setAttribute('aria-hidden', 'true'); document.body.prepend(cv); }
-  var gl = cv.getContext('webgl', { antialias: false, alpha: false });
+  var gl = cv.getContext('webgl', { antialias: false, alpha: false, preserveDrawingBuffer: true });
   if (!gl) { cv.remove(); return; }
   var COL = ['#F1FFFA', '#A5FCDF', '#6CBCE0', '#8ADEDD', '#A9A8E6'].map(function (h) { return [1, 3, 5].map(function (i) { return parseInt(h.slice(i, i + 2), 16) / 255; }); });
   var fs = 'precision highp float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float s;uniform vec3 c0,c1,c2,c3,c4;' +

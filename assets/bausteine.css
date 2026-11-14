@@ -72,3 +72,24 @@
 .fit{font:600 1em/1.35 var(--f-t);color:var(--acc);margin-top:.35em}
 .of h3+.fit{margin-bottom:.2em}
 .pay .m{font:600 1rem/1.3 var(--f-t);letter-spacing:0;text-transform:none}
+
+/* Angebot: zwei Wege (8-Wochen-Programm oder Paket in drei Größen) */
+.ways{display:grid;gap:clamp(40px,7vh,80px);margin-top:clamp(30px,6vh,64px)}
+.way1{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);align-items:start}
+.way1 h3,.way2>h3{margin:0 0 .2em}
+.way1-side{display:flex;flex-direction:column;gap:1em;padding-top:.4em}
+.way1-side .gar{margin-top:0}
+.way2-lead{margin-top:.8em;max-width:42em;color:var(--ink-3);font-size:var(--fs-lead);line-height:1.5}
+.offer.pk{margin-top:clamp(24px,4vh,40px)}
+.pk h4{font-family:var(--f-d);font-size:var(--fs-h3);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin:0 0 .25em}
+.pk .price{margin-top:.9em}
+.dur{margin-top:.5em;color:var(--ink-3)}
+.dur b{color:var(--ink)}
+.pk-h{margin-top:1.4em;font-weight:600;color:var(--ink)}
+.pk ul{margin:.5em 0 0}
+.pk .ex-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);top:1.15em}
+.pk .ex-list li{color:var(--ink-3)}
+.pk .cta{margin-top:auto}
+.pk .of>ul:last-of-type{margin-bottom:1.6em}
+.gar-all{margin-top:clamp(20px,3vh,32px);max-width:46em}
+@media (max-width:1080px){.way1{grid-template-columns:1fr}}

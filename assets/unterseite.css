@@ -30,7 +30,7 @@ p{margin:0}
 .hero .for{margin-top:1.2em;color:var(--ink-2);font-size:.95em}
 .hero .for b{color:var(--ink);font-weight:600}
 .scarce{display:inline-flex;align-items:center;gap:10px;margin-top:1.6em;font-size:.92em;color:var(--ink-3)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--acc);flex:none;animation:pulse 2.4s infinite}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--acc);flex:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 50%,transparent)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
 
@@ -54,7 +54,10 @@ p{margin:0}
 .probs,.guar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(10px,1.2vw,20px);margin-top:clamp(30px,6vh,60px)}
 .prob,.g{border-radius:24px;padding:clamp(20px,2.4vw,36px);display:flex;flex-direction:column;gap:12px;min-width:0;background:var(--glass);-webkit-backdrop-filter:blur(26px) saturate(1.35);backdrop-filter:blur(26px) saturate(1.35);border:1px solid rgba(255,255,255,.8);box-shadow:0 30px 60px -40px color-mix(in srgb,var(--ink) 55%,transparent);position:relative;overflow:hidden}
 .prob p,.g p{color:var(--ink-3)}
-.g .shield{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--ink);color:var(--mint)}
+.g .shield{display:block;color:var(--acc);line-height:0}
+/* Icon neben der Überschrift statt Kachel darüber */
+.g{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center}
+.g>:not(.shield):not(h3){grid-column:1/-1}
 .g::after{display:none}
 
 /* Schritte als Weg */
@@ -75,7 +78,7 @@ p{margin:0}
 .srow .v{font:500 .92em var(--f-m);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
 .srow.total{border-bottom:0;padding-top:22px}
 .srow.total .v{color:var(--ink);text-decoration:line-through;text-decoration-color:var(--bad);text-decoration-thickness:2px}
-.tag{font:500 10px var(--f-m);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--mint);color:var(--ink)}
+.tag{font:600 12px var(--f-t);letter-spacing:0;padding:4px 8px;border-radius:999px;background:var(--mint);color:var(--ink)}
 .tier-tag{font:500 11px var(--f-m);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--ink);color:#fff}
 .price{position:sticky;top:calc(var(--head) + 16px);border-radius:30px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.8);box-shadow:0 30px 60px -40px color-mix(in srgb,var(--ink) 55%,transparent);padding:clamp(22px,2.6vw,40px);display:flex;flex-direction:column;gap:14px}
 .price .big{font:800 clamp(48px,5.4vw,84px)/1 var(--f-d);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
