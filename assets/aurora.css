@@ -9,7 +9,7 @@
   --line:color-mix(in srgb,var(--ink) 15%,transparent);
   --bad-s:color-mix(in srgb,var(--bad) 20%,#fff);--bad-t:color-mix(in srgb,var(--bad) 70%,#000);--bad-d:color-mix(in srgb,var(--bad) 62%,#000);
   --glass:rgba(255,255,255,.56);--paper-2:#fff;--berry:var(--acc);
-  --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --f-d:"Familjen Grotesk",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
   --f-display:var(--f-d);
 
   /* Feste Schriftgrößen pro Ebene, auf allen Seiten gleich */
@@ -117,3 +117,9 @@ main [id]{scroll-margin-top:calc(var(--head) + 10px)}
 .bewertung-sterne{color:var(--acc);letter-spacing:.14em;font-size:1.05em}
 .bewertung figcaption{color:var(--ink-3);font-size:.9em}
 .bewertungen-mehr{margin-top:1.4em}.bewertungen-mehr a{color:var(--acc);font-weight:600}
+
+/* Blöcke sichtbar trennen: Der Grund läuft durch, jeder zweite Block liegt auf einer eigenen hellen Fläche.
+   Startseite: Klasse .blk (GSAP verschiebt angeheftete Blöcke). Unterseiten: main.blocks bzw. Use Cases über .page. */
+:root{--blk:rgba(255,255,255,.5);--blk-edge:rgba(255,255,255,.95)}
+.blk,main.blocks>section:nth-of-type(even),.page>section:nth-of-type(even){background:var(--blk);box-shadow:inset 0 1px 0 var(--blk-edge),inset 0 -1px 0 var(--blk-edge)}
+.blk .glass,main.blocks>section:nth-of-type(even) .glass,.page>section:nth-of-type(even) .glass{background:rgba(255,255,255,.8)}
