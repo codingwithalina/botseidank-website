@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://www.botseidank.com/use-cases.html">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="assets/fonts.css?v=20261114c">
+<link rel="stylesheet" href="assets/fonts.css?v=20261114f">
 <link rel="stylesheet" href="assets/aurora.css?v=2026111401">
 <style>
 /* Use Cases, Speed to Lead und generische Detailseite. Grundlage ist assets/aurora.css (Tokens, Überschriften, Kopf, Fuß). */
@@ -43,9 +43,9 @@ p{margin:0}
 
 /* Feste Überschriften-Skala wie auf allen Seiten */
 h1,h2,h3,h4{font-family:var(--f-d);font-weight:700;margin:0;text-wrap:balance}
-h1{font-size:var(--fs-h1);letter-spacing:-.05em;line-height:.92;font-weight:800}
-h2,.h2{font-size:var(--fs-h2);letter-spacing:-.04em;line-height:.98}
-h3{font-size:var(--fs-h3);letter-spacing:-.03em;line-height:1.04}
+h1{font-size:var(--fs-h1);letter-spacing:-.03em;line-height:.92;font-weight:800}
+h2,.h2{font-size:var(--fs-h2);letter-spacing:-.025em;line-height:.98}
+h3{font-size:var(--fs-h3);letter-spacing:-.015em;line-height:1.04}
 
 /* Eine linke Kante: nur .wrap setzt den Rand, Abschnitte selbst nicht */
 .wrap{max-width:none;margin:0;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
@@ -89,7 +89,7 @@ h3{font-size:var(--fs-h3);letter-spacing:-.03em;line-height:1.04}
 .feature .f-r{grid-column:8/13;display:grid;grid-template-rows:repeat(3,1fr);border-left:1px solid var(--line)}
 .feature .f-r div{padding:24px 28px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
 .feature .f-r div:last-child{border-bottom:0}
-.feature .f-r strong{font:800 clamp(34px,4vw,56px)/1 var(--f-d);letter-spacing:-.03em;color:var(--acc);white-space:nowrap}
+.feature .f-r strong{font:800 clamp(34px,4vw,56px)/1 var(--f-d);letter-spacing:-.015em;color:var(--acc);white-space:nowrap}
 .feature .f-r span{font-size:14px;color:var(--ink-2);text-align:right}
 .feature p{color:var(--ink-2);max-width:52ch}
 .feature .hl{color:var(--ink);font-weight:600}
@@ -106,7 +106,7 @@ h3{font-size:var(--fs-h3);letter-spacing:-.03em;line-height:1.04}
 .ocard .o-g svg{flex:none;color:var(--acc);margin-top:3px}
 .ocard .o-g b{color:var(--ink);font-weight:600}
 .ocard .o-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
-.ocard .o-big{font:800 clamp(34px,3.6vw,48px)/1 var(--f-d);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.ocard .o-big{font:800 clamp(34px,3.6vw,48px)/1 var(--f-d);letter-spacing:-.015em;font-variant-numeric:tabular-nums}
 .ocard .o-m{font-size:14px;color:var(--ink-2)}
 .ocard .o-go{display:flex;justify-content:space-between;align-items:center;font-weight:600}
 .ocard .o-go i{font-style:normal;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;transition:transform .4s cubic-bezier(.22,1,.36,1),background-color .25s}
@@ -173,7 +173,7 @@ h3{font-size:var(--fs-h3);letter-spacing:-.03em;line-height:1.04}
 .field .top{display:flex;justify-content:space-between;gap:12px;font-size:15px}
 .field output{font:600 16px var(--f-m);font-variant-numeric:tabular-nums;white-space:nowrap}
 input[type=range]{width:100%;accent-color:var(--acc)}
-.calc .big{font:800 clamp(48px,6.6vw,96px)/1 var(--f-d);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--acc)}
+.calc .big{font:800 clamp(48px,6.6vw,96px)/1 var(--f-d);letter-spacing:-.025em;font-variant-numeric:tabular-nums;color:var(--acc)}
 .calc .sub{color:var(--ink-2)}
 .calc .row2{display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--line);padding-top:16px}
 .calc .row2 strong{font:700 36px var(--f-d);font-variant-numeric:tabular-nums}
@@ -475,8 +475,8 @@ input[type=range]{width:100%;accent-color:var(--acc)}
 <!-- /layout:footer -->
 
 
-<script src="assets/aurora-gl.js?v=20261114c"></script>
-<script src="assets/site.js?v=20261114c"></script>
+<script src="assets/aurora-gl.js?v=20261114f"></script>
+<script src="assets/site.js?v=20261114f"></script>
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/CustomEase.min.js"></script>

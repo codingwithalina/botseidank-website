@@ -81,7 +81,7 @@ p{margin:0}
 .tag{font:600 12px var(--f-t);letter-spacing:0;padding:4px 8px;border-radius:999px;background:var(--mint);color:var(--ink)}
 .tier-tag{font:500 11px var(--f-m);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--ink);color:#fff}
 .price{position:sticky;top:calc(var(--head) + 16px);border-radius:30px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.8);box-shadow:0 30px 60px -40px color-mix(in srgb,var(--ink) 55%,transparent);padding:clamp(22px,2.6vw,40px);display:flex;flex-direction:column;gap:14px}
-.price .big{font:800 clamp(48px,5.4vw,84px)/1 var(--f-d);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.price .big{font:800 clamp(48px,5.4vw,84px)/1 var(--f-d);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
 .price .big small{font:600 .3em var(--f-t);letter-spacing:0;color:var(--ink-2);margin-left:6px}
 .price .m{font:600 1.15em var(--f-t);letter-spacing:0;text-transform:none;color:var(--ink)}
 .price .note,.price .extra{font-size:.9em;color:var(--ink-2)}
@@ -96,7 +96,7 @@ p{margin:0}
 .lad.cur{background:var(--ink);color:#fff;border-color:var(--ink)}
 .lad.cur .mono,.lad.cur .s,.lad.cur .p small{color:var(--mint)}
 .lad .mono{color:var(--ink-2)}
-.lad .p{font:700 clamp(22px,2vw,28px)/1 var(--f-d);letter-spacing:-.03em;margin-top:auto;padding-top:10px}
+.lad .p{font:700 clamp(22px,2vw,28px)/1 var(--f-d);letter-spacing:-.015em;margin-top:auto;padding-top:10px}
 .lad .p small{font:500 .55em var(--f-t);color:var(--ink-2);letter-spacing:0}
 .lad .s{font-size:.9em;color:var(--ink-2)}
 @media (max-width:860px){.ladder{grid-template-columns:1fr}}
@@ -105,7 +105,7 @@ p{margin:0}
 .band{background:none}
 .anchor{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,20px);margin-top:clamp(40px,7vh,72px)}
 .anchor div{border-radius:24px;padding:clamp(18px,2.2vw,32px);min-width:0;background:var(--glass);border:1px solid rgba(255,255,255,.8)}
-.anchor strong{display:block;font:800 clamp(24px,2.4vw,40px)/1.04 var(--f-d);letter-spacing:-.04em;margin-bottom:.4em}
+.anchor strong{display:block;font:800 clamp(24px,2.4vw,40px)/1.04 var(--f-d);letter-spacing:-.025em;margin-bottom:.4em}
 .anchor div:not(:last-child) strong{color:var(--ink-2);text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--bad)}
 .anchor span{display:block;color:var(--ink-3)}
 .anchor div:last-child{background:var(--ink);color:#fff;border-color:var(--ink)}

@@ -9,7 +9,7 @@
   --line:color-mix(in srgb,var(--ink) 15%,transparent);
   --bad-s:color-mix(in srgb,var(--bad) 20%,#fff);--bad-t:color-mix(in srgb,var(--bad) 70%,#000);--bad-d:color-mix(in srgb,var(--bad) 62%,#000);
   --glass:rgba(255,255,255,.56);--paper-2:#fff;--berry:var(--acc);
-  --f-d:"Familjen Grotesk",system-ui,sans-serif;--f-t:"Instrument Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --f-d:"Funnel Display",system-ui,sans-serif;--f-t:"Funnel Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace;
   --f-display:var(--f-d);
 
   /* Feste Schriftgrößen pro Ebene, auf allen Seiten gleich */
@@ -36,10 +36,10 @@ img{max-width:100%}
 button{font:inherit;color:inherit}
 [hidden]{display:none!important}
 .vh{position:absolute!important;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-h1,h2,h3,h4{font-family:var(--f-d);font-weight:700;letter-spacing:-.04em;line-height:.98;text-wrap:balance}
-h1{font-size:var(--fs-h1);font-weight:800;letter-spacing:-.05em;line-height:.92}
+h1,h2,h3,h4{font-family:var(--f-d);font-weight:700;letter-spacing:-.025em;line-height:.98;text-wrap:balance}
+h1{font-size:var(--fs-h1);font-weight:800;letter-spacing:-.03em;line-height:.92}
 h2{font-size:var(--fs-h2)}
-h3{font-size:var(--fs-h3);letter-spacing:-.03em;line-height:1.04}
+h3{font-size:var(--fs-h3);letter-spacing:-.015em;line-height:1.04}
 input:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
 main [id]{scroll-margin-top:calc(var(--head) + 10px)}
 
