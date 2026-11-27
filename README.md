@@ -7,6 +7,7 @@ Statische Website, keine Build-Schritte.
 | `index.html` | Startseite im Aurora-Look (Palette „Violett bis Mint“): Selbsttest, Beispielwoche, Rechner, Bereiche „Heute/Danach“, Angebot in drei Stufen (`#angebot`), Über mich (`#ueber-mich`), Terminbuchung (`#erstgespraech`). Alte Adressen leiten weiter: Use-Case-Adressen nach `use-cases.html`, der Rest auf die passenden Abschnitte. |
 | `use-cases.html` | Frühere `index.html`. Zeigt nur noch die Use Cases (`#use-cases`, `#r-<slug>`-Detailseiten, `#speed-to-lead`) im bisherigen Look. `#start`, `#angebot`, `#erstgespraech` und `#ueber-mich` leiten auf `index.html` um. |
 | `ablauf-sprint.html` | 8-Wochen-Programm „Zeitfresser finden und abschaffen“ (6.000 €, zwei Raten nach Ergebnis) |
+| `agenturen.html` | 8-Wochen-Programm für Agenturen (5–30 MA): Ziel 10 Std./Woche zurück, Bonus-Stack (Dashboard „Gesparte Stunden“, Mini-Automation, KI-Workshop, 60 Tage Begleitung), Pilotpreis 3.500 € für die ersten 3 Agenturen. Zielseite für die LinkedIn-Akquise, nicht im Hauptmenü, nur im Footer. |
 | `lead-revenue-system.html` | Paket aus drei Systemen (9.900 € + 1.790 €/Monat) |
 | `leadblitz-60.html` | System: KI-Rückruf in 60 Sekunden (4.900 € + 790 €/Monat) |
 | `anrufwaechter.html` | System: KI-Telefonassistent (3.900 € + 590 €/Monat) |
